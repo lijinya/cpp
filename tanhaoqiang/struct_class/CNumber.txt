@@ -1,0 +1,432 @@
+1:    #include<stdio.h>
+2:
+3:    class CNumber
+4:    {
+5:    public:
+6:        CNumber()
+00401060   push        ebp
+00401061   mov         ebp,esp
+00401063   sub         esp,44h
+00401066   push        ebx
+00401067   push        esi
+00401068   push        edi
+00401069   push        ecx
+0040106A   lea         edi,[ebp-44h]
+0040106D   mov         ecx,11h
+00401072   mov         eax,0CCCCCCCCh
+00401077   rep stos    dword ptr [edi]
+00401079   pop         ecx
+0040107A   mov         dword ptr [ebp-4],ecx
+7:        {
+8:            m_nOne = 1;
+0040107D   mov         eax,dword ptr [ebp-4]
+00401080   mov         dword ptr [eax],1
+9:            m_nTwo = 2;
+00401086   mov         ecx,dword ptr [ebp-4]
+00401089   mov         dword ptr [ecx+4],2
+10:       }
+00401090   mov         eax,dword ptr [ebp-4]
+00401093   pop         edi
+00401094   pop         esi
+00401095   pop         ebx
+00401096   mov         esp,ebp
+00401098   pop         ebp
+00401099   ret
+
+11:       int GetNumberOne()
+12:       {
+13:           return m_nOne;
+14:       }
+15:       int GetNumberTwo()
+16:       {
+17:           return m_nTwo;
+18:       }
+19:   private:
+20:       int m_nOne;
+21:       int m_nTwo;
+22:   };
+23:   int main()
+24:   {
+00401020   push        ebp
+00401021   mov         ebp,esp
+00401023   sub         esp,48h
+00401026   push        ebx
+00401027   push        esi
+00401028   push        edi
+00401029   lea         edi,[ebp-48h]
+0040102C   mov         ecx,12h
+00401031   mov         eax,0CCCCCCCCh
+00401036   rep stos    dword ptr [edi]
+25:       CNumber number;
+00401038   lea         ecx,[ebp-8]
+0040103B   call        @ILT+0(CNumber::CNumber) (00401005)
+26:       return 0;
+00401040   xor         eax,eax
+27:   }
+00401042   pop         edi
+00401043   pop         esi
+00401044   pop         ebx
+00401045   add         esp,48h
+00401048   cmp         ebp,esp
+0040104A   call        __chkesp (004010b0)
+0040104F   mov         esp,ebp
+00401051   pop         ebp
+00401052   ret
+
+1:    #include<stdio.h>
+2:
+3:    struct A
+4:    {
+5:        int m_nInt;
+6:        float m_fFloat;
+7:    };
+8:
+9:    int main()
+10:   {
+004011A0   push        ebp
+004011A1   mov         ebp,esp
+004011A3   sub         esp,4Ch
+004011A6   push        ebx
+004011A7   push        esi
+004011A8   push        edi
+004011A9   lea         edi,[ebp-4Ch]
+004011AC   mov         ecx,13h
+004011B1   mov         eax,0CCCCCCCCh
+004011B6   rep stos    dword ptr [edi]
+11:       A a;
+12:       A *pA = &a;
+004011B8   lea         eax,[ebp-8]
+004011BB   mov         dword ptr [ebp-0Ch],eax
+13:       printf("%p\n" , pA);
+004011BE   mov         ecx,dword ptr [ebp-0Ch]
+004011C1   push        ecx
+004011C2   push        offset string "%p\n" (0042601c)
+004011C7   call        printf (00401210)
+004011CC   add         esp,8
+14:       printf("%p\n" , &pA->m_fFloat);
+004011CF   mov         edx,dword ptr [ebp-0Ch]
+004011D2   add         edx,4				Æ«ÒÆµØÖ·
+004011D5   push        edx
+004011D6   push        offset string "%p\n" (0042601c)
+004011DB   call        printf (00401210)
+004011E0   add         esp,8
+15:       return 0;
+004011E3   xor         eax,eax
+16:   }
+004011E5   pop         edi
+004011E6   pop         esi
+004011E7   pop         ebx
+004011E8   add         esp,4Ch
+004011EB   cmp         ebp,esp
+004011ED   call        __chkesp (00401340)
+004011F2   mov         esp,ebp
+004011F4   pop         ebp
+004011F5   ret
+
+__stdcall²»ÓÃecx´«µÝthisÖ¸Õë,¶øÊÇÊ¹ÓÃÕ»´«µÝ¡£
+
+11:       int __stdcall GetNumberOne()
+12:       {
+00401160   push        ebp
+00401161   mov         ebp,esp
+00401163   sub         esp,40h
+00401166   push        ebx
+00401167   push        esi
+00401168   push        edi
+00401169   lea         edi,[ebp-40h]
+0040116C   mov         ecx,10h
+00401171   mov         eax,0CCCCCCCCh
+00401176   rep stos    dword ptr [edi]
+13:           return m_nOne;
+00401178   mov         eax,dword ptr [ebp+8]	this
+0040117B   mov         eax,dword ptr [eax]
+14:       }
+0040117D   pop         edi
+0040117E   pop         esi
+0040117F   pop         ebx
+00401180   mov         esp,ebp
+00401182   pop         ebp
+00401183   ret         4
+
+15:       int GetNumberTwo()
+16:       {
+00410AE0   push        ebp
+00410AE1   mov         ebp,esp
+00410AE3   sub         esp,44h
+00410AE6   push        ebx
+00410AE7   push        esi
+00410AE8   push        edi
+00410AE9   push        ecx
+00410AEA   lea         edi,[ebp-44h]
+00410AED   mov         ecx,11h
+00410AF2   mov         eax,0CCCCCCCCh
+00410AF7   rep stos    dword ptr [edi]
+00410AF9   pop         ecx			this
+00410AFA   mov         dword ptr [ebp-4],ecx
+17:           return m_nTwo;
+00410AFD   mov         eax,dword ptr [ebp-4]
+00410B00   mov         eax,dword ptr [eax+4]
+18:       }
+00410B03   pop         edi
+00410B04   pop         esi
+00410B05   pop         ebx
+00410B06   mov         esp,ebp
+00410B08   pop         ebp
+00410B09   ret
+
+1:    #include<stdio.h>
+2:
+3:    class CStatic
+4:    {
+5:    public:
+6:        void ShowNumber();
+7:        int m_nInt;
+8:        static int m_snInt;
+9:    };
+10:   void CStatic :: ShowNumber()
+11:   {
+00401290   push        ebp
+00401291   mov         ebp,esp
+00401293   sub         esp,44h
+00401296   push        ebx
+00401297   push        esi
+00401298   push        edi
+00401299   push        ecx
+0040129A   lea         edi,[ebp-44h]
+0040129D   mov         ecx,11h
+004012A2   mov         eax,0CCCCCCCCh
+004012A7   rep stos    dword ptr [edi]
+004012A9   pop         ecx
+004012AA   mov         dword ptr [ebp-4],ecx
+12:       printf("m_nInt = %d , m_snInt = %d\n" , m_nInt , m_snInt);
+004012AD   mov         eax,[CStatic::m_snInt (00428a30)]
+004012B2   push        eax
+004012B3   mov         ecx,dword ptr [ebp-4]
+004012B6   mov         edx,dword ptr [ecx]
+004012B8   push        edx
+004012B9   push        offset string "m_nInt = %d , m_snInt = %d\n" (00426024)
+004012BE   call        printf (00401340)
+004012C3   add         esp,0Ch
+13:   }
+004012C6   pop         edi
+004012C7   pop         esi
+004012C8   pop         ebx
+004012C9   add         esp,44h
+004012CC   cmp         ebp,esp
+004012CE   call        __chkesp (00401470)
+004012D3   mov         esp,ebp
+004012D5   pop         ebp
+004012D6   ret
+
+14:   int CStatic::m_snInt = 9;
+15:   int main()
+16:   {
+004012F0   push        ebp
+004012F1   mov         ebp,esp
+004012F3   sub         esp,44h
+004012F6   push        ebx
+004012F7   push        esi
+004012F8   push        edi
+004012F9   lea         edi,[ebp-44h]
+004012FC   mov         ecx,11h
+00401301   mov         eax,0CCCCCCCCh
+00401306   rep stos    dword ptr [edi]
+17:       CStatic sta;
+18:       sta.m_nInt = 2;
+00401308   mov         dword ptr [ebp-4],2
+19:       sta.ShowNumber();
+0040130F   lea         ecx,[ebp-4]
+00401312   call        @ILT+5(CStatic::ShowNumber) (0040100a)
+20:       return 0;
+00401317   xor         eax,eax
+21:   }
+00401319   pop         edi
+0040131A   pop         esi
+0040131B   pop         ebx
+0040131C   add         esp,44h
+0040131F   cmp         ebp,esp
+00401321   call        __chkesp (00401470)
+00401326   mov         esp,ebp
+00401328   pop         ebp
+00401329   ret
+
+1:    #include<stdio.h>
+2:
+3:    class CFunTest
+4:    {
+5:    public:
+6:        int m_nOne;
+7:        int m_nTwo;
+8:    };
+9:    void ShowFuncTest(CFunTest fun)
+10:   {
+00401350   push        ebp
+00401351   mov         ebp,esp
+00401353   sub         esp,40h
+00401356   push        ebx
+00401357   push        esi
+00401358   push        edi
+00401359   lea         edi,[ebp-40h]
+0040135C   mov         ecx,10h
+00401361   mov         eax,0CCCCCCCCh
+00401366   rep stos    dword ptr [edi]
+11:       printf("m_nOne = %d , m_nTwo = %d\n" , fun.m_nOne , fun.m_nTwo);
+00401368   mov         eax,dword ptr [ebp+0Ch]
+0040136B   push        eax
+0040136C   mov         ecx,dword ptr [ebp+8]
+0040136F   push        ecx
+00401370   push        offset string "m_nOne = %d , m_nTwo = %d\n" (00426048)
+00401375   call        printf (00401400)
+0040137A   add         esp,0Ch
+12:   }
+0040137D   pop         edi
+0040137E   pop         esi
+0040137F   pop         ebx
+00401380   add         esp,40h
+00401383   cmp         ebp,esp
+00401385   call        __chkesp (00401530)
+0040138A   mov         esp,ebp
+0040138C   pop         ebp
+0040138D   ret
+
+13:   void main()
+14:   {
+004013A0   push        ebp
+004013A1   mov         ebp,esp
+004013A3   sub         esp,48h
+004013A6   push        ebx
+004013A7   push        esi
+004013A8   push        edi
+004013A9   lea         edi,[ebp-48h]
+004013AC   mov         ecx,12h
+004013B1   mov         eax,0CCCCCCCCh
+004013B6   rep stos    dword ptr [edi]
+15:       CFunTest fun;
+16:       fun.m_nOne = 9;
+004013B8   mov         dword ptr [ebp-8],9
+17:       fun.m_nTwo = 99;
+004013BF   mov         dword ptr [ebp-4],63h
+18:       ShowFuncTest(fun);
+004013C6   mov         eax,dword ptr [ebp-4]
+004013C9   push        eax
+004013CA   mov         ecx,dword ptr [ebp-8]
+004013CD   push        ecx
+004013CE   call        @ILT+0(ShowFuncTest) (00401005)
+004013D3   add         esp,8
+19:   }
+004013D6   pop         edi
+004013D7   pop         esi
+004013D8   pop         ebx
+004013D9   add         esp,48h
+004013DC   cmp         ebp,esp
+004013DE   call        __chkesp (00401530)
+004013E3   mov         esp,ebp
+004013E5   pop         ebp
+004013E6   ret
+
+
+1:    #include<stdio.h>
+2:    #include<string.h>
+3:    class CFunTest
+4:    {
+5:    public:
+6:        int m_nOne;
+7:        int m_nTwo;
+8:        char m_szName[32];
+9:    };
+10:   void ShowFuncTest(CFunTest fun)
+11:   {
+00401350   push        ebp
+00401351   mov         ebp,esp
+00401353   sub         esp,40h
+00401356   push        ebx
+00401357   push        esi
+00401358   push        edi
+00401359   lea         edi,[ebp-40h]
+0040135C   mov         ecx,10h
+00401361   mov         eax,0CCCCCCCCh
+00401366   rep stos    dword ptr [edi]
+12:       printf("m_nOne = %d , m_nTwo = %d , m_szName = %s\n" , fun.m_nOne , fun.m_nTwo , fun.m_szName);
+00401368   lea         eax,[ebp+10h]		//m_szName
+0040136B   push        eax
+0040136C   mov         ecx,dword ptr [ebp+0Ch]	//m_nTwo
+0040136F   push        ecx
+00401370   mov         edx,dword ptr [ebp+8]	//m_nOne
+00401373   push        edx
+00401374   push        offset string "m_nOne = %d , m_nTwo = %d , m_sz"... (00427050)
+00401379   call        printf (00401400)
+0040137E   add         esp,10h
+13:   }
+00401381   pop         edi
+00401382   pop         esi
+00401383   pop         ebx
+00401384   add         esp,40h
+00401387   cmp         ebp,esp
+00401389   call        __chkesp (00401530)
+0040138E   mov         esp,ebp
+00401390   pop         ebp
+00401391   ret
+
+14:   void main()
+15:   {
+004013A0   push        ebp
+004013A1   mov         ebp,esp
+004013A3   sub         esp,68h
+004013A6   push        ebx
+004013A7   push        esi
+004013A8   push        edi
+004013A9   lea         edi,[ebp-68h]
+004013AC   mov         ecx,1Ah
+004013B1   mov         eax,0CCCCCCCCh
+004013B6   rep stos    dword ptr [edi]
+16:       CFunTest fun;
+17:       fun.m_nOne = 9;
+004013B8   mov         dword ptr [ebp-28h],9
+18:       fun.m_nTwo = 99;
+004013BF   mov         dword ptr [ebp-24h],63h
+19:       strcpy(fun.m_szName , "NAME");
+004013C6   push        offset string "NAME" (00426040)
+004013CB   lea         eax,[ebp-20h]		ebp-32  m_szName
+004013CE   push        eax
+004013CF   call        strcpy (00407c80)
+20:       ShowFuncTest(fun);
+004013D4   add         esp,0E0h		//sub esp , 68h  add esp , 0e0h
+004013D7   mov         ecx,0Ah
+004013DC   lea         esi,[ebp-28h]
+004013DF   mov         edi,esp
+004013E1   rep movs    dword ptr [edi],dword ptr [esi]	40BYTE
+004013E3   call        @ILT+0(ShowFuncTest) (00401005)
+004013E8   add         esp,28h		40BYTE
+21:   }
+004013EB   pop         edi
+004013EC   pop         esi
+004013ED   pop         ebx
+004013EE   add         esp,68h
+004013F1   cmp         ebp,esp
+004013F3   call        __chkesp (00401530)
+004013F8   mov         esp,ebp
+004013FA   pop         ebp
+004013FB   ret
+
+004013D4   add         esp,0E0h
+004013D7   mov         ecx,0Ah
+004013DC   lea         esi,[ebp-28h]
+004013DF   mov         edi,esp		edi¼´ÊÇespÕ»¶¥  ´Ë´¦½øÐÐÖµ´«µÝ
+004013E1   rep movs    dword ptr [edi],dword ptr [esi]
+004013E3   call        @ILT+0(ShowFuncTest) (00401005)
+004013E8   add         esp,28h
+
+ EAX = 0018FF28 EBX = 7EFDE000
+ ECX = 00000000 EDX = 00000000
+ ESI = 0018FF48 EDI = 0018FED4
+ EIP = 004013E3 ESP = 0018FEAC
+ EBP = 0018FF48 EFL = 00000207
+
+
+0018FEAC  09 00 00 00 63 00 00 00 4E 41 4D  ...c...NAM
+0018FEB7  45 00 CC CC CC CC CC CC CC CC CC  E.ÌÌÌÌÌÌÌÌ.
+0018FEC2  CC CC CC CC CC CC CC CC CC CC CC  ÌÌÌÌÌÌÌÌÌÌ.
+0018FECD  CC CC CC CC CC CC CC 00 00 00 00  ÌÌÌÌÌÌ.....
+0018FED8  00 00 00 00 00 E0 FD 7E CC CC CC  .....àý~ÌÌ.
+0018FEE3  CC CC CC CC CC CC CC CC CC CC CC  ÌÌÌÌÌÌÌÌÌÌ.
+

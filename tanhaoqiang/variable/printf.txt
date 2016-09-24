@@ -1,0 +1,49 @@
+--- printf.c  --------------------------------------------------------------------------------------------------------------------------------------------------------
+printf:
+004011F0   push        ebp
+004011F1   mov         ebp,esp
+004011F3   sub         esp,0Ch
+004011F6   push        ebx
+004011F7   push        esi
+004011F8   push        edi
+004011F9   lea         eax,[ebp+0Ch]
+004011FC   mov         dword ptr [arglist],eax
+004011FF   cmp         dword ptr [format],0
+00401203   jne         printf+33h (00401223)
+00401205   push        offset string "format != NULL" (00410120)
+0040120A   push        0
+0040120C   push        36h
+0040120E   push        offset string "printf.c" (00410114)
+00401213   push        2
+00401215   call        _CrtDbgReport (00404880)
+0040121A   add         esp,14h
+0040121D   cmp         eax,1
+00401220   jne         printf+33h (00401223)
+00401222   int         3
+00401223   xor         ecx,ecx
+00401225   test        ecx,ecx
+00401227   jne         printf+0Fh (004011ff)
+00401229   push        offset __iob+20h (00412090)
+0040122E   call        _stbuf (004034d0)
+00401233   add         esp,4
+00401236   mov         dword ptr [buffing],eax
+00401239   mov         edx,dword ptr [arglist]
+0040123C   push        edx
+0040123D   mov         eax,dword ptr [format]
+00401240   push        eax
+00401241   push        offset __iob+20h (00412090)
+00401246   call        _output (004036f0)
+0040124B   add         esp,0Ch
+0040124E   mov         dword ptr [retval],eax
+00401251   push        offset __iob+20h (00412090)
+00401256   mov         ecx,dword ptr [buffing]
+00401259   push        ecx
+0040125A   call        _ftbuf (00403630)
+0040125F   add         esp,8
+00401262   mov         eax,dword ptr [retval]
+00401265   pop         edi
+00401266   pop         esi
+00401267   pop         ebx
+00401268   mov         esp,ebp
+0040126A   pop         ebp
+0040126B   ret

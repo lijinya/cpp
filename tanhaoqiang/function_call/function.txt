@@ -1,0 +1,331 @@
+@ILT+0(?ShowStd@@YGXH@Z):
+00401005   jmp         ShowStd (00401030)
+@ILT+5(?ShowCde@@YAXH@Z):
+0040100A   jmp         ShowCde (00401080)
+@ILT+10(_main):
+0040100F   jmp         main (004010d0)
+
+3:    void _stdcall ShowStd(int nNumber)
+4:    {
+00401030   push        ebp
+00401031   mov         ebp,esp
+00401033   sub         esp,40h
+00401036   push        ebx
+00401037   push        esi
+00401038   push        edi
+00401039   lea         edi,[ebp-40h]
+0040103C   mov         ecx,10h
+00401041   mov         eax,0CCCCCCCCh
+00401046   rep stos    dword ptr [edi]
+5:        printf("%d \r\n" , nNumber);
+00401048   mov         eax,dword ptr [ebp+8]
+0040104B   push        eax
+0040104C   push        offset string "%d \r\n" (0042201c)
+00401051   call        printf (00401120)
+00401056   add         esp,8
+6:    }
+00401059   pop         edi
+0040105A   pop         esi
+0040105B   pop         ebx
+0040105C   add         esp,40h
+0040105F   cmp         ebp,esp
+00401061   call        __chkesp (004011a0)
+00401066   mov         esp,ebp
+00401068   pop         ebp
+00401069   ret         4
+
+7:    void _cdecl ShowCde(int nNumber)
+8:    {
+00401080   push        ebp
+00401081   mov         ebp,esp
+00401083   sub         esp,40h
+00401086   push        ebx
+00401087   push        esi
+00401088   push        edi
+00401089   lea         edi,[ebp-40h]
+0040108C   mov         ecx,10h
+00401091   mov         eax,0CCCCCCCCh
+00401096   rep stos    dword ptr [edi]
+9:        printf("%d \r\n" , nNumber);
+00401098   mov         eax,dword ptr [ebp+8]
+0040109B   push        eax
+0040109C   push        offset string "%d \r\n" (0042201c)
+004010A1   call        printf (00401120)
+004010A6   add         esp,8
+10:   }
+004010A9   pop         edi
+004010AA   pop         esi
+004010AB   pop         ebx
+004010AC   add         esp,40h
+004010AF   cmp         ebp,esp
+004010B1   call        __chkesp (004011a0)
+004010B6   mov         esp,ebp
+004010B8   pop         ebp
+004010B9   ret
+
+11:   void repeat()
+12:   {
+004010C0   push        ebp
+004010C1   mov         ebp,esp
+004010C3   sub         esp,40h
+004010C6   push        ebx
+004010C7   push        esi
+004010C8   push        edi
+004010C9   lea         edi,[ebp-40h]
+004010CC   mov         ecx,10h
+004010D1   mov         eax,0CCCCCCCCh
+004010D6   rep stos    dword ptr [edi]
+13:       printf("hello\n");
+004010D8   push        offset string "hello\n" (00422fc0)
+004010DD   call        printf (00401120)
+004010E2   add         esp,4
+14:       printf("c++\n");
+004010E5   push        offset string "c++\n" (00422fb8)
+004010EA   call        printf (00401120)
+004010EF   add         esp,4
+15:       printf("functin\n");
+004010F2   push        offset string "functin\n" (00422fac)
+004010F7   call        printf (00401120)
+004010FC   add         esp,4
+16:       printf("call\n");
+004010FF   push        offset string "call\n" (00422fa4)
+00401104   call        printf (00401120)
+00401109   add         esp,4
+17:   }
+0040110C   pop         edi
+0040110D   pop         esi
+0040110E   pop         ebx
+0040110F   add         esp,40h
+00401112   cmp         ebp,esp
+00401114   call        __chkesp (004011a0)
+00401119   mov         esp,ebp
+0040111B   pop         ebp
+0040111C   ret
+
+18:   void __fastcall ShowFast(int nOne , int nTwo , int nThree , int nFour)
+19:   {
+0040D7B0   push        ebp
+0040D7B1   mov         ebp,esp
+0040D7B3   sub         esp,48h
+0040D7B6   push        ebx
+0040D7B7   push        esi
+0040D7B8   push        edi
+0040D7B9   push        ecx
+0040D7BA   lea         edi,[ebp-48h]
+0040D7BD   mov         ecx,12h
+0040D7C2   mov         eax,0CCCCCCCCh
+0040D7C7   rep stos    dword ptr [edi]
+0040D7C9   pop         ecx
+0040D7CA   mov         dword ptr [ebp-8],edx
+0040D7CD   mov         dword ptr [ebp-4],ecx
+20:       printf("%d %d %d %d\r\n" , nOne , nTwo , nThree , nFour);
+0040D7D0   mov         eax,dword ptr [ebp+0Ch]
+0040D7D3   push        eax
+0040D7D4   mov         ecx,dword ptr [ebp+8]
+0040D7D7   push        ecx
+0040D7D8   mov         edx,dword ptr [ebp-8]
+0040D7DB   push        edx
+0040D7DC   mov         eax,dword ptr [ebp-4]
+0040D7DF   push        eax
+0040D7E0   push        offset string "%d %d %d %d\r\n" (00422fc8)
+0040D7E5   call        printf (00401120)
+0040D7EA   add         esp,14h
+21:   }
+0040D7ED   pop         edi
+0040D7EE   pop         esi
+0040D7EF   pop         ebx
+0040D7F0   add         esp,48h
+0040D7F3   cmp         ebp,esp
+0040D7F5   call        __chkesp (004011a0)
+0040D7FA   mov         esp,ebp
+0040D7FC   pop         ebp
+0040D7FD   ret         8
+
+@ILT+0(?ShowStd@@YGXH@Z):
+00401005   jmp         ShowStd (00401050)
+@ILT+5(?ShowCde@@YAXH@Z):
+0040100A   jmp         ShowCde (004010a0)
+@ILT+10(?ShowFast@@YIXHHHH@Z):
+0040100F   jmp         ShowFast (00401170)
+@ILT+15(?getF@@YAMM@Z):
+00401014   jmp         getF (00401220)
+@ILT+20(_main):
+00401019   jmp         main (00401250)
+@ILT+25(?repeat@@YAXXZ):
+0040101E   jmp         repeat (004010f0)
+@ILT+30(?getAddr@@YAHH@Z):
+00401023   jmp         getAddr (004011e0)
+
+
+22:   int getAddr(int nNumber)
+23:   {
+004011E0   push        ebp
+004011E1   mov         ebp,esp
+004011E3   sub         esp,44h
+004011E6   push        ebx
+004011E7   push        esi
+004011E8   push        edi
+004011E9   lea         edi,[ebp-44h]
+004011EC   mov         ecx,11h
+004011F1   mov         eax,0CCCCCCCCh
+004011F6   rep stos    dword ptr [edi]
+24:       int nAddr = *(int *)(&nNumber - 1);
+004011F8   lea         eax,[ebp+8]
+004011FB   sub         eax,4
+004011FE   mov         ecx,dword ptr [eax]
+00401200   mov         dword ptr [ebp-4],ecx
+25:       return nAddr;
+00401203   mov         eax,dword ptr [ebp-4]
+26:   }
+00401206   pop         edi
+00401207   pop         esi
+00401208   pop         ebx
+00401209   mov         esp,ebp
+0040120B   pop         ebp
+0040120C   ret
+
+
+27:   float getF(float fFat)
+28:   {
+00401220   push        ebp
+00401221   mov         ebp,esp
+00401223   sub         esp,40h
+00401226   push        ebx
+00401227   push        esi
+00401228   push        edi
+00401229   lea         edi,[ebp-40h]
+0040122C   mov         ecx,10h
+00401231   mov         eax,0CCCCCCCCh
+00401236   rep stos    dword ptr [edi]
+29:       return fFat * fFat;
+00401238   fld         dword ptr [ebp+8]
+0040123B   fmul        dword ptr [ebp+8]
+30:   }
+0040123E   pop         edi
+0040123F   pop         esi
+00401240   pop         ebx
+00401241   mov         esp,ebp
+00401243   pop         ebp
+00401244   ret
+
+ ST0 = +6.25000000000000000e+0000
+ ST1 = +0.00000000000000000e+0000
+ ST2 = +0.00000000000000000e+0000
+ ST3 = +0.00000000000000000e+0000
+ ST4 = +0.00000000000000000e+0000
+ ST5 = +0.00000000000000000e+0000
+ ST6 = +0.00000000000000000e+0000
+ ST7 = +0.00000000000000000e+0000
+
+ ST0 = +0.00000000000000000e+0000
+ ST1 = +0.00000000000000000e+0000
+ ST2 = +0.00000000000000000e+0000
+ ST3 = +0.00000000000000000e+0000
+ ST4 = +0.00000000000000000e+0000
+ ST5 = +0.00000000000000000e+0000
+ ST6 = +0.00000000000000000e+0000
+ ST7 = +6.25000000000000000e+0000
+
+
+27:   float getF(float fFat)
+28:   {
+00401220   push        ebp
+00401221   mov         ebp,esp
+00401223   sub         esp,44h
+00401226   push        ebx
+00401227   push        esi
+00401228   push        edi
+00401229   lea         edi,[ebp-44h]
+0040122C   mov         ecx,11h
+00401231   mov         eax,0CCCCCCCCh
+00401236   rep stos    dword ptr [edi]
+29:       return fFat * fFat + 1.0;
+00401238   fld         dword ptr [ebp+8]
+0040123B   fmul        dword ptr [ebp+8]
+0040123E   fadd        qword ptr [__real@8@3fff8000000000000000 (00426480)]
+00401244   fst         dword ptr [ebp-4]
+30:   }
+00401247   pop         edi
+00401248   pop         esi
+00401249   pop         ebx
+0040124A   mov         esp,ebp
+0040124C   pop         ebp
+0040124D   ret
+
+
+31:   double getD(double fFat)
+32:   {
+00401250   push        ebp
+00401251   mov         ebp,esp
+00401253   sub         esp,40h
+00401256   push        ebx
+00401257   push        esi
+00401258   push        edi
+00401259   lea         edi,[ebp-40h]
+0040125C   mov         ecx,10h
+00401261   mov         eax,0CCCCCCCCh
+00401266   rep stos    dword ptr [edi]
+33:       return fFat * fFat + 1.0;
+00401268   fld         qword ptr [ebp+8]
+0040126B   fmul        qword ptr [ebp+8]
+0040126E   fadd        qword ptr [__real@8@3fff8000000000000000 (00426480)]
+34:   }
+00401274   pop         edi
+00401275   pop         esi
+00401276   pop         ebx
+00401277   mov         esp,ebp
+00401279   pop         ebp
+0040127A   ret
+
+
+35:   struct _tagTest
+36:   {
+37:       int m_nInt;
+38:       char m_cCh;
+39:       float m_fFat;
+40:   };
+41:   _tagTest getT()
+42:   {
+00410BB0   push        ebp
+00410BB1   mov         ebp,esp
+00410BB3   sub         esp,4Ch
+00410BB6   push        ebx
+00410BB7   push        esi
+00410BB8   push        edi
+00410BB9   lea         edi,[ebp-4Ch]
+00410BBC   mov         ecx,13h
+00410BC1   mov         eax,0CCCCCCCCh
+00410BC6   rep stos    dword ptr [edi]
+43:       _tagTest t;
+44:       t.m_cCh = 't';
+00410BC8   mov         byte ptr [ebp-8],74h
+45:       t.m_fFat = 1.0;
+00410BCC   mov         dword ptr [ebp-4],3F800000h
+46:       t.m_nInt = 1;
+00410BD3   mov         dword ptr [ebp-0Ch],1
+47:       return t;
+00410BDA   mov         eax,dword ptr [ebp+8]
+00410BDD   mov         ecx,dword ptr [ebp-0Ch]
+00410BE0   mov         dword ptr [eax],ecx
+00410BE2   mov         edx,dword ptr [ebp-8]
+00410BE5   mov         dword ptr [eax+4],edx
+00410BE8   mov         ecx,dword ptr [ebp-4]
+00410BEB   mov         dword ptr [eax+8],ecx
+00410BEE   mov         eax,dword ptr [ebp+8]
+48:   }
+00410BF1   pop         edi
+00410BF2   pop         esi
+00410BF3   pop         ebx
+00410BF4   mov         esp,ebp
+00410BF6   pop         ebp
+00410BF7   ret
+
+					01  面面面面面.
+0018FECD  00 00 00 74 CC CC CC 00 00 80 3F  ...t面....?
+0018FED8  48 FF 18 00 9B 0C 41 00 30 FF 18  H.....A.0..
+0018FEE3  00
+
+0018FF25  CC CC CC CC CC CC CC CC CC CC CC  面面面面面.
+0018FF30  01 00 00 00 74 CC CC CC 00 00 80  ....t面....
+0018FF3B  3F CC CC CC CC CC CC CC CC CC CC  ?面面面面面
+

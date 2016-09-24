@@ -1,0 +1,113 @@
+__declspec(noinline)
+int
+__tmainCRTStartup(
+         void
+         )
+{
+        int initret;
+        int mainret=0;
+        int managedapp;
+#ifdef _WINMAIN_
+        _TUCHAR *lpszCommandLine;
+        STARTUPINFOW StartupInfo;
+
+        GetStartupInfoW( &StartupInfo );
+#endif  /* _WINMAIN_ */
+
+#ifdef _M_IX86
+        /*
+         * Enable app termination when heap corruption is detected on
+         * Windows Vista and above. This is a no-op on down-level OS's
+         * and enabled by default for 64-bit processes.
+         */
+
+        if (!_NoHeapEnableTerminationOnCorruption)
+        {
+            HeapSetInformation(NULL, HeapEnableTerminationOnCorruption, NULL, 0);
+        }
+#endif  /* _M_IX86 */
+
+        /*
+         * Determine if this is a managed application
+         */
+        managedapp = check_managed_app();
+
+        if ( !_heap_init() )                /* initialize heap */
+            fast_error_exit(_RT_HEAPINIT);  /* write message and die */
+
+        if( !_mtinit() )                    /* initialize multi-thread */
+            fast_error_exit(_RT_THREAD);    /* write message and die */
+
+        /* Enable buffer count checking if linking against static lib */
+        _CrtSetCheckCount(TRUE);
+
+        /*
+         * Initialize the Runtime Checks stuff
+         */
+#ifdef _RTC
+        _RTC_Initialize();
+#endif  /* _RTC */
+        /*
+         * Guard the remainder of the initialization code and the call
+         * to user's main, or WinMain, function in a __try/__except
+         * statement.
+         */
+
+        __try {
+
+            if ( _ioinit() < 0 )            /* initialize lowio */
+                _amsg_exit(_RT_LOWIOINIT);
+
+            /* get wide cmd line info */
+            _tcmdln = (_TSCHAR *)GetCommandLineT();
+
+            /* get wide environ info */
+            _tenvptr = (_TSCHAR *)GetEnvironmentStringsT();
+
+            if ( _tsetargv() < 0 )
+                _amsg_exit(_RT_SPACEARG);
+            if ( _tsetenvp() < 0 )
+                _amsg_exit(_RT_SPACEENV);
+
+            initret = _cinit(TRUE);                  /* do C data initialize */
+            if (initret != 0)
+                _amsg_exit(initret);
+
+#ifdef _WINMAIN_
+
+            lpszCommandLine = _twincmdln();
+            mainret = _tWinMain( (HINSTANCE)&__ImageBase,
+                                 NULL,
+                                 lpszCommandLine,
+                                 StartupInfo.dwFlags & STARTF_USESHOWWINDOW
+                                      ? StartupInfo.wShowWindow
+                                      : SW_SHOWDEFAULT
+                                );
+#else  /* _WINMAIN_ */
+            _tinitenv = _tenviron;
+            mainret = _tmain(__argc, _targv, _tenviron);
+#endif  /* _WINMAIN_ */
+
+            if ( !managedapp )
+                exit(mainret);
+
+            _cexit();
+
+        }
+        __except ( _XcptFilter(GetExceptionCode(), GetExceptionInformation()) )
+        {
+            /*
+             * Should never reach here
+             */
+
+            mainret = GetExceptionCode();
+
+            if ( !managedapp )
+                _exit(mainret);
+
+            _c_exit();
+
+        } /* end of try - except */
+
+        return mainret;
+}

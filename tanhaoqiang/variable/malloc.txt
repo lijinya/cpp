@@ -1,0 +1,386 @@
+extern "C" _CRTIMP void * __cdecl malloc (
+        size_t nSize
+        )
+{
+        void *res = _nh_malloc_dbg(nSize, _newmode, _NORMAL_BLOCK, NULL, 0);
+
+        RTCCALLBACK(_RTC_Allocate_hook, (res, nSize, 0));
+
+        return res;
+}
+
+extern "C" void * __cdecl _nh_malloc_dbg (
+        size_t nSize,
+        int nhFlag,
+        int nBlockUse,
+        const char * szFileName,
+        int nLine
+        )
+{
+        int errno_tmp = 0;
+        void * pvBlk = _nh_malloc_dbg_impl(nSize, nhFlag, nBlockUse, szFileName, nLine, &errno_tmp);
+
+        if ( pvBlk == NULL && errno_tmp != 0 && _errno())
+        {
+            errno = errno_tmp; // recall, #define errno *_errno()
+        }
+        return pvBlk;
+}
+
+extern "C" static void * __cdecl _nh_malloc_dbg_impl (
+        size_t nSize,
+        int nhFlag,
+        int nBlockUse,
+        const char * szFileName,
+        int nLine,
+        int * errno_tmp
+        )
+{
+        void * pvBlk;
+
+        for (;;)
+        {
+            /* do the allocation
+             */
+            pvBlk = _heap_alloc_dbg_impl(nSize, nBlockUse, szFileName, nLine, errno_tmp);
+
+            if (pvBlk)
+            {
+                return pvBlk;
+            }
+            if (nhFlag == 0)
+            {
+                if (errno_tmp)
+                {
+                    *errno_tmp = ENOMEM;
+                }
+                return pvBlk;
+            }
+
+            /* call installed new handler */
+            if (!_callnewh(nSize))
+            {
+                if (errno_tmp)
+                {
+                    *errno_tmp = ENOMEM;
+                }
+                return NULL;
+            }
+
+            /* new handler was successful -- try to allocate again */
+        }
+}
+
+extern "C" static void * __cdecl _heap_alloc_dbg_impl(
+        size_t nSize,
+        int nBlockUse,
+        const char * szFileName,
+        int nLine,
+        int * errno_tmp
+        )
+{
+        long lRequest;
+        size_t blockSize;
+        int fIgnore = FALSE;
+        _CrtMemBlockHeader * pHead;
+        void *retval=NULL;
+
+        /* lock the heap
+         */
+        _mlock(_HEAP_LOCK);
+        __try {
+
+            /* verify heap before allocation */
+            if (check_frequency > 0)
+                if (check_counter == (check_frequency - 1))
+                {
+                    _ASSERTE(_CrtCheckMemory());
+                    check_counter = 0;
+                }
+                else
+                    check_counter++;
+
+            lRequest = _lRequestCurr;
+
+            /* break into debugger at specific memory allocation */
+            if (_crtBreakAlloc != -1L && lRequest == _crtBreakAlloc)
+                _CrtDbgBreak();
+
+            /* forced failure */
+            if ((_pfnAllocHook) && !(*_pfnAllocHook)(_HOOK_ALLOC, NULL, nSize, nBlockUse, lRequest, (const unsigned char *)szFileName, nLine))
+            {
+                if (szFileName)
+                    _RPT2(_CRT_WARN, "Client hook allocation failure at file %hs line %d.\n",
+                        szFileName, nLine);
+                else
+                    _RPT0(_CRT_WARN, "Client hook allocation failure.\n");
+            }
+            else
+            {
+                /* cannot ignore CRT allocations */
+                if (_BLOCK_TYPE(nBlockUse) != _CRT_BLOCK &&
+                    !(_crtDbgFlag & _CRTDBG_ALLOC_MEM_DF))
+                    fIgnore = TRUE;
+
+                /* Diagnostic memory allocation from this point on */
+
+                if (nSize > (size_t)(_HEAP_MAXREQ - nNoMansLandSize - sizeof(_CrtMemBlockHeader)))
+                {
+                    _RPT1(_CRT_ERROR, "Invalid allocation size: %Iu bytes.\n", nSize);
+                    if (errno_tmp)
+                    {
+                        *errno_tmp = ENOMEM;
+                    }
+                }
+                else
+                {
+                    if (!_BLOCK_TYPE_IS_VALID(nBlockUse))
+                    {
+                        _RPT0(_CRT_ERROR, "Error: memory allocation: bad memory block type.\n");
+                    }
+
+                    blockSize = sizeof(_CrtMemBlockHeader) + nSize + nNoMansLandSize;
+
+                    RTCCALLBACK(_RTC_FuncCheckSet_hook,(0));
+                    pHead = (_CrtMemBlockHeader *)_heap_alloc_base(blockSize);
+
+                    if (pHead == NULL)
+                    {
+                        if (errno_tmp)
+                        {
+                            *errno_tmp = ENOMEM;
+                        }
+                        RTCCALLBACK(_RTC_FuncCheckSet_hook,(1));
+                    }
+                    else
+                    {
+
+                        /* commit allocation */
+                        ++_lRequestCurr;
+
+                        if (fIgnore)
+                        {
+                            pHead->pBlockHeaderNext = NULL;
+                            pHead->pBlockHeaderPrev = NULL;
+                            pHead->szFileName = NULL;
+                            pHead->nLine = IGNORE_LINE;
+                            pHead->nDataSize = nSize;
+                            pHead->nBlockUse = _IGNORE_BLOCK;
+                            pHead->lRequest = IGNORE_REQ;
+                        }
+                        else {
+                            /* keep track of total amount of memory allocated */
+                            if (SIZE_MAX - _lTotalAlloc > nSize)
+                            {
+                                _lTotalAlloc += nSize;
+                            }
+                            else
+                            {
+                                _lTotalAlloc = SIZE_MAX;
+                            }
+                            _lCurAlloc += nSize;
+
+                            if (_lCurAlloc > _lMaxAlloc)
+                            _lMaxAlloc = _lCurAlloc;
+
+                            if (_pFirstBlock)
+                                _pFirstBlock->pBlockHeaderPrev = pHead;
+                            else
+                                _pLastBlock = pHead;
+
+                            pHead->pBlockHeaderNext = _pFirstBlock;
+                            pHead->pBlockHeaderPrev = NULL;
+                            pHead->szFileName = (char *)szFileName;
+                            pHead->nLine = nLine;
+                            pHead->nDataSize = nSize;
+                            pHead->nBlockUse = nBlockUse;
+                            pHead->lRequest = lRequest;
+
+                            /* link blocks together */
+                            _pFirstBlock = pHead;
+                        }
+
+                        /* fill in gap before and after real block */
+                        memset((void *)pHead->gap, _bNoMansLandFill, nNoMansLandSize);
+                        memset((void *)(pbData(pHead) + nSize), _bNoMansLandFill, nNoMansLandSize);
+
+                        /* fill data with silly value (but non-zero) */
+                        memset((void *)pbData(pHead), _bCleanLandFill, nSize);
+
+                        RTCCALLBACK(_RTC_FuncCheckSet_hook,(1));
+
+                        retval=(void *)pbData(pHead);
+                    }
+                }
+            }
+
+        }
+        __finally {
+            /* unlock the heap
+             */
+            _munlock(_HEAP_LOCK);
+        }
+
+        return retval;
+}
+
+void __cdecl _lock (
+        int locknum
+        )
+{
+
+        /*
+         * Create/open the lock, if necessary
+         */
+        if ( _locktable[locknum].lock == NULL ) {
+
+            if ( !_mtinitlocknum(locknum) )
+                _amsg_exit( _RT_LOCK );
+        }
+
+        /*
+         * Enter the critical section.
+         */
+
+        EnterCriticalSection( _locktable[locknum].lock );
+}
+
+int __cdecl _CrtDefaultAllocHook(
+        int nAllocType,
+        void * pvData,
+        size_t nSize,
+        int nBlockUse,
+        long lRequest,
+        const unsigned char * szFileName,
+        int nLine
+        )
+{
+        return 1; /* allow all allocs/reallocs/frees */
+}
+
+__forceinline void * __cdecl _heap_alloc (size_t size)
+
+{
+
+    if (_crtheap == 0) {
+        _FF_MSGBANNER();    /* write run-time error banner */
+        _NMSG_WRITE(_RT_CRT_NOTINIT);  /* write message */
+        __crtExitProcess(255);  /* normally _exit(255) */
+    }
+
+    return HeapAlloc(_crtheap, 0, size ? size : 1);
+}
+
+       CODESEG
+
+    extrn   _VEC_memzero:near
+    extrn   __sse2_available:dword
+
+        public  memset
+memset proc \
+        dst:ptr byte, \
+        value:byte, \
+        count:dword
+
+        OPTION PROLOGUE:NONE, EPILOGUE:NONE
+
+        .FPO    ( 0, 3, 0, 0, 0, 0 )
+
+        mov     edx,[esp + 0ch] ; edx = "count"
+        mov     ecx,[esp + 4]   ; ecx points to "dst"
+
+        test    edx,edx         ; 0?
+        jz      short toend     ; if so, nothing to do
+
+        xor     eax,eax
+        mov     al,[esp + 8]    ; the byte "value" to be stored
+
+; Special case large block zeroing using SSE2 support
+    test    al,al ; memset using zero initializer?
+    jne     dword_align
+    cmp     edx,080h ; block size exceeds size threshold?
+    jb      dword_align
+    cmp     DWORD PTR __sse2_available,0 ; SSE2 supported?
+    je      dword_align
+
+    jmp     _VEC_memzero ; use fast zero SSE2 implementation
+    ; no return
+
+; Align address on dword boundary
+dword_align:
+
+        push    edi             ; preserve edi
+        mov     edi,ecx         ; edi = dest pointer
+
+        cmp     edx,4           ; if it's less then 4 bytes
+        jb      tail            ; tail needs edi and edx to be initialized
+
+        neg     ecx
+        and     ecx,3           ; ecx = # bytes before dword boundary
+        jz      short dwords    ; jump if address already aligned
+
+        sub     edx,ecx         ; edx = adjusted count (for later)
+adjust_loop:
+        mov     [edi],al
+        add     edi,1
+        sub     ecx,1
+        jnz     adjust_loop
+
+dwords:
+; set all 4 bytes of eax to [value]
+        mov     ecx,eax         ; ecx=0/0/0/value
+        shl     eax,8           ; eax=0/0/value/0
+
+        add     eax,ecx         ; eax=0/0val/val
+
+        mov     ecx,eax         ; ecx=0/0/val/val
+
+        shl     eax,10h         ; eax=val/val/0/0
+
+        add     eax,ecx         ; eax = all 4 bytes = [value]
+
+; Set dword-sized blocks
+        mov     ecx,edx         ; move original count to ecx
+        and     edx,3           ; prepare in edx byte count (for tail loop)
+        shr     ecx,2           ; adjust ecx to be dword count
+        jz      tail            ; jump if it was less then 4 bytes
+
+        rep     stosd
+main_loop_tail:
+        test    edx,edx         ; if there is no tail bytes,
+        jz      finish          ; we finish, and it's time to leave
+; Set remaining bytes
+
+tail:
+        mov     [edi],al        ; set remaining bytes
+        add     edi,1
+
+        sub     edx,1           ; if there is some more bytes
+        jnz     tail            ; continue to fill them
+
+; Done
+finish:
+        mov     eax,[esp + 8]   ; return dest pointer
+        pop     edi             ; restore edi
+
+        ret
+
+toend:
+        mov     eax,[esp + 4]   ; return dest pointer
+
+        ret
+
+memset  endp
+
+        end
+
+void __cdecl _unlock (
+        int locknum
+        )
+{
+        /*
+         * leave the critical section.
+         */
+        LeaveCriticalSection( _locktable[locknum].lock );
+}
+

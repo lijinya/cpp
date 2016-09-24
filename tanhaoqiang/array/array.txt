@@ -1,0 +1,229 @@
+1:    void main()
+2:    {
+00401010   push        ebp
+00401011   mov         ebp,esp
+00401013   sub         esp,68h
+00401016   push        ebx
+00401017   push        esi
+00401018   push        edi
+00401019   lea         edi,[ebp-68h]
+0040101C   mov         ecx,1Ah
+00401021   mov         eax,0CCCCCCCCh
+00401026   rep stos    dword ptr [edi]
+3:        int nArray[5] = {1 , 2 , 3 , 4 , 5};
+00401028   mov         dword ptr [ebp-14h],1
+0040102F   mov         dword ptr [ebp-10h],2
+00401036   mov         dword ptr [ebp-0Ch],3
+0040103D   mov         dword ptr [ebp-8],4
+00401044   mov         dword ptr [ebp-4],5
+4:        int nOne = 1;
+0040104B   mov         dword ptr [ebp-18h],1
+5:        int nwo = 2;
+00401052   mov         dword ptr [ebp-1Ch],2
+6:        int nThree = 3;
+00401059   mov         dword ptr [ebp-20h],3
+7:        int nFour = 4;
+00401060   mov         dword ptr [ebp-24h],4
+8:        int nFive = 5;
+00401067   mov         dword ptr [ebp-28h],5
+9:    }
+0040106E   pop         edi
+0040106F   pop         esi
+00401070   pop         ebx
+00401071   mov         esp,ebp
+00401073   pop         ebp
+00401074   ret
+
+10:       char cChar = 'A';
+0040104B   mov         byte ptr [ebp-18h],41h
+11:       float fFloat = 1.0f;
+0040104F   mov         dword ptr [ebp-1Ch],3F800000h
+12:       short sShort = 1;
+00401056   mov         word ptr [ebp-20h],offset main+4Ah (0040105a)
+13:       int nInt = 2;
+0040105C   mov         dword ptr [ebp-24h],2
+14:       double dDouble = 2.0f;
+00401063   mov         dword ptr [ebp-2Ch],0
+0040106A   mov         dword ptr [ebp-28h],40000000h
+
+
+15:       char szHello[] = "Hello World";
+004106F7   mov         eax,[string "Hello World" (00426ef4)]
+004106FC   mov         dword ptr [ebp-38h],eax
+004106FF   mov         ecx,dword ptr [string "Hello World"+4 (00426ef8)]
+00410705   mov         dword ptr [ebp-34h],ecx
+00410708   mov         edx,dword ptr [string "Hello World"+8 (00426efc)]
+0041070E   mov         dword ptr [ebp-30h],edx
+16:       char szHell[] = "Hello Worl";
+00410711   mov         eax,[string "Hello Worl" (00426ee8)]
+00410716   mov         dword ptr [ebp-44h],eax
+00410719   mov         ecx,dword ptr [string "Hello Worl"+4 (00426eec)]
+0041071F   mov         dword ptr [ebp-40h],ecx
+00410722   mov         dx,word ptr [string "Hello Worl"+8 (00426ef0)]
+00410729   mov         word ptr [ebp-3Ch],dx
+0041072D   mov         al,[string "Hello Worl"+0Ah (00426ef2)]
+00410732   mov         byte ptr [ebp-3Ah],al
+17:       char szHello1[] = "Hello World";
+00410735   mov         ecx,dword ptr [string "Hello World" (00426ef4)]
+0041073B   mov         dword ptr [ebp-50h],ecx
+0041073E   mov         edx,dword ptr [string "Hello World"+4 (00426ef8)]
+00410744   mov         dword ptr [ebp-4Ch],edx
+00410747   mov         eax,[string "Hello World"+8 (00426efc)]
+0041074C   mov         dword ptr [ebp-48h],eax
+
+
+2:    void Show(char szBuf[])
+3:    {
+00410690   push        ebp
+00410691   mov         ebp,esp
+00410693   sub         esp,40h
+00410696   push        ebx
+00410697   push        esi
+00410698   push        edi
+00410699   lea         edi,[ebp-40h]
+0041069C   mov         ecx,10h
+004106A1   mov         eax,0CCCCCCCCh
+004106A6   rep stos    dword ptr [edi]
+4:        strcpy(szBuf , "Hello World");
+004106A8   push        offset string "Hello World" (00426ee8)
+004106AD   mov         eax,dword ptr [ebp+8]
+004106B0   push        eax
+004106B1   call        strcpy (004041a0)
+004106B6   add         esp,8
+5:    }
+004106B9   pop         edi
+004106BA   pop         esi
+004106BB   pop         ebx
+004106BC   add         esp,40h
+004106BF   cmp         ebp,esp
+004106C1   call        __chkesp (004107d0)
+004106C6   mov         esp,ebp
+004106C8   pop         ebp
+004106C9   ret
+
+7:    char* RetArray()
+8:    {
+004106D0   push        ebp
+004106D1   mov         ebp,esp
+004106D3   sub         esp,4Ch
+004106D6   push        ebx
+004106D7   push        esi
+004106D8   push        edi
+004106D9   lea         edi,[ebp-4Ch]
+004106DC   mov         ecx,13h
+004106E1   mov         eax,0CCCCCCCCh
+004106E6   rep stos    dword ptr [edi]
+9:        char szBuff[] = {"Hello World"};
+004106E8   mov         eax,[string "Hello World" (00426ee8)]
+004106ED   mov         dword ptr [ebp-0Ch],eax
+004106F0   mov         ecx,dword ptr [string "Hello World"+4 (00426eec)]
+004106F6   mov         dword ptr [ebp-8],ecx
+004106F9   mov         edx,dword ptr [string "Hello World"+8 (00426ef0)]
+004106FF   mov         dword ptr [ebp-4],edx
+10:       return szBuff;
+00410702   lea         eax,[ebp-0Ch]
+11:   }
+00410705   pop         edi
+00410706   pop         esi
+00410707   pop         ebx
+00410708   mov         esp,ebp
+0041070A   pop         ebp
+0041070B   ret
+
+1:    #include<stdio.h>
+2:
+3:    int g_nArray[5] = {1 , 2 , 3 , 4 , 5};
+4:    int main()
+5:    {
+00401210   push        ebp
+00401211   mov         ebp,esp
+00401213   sub         esp,44h
+00401216   push        ebx
+00401217   push        esi
+00401218   push        edi
+00401219   lea         edi,[ebp-44h]
+0040121C   mov         ecx,11h
+00401221   mov         eax,0CCCCCCCCh
+00401226   rep stos    dword ptr [edi]
+6:        int *pInt = g_nArray;
+00401228   mov         dword ptr [ebp-4],offset g_nArray (00428a30)
+7:        do
+8:        {
+9:            printf("%d \n" , *pInt);
+0040122F   mov         eax,dword ptr [ebp-4]
+00401232   mov         ecx,dword ptr [eax]
+00401234   push        ecx
+00401235   push        offset string "%d \n" (0042603c)
+0040123A   call        printf (00401460)
+0040123F   add         esp,8
+10:           ++pInt;
+00401242   mov         edx,dword ptr [ebp-4]
+00401245   add         edx,4
+00401248   mov         dword ptr [ebp-4],edx
+11:       }while(pInt < g_nArray + 5);
+0040124B   cmp         dword ptr [ebp-4],offset g_nArray+14h (00428a44)
+00401252   jb          main+1Fh (0040122f)
+12:       return 0;
+00401254   xor         eax,eax
+13:   }
+00401256   pop         edi
+00401257   pop         esi
+00401258   pop         ebx
+00401259   add         esp,44h
+0040125C   cmp         ebp,esp
+0040125E   call        __chkesp (00401370)
+00401263   mov         esp,ebp
+00401265   pop         ebp
+00401266   ret
+
+3:    int main()
+4:    {
+00401290   push        ebp
+00401291   mov         ebp,esp
+00401293   sub         esp,48h
+00401296   push        ebx
+00401297   push        esi
+00401298   push        edi
+00401299   lea         edi,[ebp-48h]
+0040129C   mov         ecx,12h
+004012A1   mov         eax,0CCCCCCCCh
+004012A6   rep stos    dword ptr [edi]
+5:        int nOne , nTwo;
+6:        scanf("%d%d" , &nOne , &nTwo);
+004012A8   lea         eax,[ebp-8]
+004012AB   push        eax
+004012AC   lea         ecx,[ebp-4]
+004012AF   push        ecx
+004012B0   push        offset string "%d%d" (00429044)
+004012B5   call        scanf (004015a0)
+004012BA   add         esp,0Ch
+7:        static int g_snArray[5] = {nOne , nTwo , 0};
+004012BD   xor         edx,edx
+004012BF   mov         dl,byte ptr [`main'::`2'::$S1 (0042f028)]
+004012C5   and         edx,1
+004012C8   test        edx,edx
+004012CA   jne         main+70h (00401300)
+004012CC   mov         al,[`main'::`2'::$S1 (0042f028)]
+004012D1   or          al,1
+004012D3   mov         [`main'::`2'::$S1 (0042f028)],al
+004012D8   mov         ecx,dword ptr [ebp-4]
+004012DB   mov         dword ptr [`main'::`2'::$S1+4 (0042f02c)],ecx
+004012E1   mov         edx,dword ptr [ebp-8]
+004012E4   mov         dword ptr [`main'::`2'::$S1+8 (0042f030)],edx
+004012EA   mov         dword ptr [`main'::`2'::$S1+0Ch (0042f034)],0
+004012F4   xor         eax,eax
+004012F6   mov         [`main'::`2'::$S1+10h (0042f038)],eax
+004012FB   mov         [`main'::`2'::$S1+14h (0042f03c)],eax
+8:        return 0;
+00401300   xor         eax,eax
+9:    }
+00401302   pop         edi
+00401303   pop         esi
+00401304   pop         ebx
+00401305   add         esp,48h
+00401308   cmp         ebp,esp
+0040130A   call        __chkesp (00401430)
+0040130F   mov         esp,ebp
+00401311   pop         ebp
+00401312   ret
+

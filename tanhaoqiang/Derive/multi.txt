@@ -1,0 +1,569 @@
+1:    #include<stdio.h>
+2:
+3:    class CSoft
+4:    {
+5:    public:
+6:        CSoft()
+00402020   push        ebp
+00402021   mov         ebp,esp
+00402023   sub         esp,44h
+00402026   push        ebx
+00402027   push        esi
+00402028   push        edi
+00402029   push        ecx
+0040202A   lea         edi,[ebp-44h]
+0040202D   mov         ecx,11h
+00402032   mov         eax,0CCCCCCCCh
+00402037   rep stos    dword ptr [edi]
+00402039   pop         ecx
+0040203A   mov         dword ptr [ebp-4],ecx
+0040203D   mov         eax,dword ptr [ebp-4]
+00402040   mov         dword ptr [eax],offset CSoft::`vftable' (0042610c)
+7:        {
+8:            m_nColor = 2;
+00402046   mov         ecx,dword ptr [ebp-4]
+00402049   mov         dword ptr [ecx+4],2
+9:        }
+00402050   mov         eax,dword ptr [ebp-4]
+00402053   pop         edi
+00402054   pop         esi
+00402055   pop         ebx
+00402056   mov         esp,ebp
+00402058   pop         ebp
+00402059   ret
+
+10:       virtual ~CSoft()
+11:       {
+00402070   push        ebp
+00402071   mov         ebp,esp
+00402073   sub         esp,44h
+00402076   push        ebx
+00402077   push        esi
+00402078   push        edi
+00402079   push        ecx
+0040207A   lea         edi,[ebp-44h]
+0040207D   mov         ecx,11h
+00402082   mov         eax,0CCCCCCCCh
+00402087   rep stos    dword ptr [edi]
+00402089   pop         ecx
+0040208A   mov         dword ptr [ebp-4],ecx
+0040208D   mov         eax,dword ptr [ebp-4]
+00402090   mov         dword ptr [eax],offset CSoft::`vftable' (0042610c)
+12:           printf("virtual ~CSoft()\n");
+00402096   push        offset string "virtual ~CSoft()\n" (00426118)
+0040209B   call        printf (00402ad0)
+004020A0   add         esp,4
+13:       }
+004020A3   pop         edi
+004020A4   pop         esi
+004020A5   pop         ebx
+004020A6   add         esp,44h
+004020A9   cmp         ebp,esp
+004020AB   call        __chkesp (004029a0)
+004020B0   mov         esp,ebp
+004020B2   pop         ebp
+004020B3   ret
+
+14:       virtual int GetColor()
+15:       {
+004020D0   push        ebp
+004020D1   mov         ebp,esp
+004020D3   sub         esp,44h
+004020D6   push        ebx
+004020D7   push        esi
+004020D8   push        edi
+004020D9   push        ecx
+004020DA   lea         edi,[ebp-44h]
+004020DD   mov         ecx,11h
+004020E2   mov         eax,0CCCCCCCCh
+004020E7   rep stos    dword ptr [edi]
+004020E9   pop         ecx
+004020EA   mov         dword ptr [ebp-4],ecx
+16:           return m_nColor;
+004020ED   mov         eax,dword ptr [ebp-4]
+004020F0   mov         eax,dword ptr [eax+4]
+17:       }
+004020F3   pop         edi
+004020F4   pop         esi
+004020F5   pop         ebx
+004020F6   mov         esp,ebp
+004020F8   pop         ebp
+004020F9   ret
+18:       virtual int SitDown()
+19:       {
+00402110   push        ebp
+00402111   mov         ebp,esp
+00402113   sub         esp,44h
+00402116   push        ebx
+00402117   push        esi
+00402118   push        edi
+00402119   push        ecx
+0040211A   lea         edi,[ebp-44h]
+0040211D   mov         ecx,11h
+00402122   mov         eax,0CCCCCCCCh
+00402127   rep stos    dword ptr [edi]
+00402129   pop         ecx
+0040212A   mov         dword ptr [ebp-4],ecx
+20:           return printf("Sit down and rest your legs!\n");
+0040212D   push        offset string "Sit down and rest your legs!\n" (0042612c)
+00402132   call        printf (00402ad0)
+00402137   add         esp,4
+21:       }
+0040213A   pop         edi
+0040213B   pop         esi
+0040213C   pop         ebx
+0040213D   add         esp,44h
+00402140   cmp         ebp,esp
+00402142   call        __chkesp (004029a0)
+00402147   mov         esp,ebp
+00402149   pop         ebp
+0040214A   ret
+
+22:   protected:
+23:       int m_nColor;
+24:   };
+25:   class CBed
+26:   {
+27:   public:
+28:       CBed()
+004021D0   push        ebp
+004021D1   mov         ebp,esp
+004021D3   sub         esp,44h
+004021D6   push        ebx
+004021D7   push        esi
+004021D8   push        edi
+004021D9   push        ecx
+004021DA   lea         edi,[ebp-44h]
+004021DD   mov         ecx,11h
+004021E2   mov         eax,0CCCCCCCCh
+004021E7   rep stos    dword ptr [edi]
+004021E9   pop         ecx
+004021EA   mov         dword ptr [ebp-4],ecx
+004021ED   mov         eax,dword ptr [ebp-4]
+004021F0   mov         dword ptr [eax],offset CBed::`vftable' (00426150)
+29:       {
+30:           m_nLength = 4;
+004021F6   mov         ecx,dword ptr [ebp-4]
+004021F9   mov         dword ptr [ecx+4],4
+31:           m_nWidth = 5;
+00402200   mov         edx,dword ptr [ebp-4]
+00402203   mov         dword ptr [edx+8],5
+32:       }
+0040220A   mov         eax,dword ptr [ebp-4]
+0040220D   pop         edi
+0040220E   pop         esi
+0040220F   pop         ebx
+00402210   mov         esp,ebp
+00402212   pop         ebp
+00402213   ret
+
+33:       virtual ~CBed()
+34:       {
+00402330   push        ebp
+00402331   mov         ebp,esp
+00402333   sub         esp,44h
+00402336   push        ebx
+00402337   push        esi
+00402338   push        edi
+00402339   push        ecx
+0040233A   lea         edi,[ebp-44h]
+0040233D   mov         ecx,11h
+00402342   mov         eax,0CCCCCCCCh
+00402347   rep stos    dword ptr [edi]
+00402349   pop         ecx
+0040234A   mov         dword ptr [ebp-4],ecx
+0040234D   mov         eax,dword ptr [ebp-4]
+00402350   mov         dword ptr [eax],offset CBed::`vftable' (00426150)
+35:           printf("virtual ~CBed()\n");
+00402356   push        offset string "virtual ~CBed()\n" (00426180)
+0040235B   call        printf (00402ad0)
+00402360   add         esp,4
+36:       }
+00402363   pop         edi
+00402364   pop         esi
+00402365   pop         ebx
+00402366   add         esp,44h
+00402369   cmp         ebp,esp
+0040236B   call        __chkesp (004029a0)
+00402370   mov         esp,ebp
+00402372   pop         ebp
+00402373   ret
+
+37:       virtual int GetArea()
+38:       {
+00402230   push        ebp
+00402231   mov         ebp,esp
+00402233   sub         esp,44h
+00402236   push        ebx
+00402237   push        esi
+00402238   push        edi
+00402239   push        ecx
+0040223A   lea         edi,[ebp-44h]
+0040223D   mov         ecx,11h
+00402242   mov         eax,0CCCCCCCCh
+00402247   rep stos    dword ptr [edi]
+00402249   pop         ecx
+0040224A   mov         dword ptr [ebp-4],ecx
+39:           return m_nLength * m_nWidth;
+0040224D   mov         eax,dword ptr [ebp-4]
+00402250   mov         ecx,dword ptr [ebp-4]
+00402253   mov         eax,dword ptr [eax+4]
+00402256   imul        eax,dword ptr [ecx+8]
+40:       }
+0040225A   pop         edi
+0040225B   pop         esi
+0040225C   pop         ebx
+0040225D   mov         esp,ebp
+0040225F   pop         ebp
+00402260   ret
+
+45:   protected:
+46:       int m_nLength;
+47:       int m_nWidth;
+48:   };
+49:   class CSoftBed : public CSoft , public CBed
+50:   {
+51:   public:
+52:       CSoftBed()
+00401F60   push        ebp
+00401F61   mov         ebp,esp
+00401F63   push        0FFh
+00401F65   push        offset __ehhandler$??0CSoftBed@@QAE@XZ (00414839)
+00401F6A   mov         eax,fs:[00000000]
+00401F70   push        eax
+00401F71   mov         dword ptr fs:[0],esp
+00401F78   sub         esp,44h
+00401F7B   push        ebx
+00401F7C   push        esi
+00401F7D   push        edi
+00401F7E   push        ecx
+00401F7F   lea         edi,[ebp-50h]
+00401F82   mov         ecx,11h
+00401F87   mov         eax,0CCCCCCCCh
+00401F8C   rep stos    dword ptr [edi]
+00401F8E   pop         ecx
+00401F8F   mov         dword ptr [ebp-10h],ecx
+00401F92   mov         ecx,dword ptr [ebp-10h]
+00401F95   call        @ILT+70(CSoft::CSoft) (0040104b)
+00401F9A   mov         dword ptr [ebp-4],0
+00401FA1   mov         ecx,dword ptr [ebp-10h]
+00401FA4   add         ecx,8
+00401FA7   call        @ILT+235(CBed::CBed) (004010f0)
+00401FAC   mov         eax,dword ptr [ebp-10h]
+00401FAF   mov         dword ptr [eax],offset CSoftBed::`vftable' (004260f4)
+00401FB5   mov         ecx,dword ptr [ebp-10h]
+00401FB8   mov         dword ptr [ecx+8],offset CSoftBed::`vftable' (004260e4)
+53:       {
+54:           m_nHeight = 6;
+00401FBF   mov         edx,dword ptr [ebp-10h]
+00401FC2   mov         dword ptr [edx+14h],6
+55:       }
+00401FC9   mov         dword ptr [ebp-4],0FFFFFFFFh
+00401FD0   mov         eax,dword ptr [ebp-10h]
+00401FD3   mov         ecx,dword ptr [ebp-0Ch]
+00401FD6   mov         dword ptr fs:[0],ecx
+00401FDD   pop         edi
+00401FDE   pop         esi
+00401FDF   pop         ebx
+00401FE0   add         esp,50h
+00401FE3   cmp         ebp,esp
+00401FE5   call        __chkesp (004029a0)
+00401FEA   mov         esp,ebp
+00401FEC   pop         ebp
+00401FED   ret
+
+56:       virtual ~CSoftBed()
+57:       {
+00402390   push        ebp
+00402391   mov         ebp,esp
+00402393   push        0FFh
+00402395   push        offset __ehhandler$??1CSoftBed@@UAE@XZ (00414859)
+0040239A   mov         eax,fs:[00000000]
+004023A0   push        eax
+004023A1   mov         dword ptr fs:[0],esp
+004023A8   sub         esp,48h
+004023AB   push        ebx
+004023AC   push        esi
+004023AD   push        edi
+004023AE   push        ecx
+004023AF   lea         edi,[ebp-54h]
+004023B2   mov         ecx,12h
+004023B7   mov         eax,0CCCCCCCCh
+004023BC   rep stos    dword ptr [edi]
+004023BE   pop         ecx
+004023BF   mov         dword ptr [ebp-10h],ecx
+004023C2   mov         eax,dword ptr [ebp-10h]
+004023C5   mov         dword ptr [eax],offset CSoftBed::`vftable' (004260f4)
+004023CB   mov         ecx,dword ptr [ebp-10h]
+004023CE   mov         dword ptr [ecx+8],offset CSoftBed::`vftable' (004260e4)
+004023D5   mov         dword ptr [ebp-4],0
+58:           printf("virtual ~CSoftBed()\n");
+004023DC   push        offset string "virtual ~CSoftBed()\n" (004261a0)
+004023E1   call        printf (00402ad0)
+004023E6   add         esp,4
+59:       }
+004023E9   cmp         dword ptr [ebp-10h],0
+004023ED   je          CSoftBed::~CSoftBed+6Ah (004023fa)
+004023EF   mov         edx,dword ptr [ebp-10h]
+004023F2   add         edx,8
+004023F5   mov         dword ptr [ebp-14h],edx
+004023F8   jmp         CSoftBed::~CSoftBed+71h (00402401)
+004023FA   mov         dword ptr [ebp-14h],0
+00402401   mov         ecx,dword ptr [ebp-14h]
+00402404   call        @ILT+195(CBed::~CBed) (004010c8)
+00402409   mov         dword ptr [ebp-4],0FFFFFFFFh
+00402410   mov         ecx,dword ptr [ebp-10h]
+00402413   call        @ILT+115(CSoft::~CSoft) (00401078)
+00402418   mov         ecx,dword ptr [ebp-0Ch]
+0040241B   mov         dword ptr fs:[0],ecx
+00402422   pop         edi
+00402423   pop         esi
+00402424   pop         ebx
+00402425   add         esp,54h
+00402428   cmp         ebp,esp
+0040242A   call        __chkesp (004029a0)
+0040242F   mov         esp,ebp
+00402431   pop         ebp
+00402432   ret
+
+60:       virtual SitDown()
+61:       {
+00402460   push        ebp
+00402461   mov         ebp,esp
+00402463   sub         esp,44h
+00402466   push        ebx
+00402467   push        esi
+00402468   push        edi
+00402469   push        ecx
+0040246A   lea         edi,[ebp-44h]
+0040246D   mov         ecx,11h
+00402472   mov         eax,0CCCCCCCCh
+00402477   rep stos    dword ptr [edi]
+00402479   pop         ecx
+0040247A   mov         dword ptr [ebp-4],ecx
+62:           return printf("sit down on the soft bed\n");
+0040247D   push        offset string "sit down on the soft bed\n" (004271d0)
+00402482   call        printf (00402ad0)
+00402487   add         esp,4
+63:       }
+0040248A   pop         edi
+0040248B   pop         esi
+0040248C   pop         ebx
+0040248D   add         esp,44h
+00402490   cmp         ebp,esp
+00402492   call        __chkesp (004029a0)
+00402497   mov         esp,ebp
+00402499   pop         ebp
+0040249A   ret
+64:       virtual int Sleep()
+65:       {
+004024B0   push        ebp
+004024B1   mov         ebp,esp
+004024B3   sub         esp,44h
+004024B6   push        ebx
+004024B7   push        esi
+004024B8   push        edi
+004024B9   push        ecx
+004024BA   lea         edi,[ebp-44h]
+004024BD   mov         ecx,11h
+004024C2   mov         eax,0CCCCCCCCh
+004024C7   rep stos    dword ptr [edi]
+004024C9   pop         ecx
+004024CA   mov         dword ptr [ebp-4],ecx
+66:           return printf("go to sleep on the sofa bed\n");
+004024CD   push        offset string "go to sleep on the sofa bed\n" (004271ec)
+004024D2   call        printf (00402ad0)
+004024D7   add         esp,4
+67:       }
+004024DA   pop         edi
+004024DB   pop         esi
+004024DC   pop         ebx
+004024DD   add         esp,44h
+004024E0   cmp         ebp,esp
+004024E2   call        __chkesp (004029a0)
+004024E7   mov         esp,ebp
+004024E9   pop         ebp
+004024EA   ret
+
+68:       virtual int GetHeight()
+69:       {
+00402500   push        ebp
+00402501   mov         ebp,esp
+00402503   sub         esp,44h
+00402506   push        ebx
+00402507   push        esi
+00402508   push        edi
+00402509   push        ecx
+0040250A   lea         edi,[ebp-44h]
+0040250D   mov         ecx,11h
+00402512   mov         eax,0CCCCCCCCh
+00402517   rep stos    dword ptr [edi]
+00402519   pop         ecx
+0040251A   mov         dword ptr [ebp-4],ecx
+70:           return m_nHeight;
+0040251D   mov         eax,dword ptr [ebp-4]
+00402520   mov         eax,dword ptr [eax+14h]
+71:       }
+00402523   pop         edi
+00402524   pop         esi
+00402525   pop         ebx
+00402526   mov         esp,ebp
+00402528   pop         ebp
+00402529   ret
+
+72:   protected:
+73:       int m_nHeight;
+74:   };
+75:   int main()
+76:   {
+00410090   push        ebp
+00410091   mov         ebp,esp
+00410093   push        0FFh
+00410095   push        offset __ehhandler$_main (00414819)
+0041009A   mov         eax,fs:[00000000]
+004100A0   push        eax
+004100A1   mov         dword ptr fs:[0],esp
+004100A8   sub         esp,68h
+004100AB   push        ebx
+004100AC   push        esi
+004100AD   push        edi
+004100AE   lea         edi,[ebp-74h]
+004100B1   mov         ecx,1Ah
+004100B6   mov         eax,0CCCCCCCCh
+004100BB   rep stos    dword ptr [edi]
+77:       CSoftBed softBed;
+004100BD   lea         ecx,[ebp-24h]		 
+004100C0   call        @ILT+100(CSoftBed::CSoftBed) (00401069)
+004100C5   mov         dword ptr [ebp-4],0
+78:       CSoft *pSoft = &softBed;
+004100CC   lea         eax,[ebp-24h]		EAX = 0018FF24
+004100CF   mov         dword ptr [ebp-28h],eax
+79:       CBed *pBed = &softBed;
+004100D2   lea         ecx,[ebp-24h]
+004100D5   test        ecx,ecx
+004100D7   je          main+51h (004100e1)
+004100D9   lea         edx,[ebp-1Ch]		EDX = 0018FF2C继承的CBed对象部分
+004100DC   mov         dword ptr [ebp-34h],edx
+004100DF   jmp         main+58h (004100e8)
+004100E1   mov         dword ptr [ebp-34h],0
+004100E8   mov         eax,dword ptr [ebp-34h]
+004100EB   mov         dword ptr [ebp-2Ch],eax
+80:       pSoft->SitDown();
+004100EE   mov         ecx,dword ptr [ebp-28h]
+004100F1   mov         edx,dword ptr [ecx]
+004100F3   mov         esi,esp
+004100F5   mov         ecx,dword ptr [ebp-28h]
+004100F8   call        dword ptr [edx+8]
+004100FB   cmp         esi,esp
+004100FD   call        __chkesp (004029a0)
+81:       pBed->Sleep();
+00410102   mov         eax,dword ptr [ebp-2Ch]
+00410105   mov         edx,dword ptr [eax]	EDX = 004260E4
+00410107   mov         esi,esp
+00410109   mov         ecx,dword ptr [ebp-2Ch]
+0041010C   call        dword ptr [edx+8]
+0041010F   cmp         esi,esp
+00410111   call        __chkesp (004029a0)
+82:       printf("Color = %d\n" , pSoft->GetColor());
+00410116   mov         eax,dword ptr [ebp-28h]		EAX = 0018FF24
+00410119   mov         edx,dword ptr [eax]		EDX = 004260F4
+0041011B   mov         esi,esp
+0041011D   mov         ecx,dword ptr [ebp-28h]		CSoft部分首地址 ECX = 0018FF24
+00410120   call        dword ptr [edx+4]	edx虚函数表首地址
+00410123   cmp         esi,esp
+00410125   call        __chkesp (004029a0)
+0041012A   push        eax
+0041012B   push        offset string "Color = %d\n" (004260d0)
+00410130   call        printf (00402ad0)
+00410135   add         esp,8
+83:       printf("area = %d\n" , pBed->GetArea());
+00410138   mov         eax,dword ptr [ebp-2Ch]
+0041013B   mov         edx,dword ptr [eax]
+0041013D   mov         esi,esp
+0041013F   mov         ecx,dword ptr [ebp-2Ch]
+00410142   call        dword ptr [edx+4]
+00410145   cmp         esi,esp
+00410147   call        __chkesp (004029a0)
+0041014C   push        eax
+0041014D   push        offset string "area = %d\n" (004260c0)
+00410152   call        printf (00402ad0)
+00410157   add         esp,8
+84:       return 0;
+0041015A   mov         dword ptr [ebp-30h],0
+00410161   mov         dword ptr [ebp-4],0FFFFFFFFh
+00410168   lea         ecx,[ebp-24h]
+0041016B   call        @ILT+60(CSoftBed::~CSoftBed) (00401041)
+00410170   mov         eax,dword ptr [ebp-30h]
+85:   }
+00410173   mov         ecx,dword ptr [ebp-0Ch]
+00410176   mov         dword ptr fs:[0],ecx
+0041017D   pop         edi
+0041017E   pop         esi
+0041017F   pop         ebx
+00410180   add         esp,74h
+00410183   cmp         ebp,esp
+00410185   call        __chkesp (004029a0)
+0041018A   mov         esp,ebp
+0041018C   pop         ebp
+0041018D   ret
+
+0018FF0E  CC CC CC CC CC CC 2C FF 18 00 CC  烫烫烫,....
+0018FF19  CC CC CC 2C FF 18 00 24 FF 18 00  烫.,...$...
+0018FF24  F4 60 42 00 02 00 00 00 E4 60 42  鬬B.....鋊B
+0018FF2F  00 04 00 00 00 05 00 00 00 06 00  ...........
+0018FF3A  00 00 78 FF 18 00 19 48 41 00 00  ..x....HA..
+0018FF45  00 00 00 88 FF 18 00 C9 2C 40 00  ........,@.
+0018FF50  01 00 00 00 B8 19 3E 00 30 1A 3E  ......>.0.>
+
+@ILT+100(??0CSoftBed@@QAE@XZ):
+00401069   jmp         CSoftBed::CSoftBed (00401f60)
+@ILT+105(?main4@@YAHXZ):
+0040106E   jmp         main4 (00401630)
+@ILT+110(??1CGerman@@UAE@XZ):
+00401073   jmp         CGerman::~CGerman (00401d40)
+@ILT+115(??1CSoft@@UAE@XZ):
+00401078   jmp         CSoft::~CSoft (00402070)
+@ILT+120(??_ECGerman@@UAEPAXI@Z):
+0040107D   jmp         CGerman::`scalar deleting destructor' (00401e20)
+@ILT+125(??1CDerive@@QAE@XZ):
+00401082   jmp         CDerive::~CDerive (00401480)
+@ILT+130(??_ECSoftBed@@UAEPAXI@Z):
+00401087   jmp         CSoftBed::`scalar deleting destructor' (00402540)
+@ILT+135(??0CPerson@@QAE@XZ):
+0040108C   jmp         CPerson::CPerson (00401790)
+@ILT+140(??_ECChinese@@UAEPAXI@Z):
+00401091   jmp         CChinese::`scalar deleting destructor' (00401a40)
+@ILT+145(?SitDown@CSoft@@UAEHXZ):
+00401096   jmp         CSoft::SitDown (00402110)
+@ILT+150(??1CAmerican@@UAE@XZ):
+0040109B   jmp         CAmerican::~CAmerican (00401b50)
+@ILT+155(?main2@@YAHXZ):
+004010A0   jmp         main2 (004015a0)
+@ILT+160(?GetClassName@CPerson@@UAEPADXZ):
+004010A5   jmp         CPerson::GetClassName (004018b0)
+@ILT+165(??1CChinese@@UAE@XZ):
+004010AA   jmp         CChinese::~CChinese (00401960)
+@ILT+170(?Sleep@CSoftBed@@UAEHXZ):
+004010AF   jmp         CSoftBed::Sleep (004024b0)
+@ILT+175(??_ECSoftBed@@UAEPAXI@Z):
+004010B4   jmp         CSoftBed::`scalar deleting destructor' (00402540)
+
+
+??_7CSoftBed@@6BCSoft@@@:
+004260F4   xchg        edx,dword ptr [eax]
+004260F6   inc         eax
+004260F7   add         byte ptr [ecx+edx],al
+004260FA   inc         eax
+004260FB   add         ah,bl
+004260FD   adc         byte ptr [eax],al
+00426100   or          dword ptr [ecx],edx
+00426102   inc         eax
+00426103   add         byte ptr [eax],al
+00426105   add         byte ptr [eax],al
+00426107   add         byte ptr [eax],al
+00426109   add         byte ptr [eax],al
+0042610B   add         byte ptr ds:[4004010h],ch
+00426111   adc         dword ptr [eax],eax
+00426114   xchg        eax,esi
+00426115   adc         byte ptr [eax],al
+

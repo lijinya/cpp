@@ -1,0 +1,139 @@
+CVirtualChild::CVirtualChild:
+004026F0   push        ebp
+004026F1   mov         ebp,esp
+004026F3   sub         esp,44h
+004026F6   push        ebx
+004026F7   push        esi
+004026F8   push        edi
+004026F9   push        ecx
+004026FA   lea         edi,[ebp-44h]
+004026FD   mov         ecx,11h
+00402702   mov         eax,0CCCCCCCCh
+00402707   rep stos    dword ptr [edi]
+00402709   pop         ecx
+0040270A   mov         dword ptr [ebp-4],ecx
+0040270D   mov         ecx,dword ptr [ebp-4]
+00402710   call        @ILT+25(CVirtualBase::CVirtualBase) (0040101e)
+00402715   mov         eax,dword ptr [ebp-4]
+00402718   mov         dword ptr [eax],offset CVirtualChild::`vftable' (004261f8)
+0040271E   mov         eax,dword ptr [ebp-4]
+00402721   pop         edi
+00402722   pop         esi
+00402723   pop         ebx
+00402724   add         esp,44h
+00402727   cmp         ebp,esp
+00402729   call        __chkesp (00402b70)
+0040272E   mov         esp,ebp
+00402730   pop         ebp
+00402731   ret
+
+CVirtualBase::CVirtualBase:
+00402750   push        ebp
+00402751   mov         ebp,esp
+00402753   sub         esp,44h
+00402756   push        ebx
+00402757   push        esi
+00402758   push        edi
+00402759   push        ecx
+0040275A   lea         edi,[ebp-44h]
+0040275D   mov         ecx,11h
+00402762   mov         eax,0CCCCCCCCh
+00402767   rep stos    dword ptr [edi]
+00402769   pop         ecx
+0040276A   mov         dword ptr [ebp-4],ecx	 ECX = 0018FF44
+0040276D   mov         eax,dword ptr [ebp-4]
+00402770   mov         dword ptr [eax],offset CVirtualBase::`vftable' (004261fc)
+00402776   mov         eax,dword ptr [ebp-4]
+00402779   pop         edi
+0040277A   pop         esi
+0040277B   pop         ebx
+0040277C   mov         esp,ebp
+0040277E   pop         ebp
+0040277F   ret
+
+1:    #include<stdio.h>
+2:    class CVirtualBase
+3:    {
+4:    public:
+5:        virtual void show() = 0;
+6:    };
+7:    class CVirtualChild : public CVirtualBase
+8:    {
+9:    public:
+10:       virtual void show()
+11:       {
+004026A0   push        ebp
+004026A1   mov         ebp,esp
+004026A3   sub         esp,44h
+004026A6   push        ebx
+004026A7   push        esi
+004026A8   push        edi
+004026A9   push        ecx
+004026AA   lea         edi,[ebp-44h]
+004026AD   mov         ecx,11h
+004026B2   mov         eax,0CCCCCCCCh
+004026B7   rep stos    dword ptr [edi]
+004026B9   pop         ecx
+004026BA   mov         dword ptr [ebp-4],ecx
+12:           printf("virtual child\n");
+004026BD   push        offset string "virtual child\n" (004261e4)
+004026C2   call        printf (00402ca0)
+004026C7   add         esp,4
+13:       }
+004026CA   pop         edi
+004026CB   pop         esi
+004026CC   pop         ebx
+004026CD   add         esp,44h
+004026D0   cmp         ebp,esp
+004026D2   call        __chkesp (00402b70)
+004026D7   mov         esp,ebp
+004026D9   pop         ebp
+004026DA   ret
+
+
+14:   };
+15:
+16:   int main()
+17:   {
+00410270   push        ebp
+00410271   mov         ebp,esp
+00410273   sub         esp,48h
+00410276   push        ebx
+00410277   push        esi
+00410278   push        edi
+00410279   lea         edi,[ebp-48h]
+0041027C   mov         ecx,12h
+00410281   mov         eax,0CCCCCCCCh
+00410286   rep stos    dword ptr [edi]
+18:       CVirtualChild VirtualChild;
+00410288   lea         ecx,[ebp-4]		ECX = 0018FF44
+0041028B   call        @ILT+280(CVirtualChild::CVirtualChild) (0040111d)
+19:       VirtualChild.show();
+00410290   lea         ecx,[ebp-4]		ECX = 0018FF44
+00410293   call        @ILT+245(CVirtualChild::show) (004010fa)
+20:       CVirtualBase *pVBase = &VirtualChild;
+00410298   lea         eax,[ebp-4]
+0041029B   mov         dword ptr [ebp-8],eax
+21:       pVBase->show();
+0041029E   mov         ecx,dword ptr [ebp-8]
+004102A1   mov         edx,dword ptr [ecx]	EDX = 004261F8
+004102A3   mov         esi,esp
+004102A5   mov         ecx,dword ptr [ebp-8]
+004102A8   call        dword ptr [edx]
+004102AA   cmp         esi,esp
+004102AC   call        __chkesp (00402b70)
+22:       return 0;
+004102B1   xor         eax,eax
+23:   }
+004102B3   pop         edi
+004102B4   pop         esi
+004102B5   pop         ebx
+004102B6   add         esp,48h
+004102B9   cmp         ebp,esp
+004102BB   call        __chkesp (00402b70)
+004102C0   mov         esp,ebp
+004102C2   pop         ebp
+004102C3   ret
+
+@ILT+245(?show@CVirtualChild@@UAEXXZ):
+004010FA   jmp         CVirtualChild::show (004026a0)

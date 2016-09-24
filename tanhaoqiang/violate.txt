@@ -1,0 +1,197 @@
+1:    #include<iostream>
+2:    #include<cstdio>
+3:    using namespace std;
+4:    int main(){
+00401560   push        ebp
+00401561   mov         ebp,esp
+00401563   sub         esp,48h
+00401566   push        ebx
+00401567   push        esi
+00401568   push        edi
+00401569   lea         edi,[ebp-48h]
+0040156C   mov         ecx,12h
+00401571   mov         eax,0CCCCCCCCh
+00401576   rep stos    dword ptr [edi]
+5:        const int a = 1;
+00401578   mov         dword ptr [ebp-4],1
+6:        int* b = (int*)&a;
+0040157F   lea         eax,[ebp-4]
+00401582   mov         dword ptr [ebp-8],eax
+7:        *b = 2;
+00401585   mov         ecx,dword ptr [ebp-8]  ecx即是指针b的值
+00401588   mov         dword ptr [ecx],2
+8:        cout<<a<<endl<<*b<<endl;
+0040158E   push        offset @ILT+195(std::endl) (004010c8)
+00401593   mov         edx,dword ptr [ebp-8]
+00401596   mov         eax,dword ptr [edx]
+00401598   push        eax	//此处使用eax存储
+00401599   push        offset @ILT+195(std::endl) (004010c8)
+0040159E   push        1	//此处即是常量a
+004015A0   mov         ecx,offset std::cout (0047be90)
+004015A5   call        @ILT+250(std::basic_ostream<char,std::char_traits<char> >::operator<<) (004010ff)
+004015AA   mov         ecx,eax
+004015AC   call        @ILT+475(std::basic_ostream<char,std::char_traits<char> >::operator<<) (004011e0)
+004015B1   mov         ecx,eax
+004015B3   call        @ILT+250(std::basic_ostream<char,std::char_traits<char> >::operator<<) (004010ff)
+004015B8   mov         ecx,eax
+004015BA   call        @ILT+475(std::basic_ostream<char,std::char_traits<char> >::operator<<) (004011e0)
+9:        return 0;
+004015BF   xor         eax,eax
+10:   }
+004015C1   pop         edi
+004015C2   pop         esi
+004015C3   pop         ebx
+004015C4   add         esp,48h
+004015C7   cmp         ebp,esp
+004015C9   call        __chkesp (00420550)
+004015CE   mov         esp,ebp
+004015D0   pop         ebp
+004015D1   ret
+
+输出:
+1
+2
+
+内存寄存器分析
+执行00401578   mov         dword ptr [ebp-4],1 之前
+0018FF33  CC CC CC CC CC CC CC  烫烫烫.
+0018FF3A  CC CC CC CC CC CC CC  烫烫烫.
+0018FF41  CC CC CC CC CC CC CC  烫烫烫.
+0018FF48  88 FF 18 00 29 1A 42  ....).B
+0018FF4F  00 01 00 00 00 98 17  .......
+
+执行00401578   mov         dword ptr [ebp-4],1 之后
+0018FF33  CC CC CC CC CC CC CC  烫烫烫.
+0018FF3A  CC CC CC CC CC CC CC  烫烫烫.
+0018FF41  CC CC CC 01 00 00 00  烫.....  此处1即为a
+0018FF48  88 FF 18 00 29 1A 42  ....).B
+
+0040157F   lea         eax,[ebp-4]
+00401582   mov         dword ptr [ebp-8],eax
+ EAX = 0018FF44 EBX = 7EFDE000
+ ECX = 00000000 EDX = 003C1810
+ ESI = 00000000 EDI = 0018FF48
+ EIP = 00401585 ESP = 0018FEF4
+ EBP = 0018FF48 EFL = 00000206
+0018FF33  CC CC CC CC CC CC CC  烫烫烫.
+0018FF3A  CC CC CC CC CC CC 44  烫烫烫D
+0018FF41  FF 18 00 01 00 00 00  .......
+0018FF48  88 FF 18 00 29 1A 42  ....).B
+
+00401585   mov         ecx,dword ptr [ebp-8]
+00401588   mov         dword ptr [ecx],2
+ EAX = 0018FF44 EBX = 7EFDE000
+ ECX = 0018FF44 EDX = 003C1810
+ ESI = 00000000 EDI = 0018FF48
+ EIP = 0040158E ESP = 0018FEF4
+ EBP = 0018FF48 EFL = 00000206
+0018FF33  CC CC CC CC CC CC CC  烫烫烫.
+0018FF3A  CC CC CC CC CC CC 44  烫烫烫D
+0018FF41  FF 18 00 02 00 00 00  .......  此处的地址a处被改为2
+0018FF48  88 FF 18 00 29 1A 42  ....).B
+
+0040158E   push        offset @ILT+195(std::endl) (004010c8)
+00401593   mov         edx,dword ptr [ebp-8]
+00401596   mov         eax,dword ptr [edx]
+00401598   push        eax
+ EAX = 00000002 EBX = 7EFDE000
+ ECX = 0018FF44 EDX = 0018FF44
+ ESI = 00000000 EDI = 0018FF48
+ EIP = 00401598 ESP = 0018FEF0
+ EBP = 0018FF48 EFL = 00000206
+
+
+1:    #include<iostream>
+2:    #include<cstdio>
+3:    using namespace std;
+4:    int main(){
+00401560   push        ebp
+00401561   mov         ebp,esp
+00401563   sub         esp,50h
+00401566   push        ebx
+00401567   push        esi
+00401568   push        edi
+00401569   lea         edi,[ebp-50h]
+0040156C   mov         ecx,14h
+00401571   mov         eax,0CCCCCCCCh
+00401576   rep stos    dword ptr [edi]
+5:        const int a = 1;
+00401578   mov         dword ptr [ebp-4],1
+6:        int* b = (int*)&a;
+0040157F   lea         eax,[ebp-4]
+00401582   mov         dword ptr [ebp-8],eax
+7:        *b = 2;
+00401585   mov         ecx,dword ptr [ebp-8]
+00401588   mov         dword ptr [ecx],2
+8:        cout << a << endl << *b << endl;
+0040158E   push        offset @ILT+195(std::endl) (004010c8)
+00401593   mov         edx,dword ptr [ebp-8]
+00401596   mov         eax,dword ptr [edx]
+00401598   push        eax
+00401599   push        offset @ILT+195(std::endl) (004010c8)
+0040159E   push        1
+004015A0   mov         ecx,offset std::cout (0047be90)
+004015A5   call        @ILT+250(std::basic_ostream<char,std::char_traits<char> >::operator<<) (004010ff)
+004015AA   mov         ecx,eax
+004015AC   call        @ILT+475(std::basic_ostream<char,std::char_traits<char> >::operator<<) (004011e0)
+004015B1   mov         ecx,eax
+004015B3   call        @ILT+250(std::basic_ostream<char,std::char_traits<char> >::operator<<) (004010ff)
+004015B8   mov         ecx,eax
+004015BA   call        @ILT+475(std::basic_ostream<char,std::char_traits<char> >::operator<<) (004011e0)
+9:        b = new int(8);
+004015BF   push        4
+004015C1   call        operator new (004205d0)
+004015C6   add         esp,4
+004015C9   mov         dword ptr [ebp-0Ch],eax
+004015CC   cmp         dword ptr [ebp-0Ch],0
+004015D0   je          main+83h (004015e3)
+004015D2   mov         ecx,dword ptr [ebp-0Ch]
+004015D5   mov         dword ptr [ecx],8
+004015DB   mov         edx,dword ptr [ebp-0Ch]
+004015DE   mov         dword ptr [ebp-10h],edx
+004015E1   jmp         main+8Ah (004015ea)
+004015E3   mov         dword ptr [ebp-10h],0
+004015EA   mov         eax,dword ptr [ebp-10h]
+004015ED   mov         dword ptr [ebp-8],eax
+10:       cout << a << endl << *b << endl;
+004015F0   push        offset @ILT+195(std::endl) (004010c8)
+004015F5   mov         ecx,dword ptr [ebp-8]
+004015F8   mov         edx,dword ptr [ecx]
+004015FA   push        edx
+004015FB   push        offset @ILT+195(std::endl) (004010c8)
+00401600   push        1
+00401602   mov         ecx,offset std::cout (0047be90)
+00401607   call        @ILT+250(std::basic_ostream<char,std::char_traits<char> >::operator<<) (004010ff)
+0040160C   mov         ecx,eax
+0040160E   call        @ILT+475(std::basic_ostream<char,std::char_traits<char> >::operator<<) (004011e0)
+00401613   mov         ecx,eax
+00401615   call        @ILT+250(std::basic_ostream<char,std::char_traits<char> >::operator<<) (004010ff)
+0040161A   mov         ecx,eax
+0040161C   call        @ILT+475(std::basic_ostream<char,std::char_traits<char> >::operator<<) (004011e0)
+11:       return 0;
+00401621   xor         eax,eax
+12:   }
+00401623   pop         edi
+00401624   pop         esi
+00401625   pop         ebx
+00401626   add         esp,50h
+00401629   cmp         ebp,esp
+0040162B   call        __chkesp (004205f0)
+00401630   mov         esp,ebp
+00401632   pop         ebp
+00401633   ret
+
+输出:
+1
+2
+1
+8
+
+执行此句后 9:        b = new int(8);
+内存变化
+0018FF33  CC CC CC CC CC C8 07  烫烫倘.
+0018FF3A  54 00 C8 07 54 00 C8  T...T..
+0018FF41  07 54 00 02 00 00 00  .T.....  a地址处还是2  说明编译器把const变量直接用常数代替,其内存还是可以改的
+0018FF48  88 FF 18 00 A9 1A 42  ......B
+0018FF4F  00 01 00 00 00 98 17  .......
+0018FF56  54 00 10 18 54 00 00  T...T..

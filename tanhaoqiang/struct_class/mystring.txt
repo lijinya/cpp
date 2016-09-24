@@ -1,0 +1,329 @@
+1:    #include<stdio.h>
+2:    #include<string.h>
+3:
+4:    class CMyString
+5:    {
+6:    public:
+7:        CMyString()
+00401660   push        ebp
+00401661   mov         ebp,esp
+00401663   sub         esp,48h
+00401666   push        ebx
+00401667   push        esi
+00401668   push        edi
+00401669   push        ecx
+0040166A   lea         edi,[ebp-48h]
+0040166D   mov         ecx,12h
+00401672   mov         eax,0CCCCCCCCh
+00401677   rep stos    dword ptr [edi]
+00401679   pop         ecx
+0040167A   mov         dword ptr [ebp-4],ecx
+8:        {
+9:            m_pString = new char[10];
+0040167D   push        0Ah
+0040167F   call        operator new (00401ea0)
+00401684   add         esp,4
+00401687   mov         dword ptr [ebp-8],eax
+0040168A   mov         eax,dword ptr [ebp-4]
+0040168D   mov         ecx,dword ptr [ebp-8]
+00401690   mov         dword ptr [eax],ecx
+10:           if(NULL == m_pString)
+00401692   mov         edx,dword ptr [ebp-4]
+00401695   cmp         dword ptr [edx],0
+00401698   jne         CMyString::CMyString+3Ch (0040169c)
+11:           {
+12:               return ;
+0040169A   jmp         CMyString::CMyString+4Fh (004016af)
+13:           }
+14:           strcpy(m_pString , "Hello");
+0040169C   push        offset string "Hello" (00429088)
+004016A1   mov         eax,dword ptr [ebp-4]
+004016A4   mov         ecx,dword ptr [eax]
+004016A6   push        ecx
+004016A7   call        strcpy (00401850)
+004016AC   add         esp,8
+15:       }
+004016AF   mov         eax,dword ptr [ebp-4]
+004016B2   pop         edi
+004016B3   pop         esi
+004016B4   pop         ebx
+004016B5   add         esp,48h
+004016B8   cmp         ebp,esp
+004016BA   call        __chkesp (00401810)
+004016BF   mov         esp,ebp
+004016C1   pop         ebp
+004016C2   ret
+
+16:       ~CMyString()
+17:       {
+00401510   push        ebp
+00401511   mov         ebp,esp
+00401513   sub         esp,48h
+00401516   push        ebx
+00401517   push        esi
+00401518   push        edi
+00401519   push        ecx
+0040151A   lea         edi,[ebp-48h]
+0040151D   mov         ecx,12h
+00401522   mov         eax,0CCCCCCCCh
+00401527   rep stos    dword ptr [edi]
+00401529   pop         ecx
+0040152A   mov         dword ptr [ebp-4],ecx
+18:           if(m_pString != NULL)
+0040152D   mov         eax,dword ptr [ebp-4]
+00401530   cmp         dword ptr [eax],0
+00401533   je          CMyString::~CMyString+42h (00401552)
+19:           {
+20:               delete [] m_pString;
+00401535   mov         ecx,dword ptr [ebp-4]
+00401538   mov         edx,dword ptr [ecx]
+0040153A   mov         dword ptr [ebp-8],edx
+0040153D   mov         eax,dword ptr [ebp-8]
+00401540   push        eax
+00401541   call        operator delete (00401e10)
+00401546   add         esp,4
+21:               m_pString = NULL;
+00401549   mov         ecx,dword ptr [ebp-4]
+0040154C   mov         dword ptr [ecx],0
+22:           }
+23:       }
+00401552   pop         edi
+00401553   pop         esi
+00401554   pop         ebx
+00401555   add         esp,48h
+00401558   cmp         ebp,esp
+0040155A   call        __chkesp (00401810)
+0040155F   mov         esp,ebp
+00401561   pop         ebp
+00401562   ret
+
+24:       char * GetString()
+25:       {
+00401580   push        ebp
+00401581   mov         ebp,esp
+00401583   sub         esp,44h
+00401586   push        ebx
+00401587   push        esi
+00401588   push        edi
+00401589   push        ecx
+0040158A   lea         edi,[ebp-44h]
+0040158D   mov         ecx,11h
+00401592   mov         eax,0CCCCCCCCh
+00401597   rep stos    dword ptr [edi]
+00401599   pop         ecx
+0040159A   mov         dword ptr [ebp-4],ecx
+26:           return m_pString;
+0040159D   mov         eax,dword ptr [ebp-4]	eaxÏàµ±ÓÚ¶þÎ¬Ö¸Õë
+004015A0   mov         eax,dword ptr [eax]
+27:       }
+004015A2   pop         edi
+004015A3   pop         esi
+004015A4   pop         ebx
+004015A5   mov         esp,ebp
+004015A7   pop         ebp
+004015A8   ret
+
+28:   private:
+29:       char *m_pString;
+30:   };
+31:
+32:   void ShowMyString(CMyString str)
+33:   {
+00401470   push        ebp
+00401471   mov         ebp,esp
+00401473   push        0FFh
+00401475   push        offset __ehhandler$?ShowMyString@@YAXVCMyString@@@Z (00417769)
+0040147A   mov         eax,fs:[00000000]
+00401480   push        eax
+00401481   mov         dword ptr fs:[0],esp
+00401488   sub         esp,40h
+0040148B   push        ebx
+0040148C   push        esi
+0040148D   push        edi
+0040148E   lea         edi,[ebp-4Ch]
+00401491   mov         ecx,10h
+00401496   mov         eax,0CCCCCCCCh
+0040149B   rep stos    dword ptr [edi]
+0040149D   mov         dword ptr [ebp-4],0
+34:       printf("%s\n" , str.GetString());
+004014A4   lea         ecx,[ebp+8]
+004014A7   call        @ILT+0(CMyString::GetString) (00401005)		ECX = 0018FEE4
+004014AC   push        eax
+004014AD   push        offset string "%s\n" (00429084)
+004014B2   call        printf (004016e0)
+004014B7   add         esp,8
+35:   }
+004014BA   mov         dword ptr [ebp-4],0FFFFFFFFh
+004014C1   lea         ecx,[ebp+8]					ECX = 0018FEE4
+004014C4   call        @ILT+60(CMyString::~CMyString) (00401041)	//ÊÍ·Å×ÊÔ´
+004014C9   mov         ecx,dword ptr [ebp-0Ch]
+004014CC   mov         dword ptr fs:[0],ecx
+004014D3   pop         edi
+004014D4   pop         esi
+004014D5   pop         ebx
+004014D6   add         esp,4Ch
+004014D9   cmp         ebp,esp
+004014DB   call        __chkesp (00401810)
+004014E0   mov         esp,ebp
+004014E2   pop         ebp
+004014E3   ret
+
+36:   int main()
+37:   {
+004015C0   push        ebp
+004015C1   mov         ebp,esp
+004015C3   push        0FFh
+004015C5   push        offset __ehhandler$_main (00417789)
+004015CA   mov         eax,fs:[00000000]
+004015D0   push        eax
+004015D1   mov         dword ptr fs:[0],esp
+004015D8   sub         esp,48h
+004015DB   push        ebx
+004015DC   push        esi
+004015DD   push        edi
+004015DE   lea         edi,[ebp-54h]
+004015E1   mov         ecx,12h
+004015E6   mov         eax,0CCCCCCCCh
+004015EB   rep stos    dword ptr [edi]
+38:       CMyString str;
+004015ED   lea         ecx,[ebp-10h]
+004015F0   call        @ILT+30(CMyString::CMyString) (00401023)
+004015F5   mov         dword ptr [ebp-4],0
+39:       ShowMyString(str);  //
+004015FC   mov         eax,dword ptr [ebp-10h]
+004015FF   push        eax
+00401600   call        @ILT+55(ShowMyString) (0040103c)
+00401605   add         esp,4
+40:       return 0;
+00401608   mov         dword ptr [ebp-14h],0
+0040160F   mov         dword ptr [ebp-4],0FFFFFFFFh
+00401616   lea         ecx,[ebp-10h]
+00401619   call        @ILT+60(CMyString::~CMyString) (00401041)	 ECX = 0018FF38 
+0040161E   mov         eax,dword ptr [ebp-14h]
+41:   }
+00401621   mov         ecx,dword ptr [ebp-0Ch]
+00401624   mov         dword ptr fs:[0],ecx
+0040162B   pop         edi
+0040162C   pop         esi
+0040162D   pop         ebx
+0040162E   add         esp,54h
+00401631   cmp         ebp,esp
+00401633   call        __chkesp (00401810)
+00401638   mov         esp,ebp
+0040163A   pop         ebp
+0040163B   ret
+
+ShowMyString EAX = 00713A48 == [ebp - 10h]
+
+00713A48  48 65 6C 6C 6F 00 CD CD CD CD FD  Hello.ÍÍÍÍ.
+00713A53  FD FD FD AD BA AB AB AB AB AB AB  ýýý­º«««««.
+00713A5E  AB AB 00 00 00 00 00 00 00 00 D8  ««.........
+00713A69  47 B3 B5 B1 93 00 00 08 0F 71 00  G³µ±“....q.
+00713A74  C4 00 71 00 EE FE EE FE EE FE EE  ..q.îþîþîþ.
+00713A7F  FE EE FE EE FE EE FE EE FE EE FE  þîþîþîþîþî.
+
+lea         ecx,[ebp+8]		ECX = 0018FEE4
+0040159A   mov         dword ptr [ebp-4],ecx	 ECX = 0018FEE4
+EBP = 0018FEDC
+0018FED1  FF 18 00 69 77 41 00 00 00 00 00  ...iwA.....
+0018FEDC  48 FF 18 00 05 16 40 00 48 3A 71  H.....@.H:q
+0018FEE7  00 00 00 00 00 00 00 00 00 00 E0  ...........
+0040152A   mov         dword ptr [ebp-4],ecx	 ECX = 0018FEE4
+
+ EAX = 0018FEE4 EBX = 7EFDE000
+ ECX = 0018FEE4 EDX = 0042BCA0
+ ESI = 00000000 EDI = 0018FE7C
+ EIP = 00401538 ESP = 0018FE28
+ EBP = 0018FE7C EFL = 00000206
+
+00401535   mov         ecx,dword ptr [ebp-4]
+00401538   mov         edx,dword ptr [ecx]
+0040153A   mov         dword ptr [ebp-8],edx
+0040153D   mov         eax,dword ptr [ebp-8]
+00401540   push        eax
+00401541   call        operator delete (00401e10)
+00401546   add         esp,4
+
+0018FE63  CC CC CC CC CC CC CC CC CC CC CC  ÌÌÌÌÌÌÌÌÌÌ.
+0018FE6E  CC CC CC CC CC CC CC CC CC CC E4  ÌÌÌÌÌÌÌÌÌÌ.
+0018FE79  FE 18 00 DC FE 18 00 C9 14 40 00  ...Üþ....@.
+0018FE84  3C FF 18 00 00 00 00 00 00 E0 FD  <........àý
+0018FE8F  7E CC CC CC CC CC CC CC CC CC CC  ~ÌÌÌÌÌÌÌÌÌÌ
+
+0018FE63  CC CC CC CC CC CC CC CC CC CC CC  ÌÌÌÌÌÌÌÌÌÌ.
+0018FE6E  CC CC CC CC CC CC 48 3A 71 00 E4  ÌÌÌÌÌÌH:q..
+0018FE79  FE 18 00 DC FE 18 00 C9 14 40 00  ...Üþ....@.
+0018FE84  3C FF 18 00 00 00 00 00 00 E0 FD  <........àý
+
+0018FE6E  CC CC CC CC CC CC 48 3A 71 00 E4  ÌÌÌÌÌÌH:q..
+0018FE79  FE 18 00 DC FE 18 00 C9 14 40 00  ...Üþ....@.
+0018FE84  3C FF 18 00 00 00 00 00 00 E0 FD  <........àý
+
+ EAX = 00000001 EBX = 7EFDE000
+ ECX = 0018FF3C EDX = 0071015C
+ ESI = 00000000 EDI = 0018FF3C
+ EIP = 00401616 ESP = 0018FEE8
+ EBP = 0018FF48 EFL = 00000206
+
+40:       return 0;
+00401608   mov         dword ptr [ebp-14h],0
+0040160F   mov         dword ptr [ebp-4],0FFFFFFFFh
+00401616   lea         ecx,[ebp-10h]
+00401619   call        @ILT+60(CMyString::~CMyString) (00401041)
+0040161E   mov         eax,dword ptr [ebp-14h]
+41:   }
+
+ EAX = 00000001 EBX = 7EFDE000
+ ECX = 0018FF38 EDX = 0071015C
+ ESI = 00000000 EDI = 0018FF3C
+ EIP = 00401619 ESP = 0018FEE8
+ EBP = 0018FF48 EFL = 00000206
+
+00401529   pop         ecx
+0040152A   mov         dword ptr [ebp-4],ecx
+18:           if(m_pString != NULL)
+0040152D   mov         eax,dword ptr [ebp-4]
+00401530   cmp         dword ptr [eax],0
+00401533   je          CMyString::~CMyString+42h (00401552)
+19:           {
+20:               delete [] m_pString;
+00401535   mov         ecx,dword ptr [ebp-4]
+00401538   mov         edx,dword ptr [ecx]
+0040153A   mov         dword ptr [ebp-8],edx
+0040153D   mov         eax,dword ptr [ebp-8]
+00401540   push        eax
+00401541   call        operator delete (00401e10)
+00401546   add         esp,4
+21:               m_pString = NULL;
+00401549   mov         ecx,dword ptr [ebp-4]
+0040154C   mov         dword ptr [ecx],0
+22:           }
+23:       }
+
+ EAX = CCCCCCCC EBX = 7EFDE000
+ ECX = 0018FF38 EDX = 0071015C
+ ESI = 00000000 EDI = 0018FEE0
+ EIP = 0040152A ESP = 0018FE8C
+ EBP = 0018FEE0 EFL = 00000212
+
+00401535   mov         ecx,dword ptr [ebp-4]
+
+ EAX = 0018FF38 EBX = 7EFDE000
+ ECX = 0018FF38 EDX = 0071015C
+ ESI = 00000000 EDI = 0018FEE0
+ EIP = 00401538 ESP = 0018FE8C
+ EBP = 0018FEE0 EFL = 00000206
+00401538   mov         edx,dword ptr [ecx]
+ EAX = 0018FF38 EBX = 7EFDE000
+ ECX = 0018FF38 EDX = 00713A48
+ ESI = 00000000 EDI = 0018FEE0
+ EIP = 0040153A ESP = 0018FE8C
+ EBP = 0018FEE0 EFL = 00000206
+
+00401540   push        eax
+00401541   call        operator delete (00401e10)
+ EAX = 00713A48 EBX = 7EFDE000
+ ECX = 0018FF38 EDX = 00713A48
+ ESI = 00000000 EDI = 0018FEE0
+ EIP = 00401541 ESP = 0018FE88
+ EBP = 0018FEE0 EFL = 00000206

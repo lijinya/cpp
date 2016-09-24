@@ -1,0 +1,143 @@
+#ifdef CRTDLL
+void __cdecl _initterm (
+#else  /* CRTDLL */
+static void __cdecl _initterm (
+#endif  /* CRTDLL */
+        _PVFV * pfbegin,
+        _PVFV * pfend
+        )
+{
+        /*
+         * walk the table of function pointers from the bottom up, until
+         * the end is encountered.  Do not skip the first entry.  The initial
+         * value of pfbegin points to the first valid entry.  Do not try to
+         * execute what pfend points to.  Only entries before pfend are valid.
+         */
+        while ( pfbegin < pfend )
+        {
+            /*
+             * if current table entry is non-NULL, call thru it.
+             */
+            if ( *pfbegin != NULL )
+                (**pfbegin)();	
+            ++pfbegin;
+        }
+}
+
+/***
+* static int  _initterm_e(_PIFV * pfbegin, _PIFV * pfend) - call entries in
+*       function pointer table, return error code on any failure
+*
+*Purpose:
+*       Walk a table of function pointers in the same way as _initterm, but
+*       here the functions return an error code.  If an error is returned, it
+*       will be a nonzero value equal to one of the _RT_* codes.
+*
+*Entry:
+*       _PIFV *pfbegin  - pointer to the beginning of the table (first
+*                         valid entry).
+*       _PIFV *pfend    - pointer to the end of the table (after last
+*                         valid entry).
+*
+*Exit:
+*       No return value
+*
+*Notes:
+*       This routine must be exported in the CRT DLL model so that the client
+*       EXE and client DLL(s) can call it.
+*
+*Exceptions:
+*       If either pfbegin or pfend is NULL, or invalid, all bets are off!
+*
+*******************************************************************************/
+
+int __cdecl _initterm_e (
+        _PIFV * pfbegin,
+        _PIFV * pfend
+        )
+{
+        int ret = 0;
+
+        /*
+         * walk the table of function pointers from the bottom up, until
+         * the end is encountered.  Do not skip the first entry.  The initial
+         * value of pfbegin points to the first valid entry.  Do not try to
+         * execute what pfend points to.  Only entries before pfend are valid.
+         */
+        while ( pfbegin < pfend  && ret == 0)
+        {
+            /*
+             * if current table entry is non-NULL, call thru it.
+             */
+            if ( *pfbegin != NULL )
+                ret = (**pfbegin)();
+            ++pfbegin;
+        }
+
+        return ret;
+}
+
+
+// ==++==
+//
+// Copyright (c) Microsoft Corporation.  All rights reserved.
+// 
+// ==--==
+// =+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+
+//
+// staticinits.cpp
+//
+// A separate module for static fields and globals that need to be initialized in
+// a special, compiler segment. This is done to ensure that these objects are initialized
+// before any user code or third-party library code.
+//
+// =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
+
+#include "concrtinternal.h"
+
+namespace Concurrency
+{
+namespace details
+{
+#pragma warning(push)
+#pragma warning(disable:4074)
+
+#pragma init_seg(compiler)
+
+    // There shall be no dependency between the objects being initialized here.
+    // If they do we should have a StaticInitialize() method that invokes the 
+    // initializers in the appropriate order.
+
+    // From utils.cpp
+$$    volatile long Security::s_initialized = 0;
+    ULONG_PTR Security::s_cookie = Security::InitializeCookie();
+
+    // From SchedulerBase.cpp
+    // Define statics
+    _StaticLock SchedulerBase::s_schedulerLock;
+    _StaticLock SchedulerBase::s_defaultSchedulerLock;
+
+    // A stack that holds free suballocators.
+    LockFreeStack<SubAllocator> SchedulerBase::s_subAllocatorFreePool;
+
+    // From ResourceManager.cpp
+    _StaticLock ResourceManager::s_lock;
+
+    class TerminationFlagger
+    {
+    public:
+
+        ~TerminationFlagger()
+        {
+           ResourceManager::SetTerminating();
+        }
+
+    } g_terminationFlagger;
+
+    // From Trace.cpp
+    _StaticLock Etw::s_lock;
+
+#pragma warning(pop)
+
+} // namespace details
+} // namespace Concurrency

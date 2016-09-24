@@ -1,0 +1,945 @@
+@ILT+0(??_ECGerman@@UAEPAXI@Z):
+00401005   jmp         CGerman::`scalar deleting destructor' (00401ba0)
+@ILT+5(??_ECAmerican@@UAEPAXI@Z):
+0040100A   jmp         CAmerican::`scalar deleting destructor' (00401a30)
+@ILT+10(?SetNumber@CBase@@QAEXH@Z):
+0040100F   jmp         CBase::SetNumber (00401280)
+@ILT+15(??1CBase@@QAE@XZ):
+00401014   jmp         CBase::~CBase (004013f0)
+@ILT+20(?ShowSpeak@CChinese@@UAEXXZ):
+00401019   jmp         CChinese::ShowSpeak (00401870)
+@ILT+25(?ShowNumber@CDerive@@QAEXH@Z):
+0040101E   jmp         CDerive::ShowNumber (004011f0)
+@ILT+30(??0CGerman@@QAE@XZ):
+00401023   jmp         CGerman::CGerman (00401aa0)
+@ILT+35(??0CAmerican@@QAE@XZ):
+00401028   jmp         CAmerican::CAmerican (00401930)
+@ILT+40(??0CChinese@@QAE@XZ):
+0040102D   jmp         CChinese::CChinese (00401650)
+@ILT+45(?ShowSpeak@CPerson@@UAEXXZ):
+00401032   jmp         CPerson::ShowSpeak (00401710)
+@ILT+50(??1CPerson@@UAE@XZ):
+00401037   jmp         CPerson::~CPerson (004017d0)
+@ILT+55(??_ECPerson@@UAEPAXI@Z):
+0040103C   jmp         CPerson::`scalar deleting destructor' (00401760)
+@ILT+60(?GetNumber@CBase@@QAEHXZ):
+00401041   jmp         CBase::GetNumber (004012c0)
+@ILT+65(??0CDerive@@QAE@XZ):
+00401046   jmp         CDerive::CDerive (00401300)
+@ILT+70(??1CGerman@@UAE@XZ):
+0040104B   jmp         CGerman::~CGerman (00401b00)
+@ILT+75(??_ECGerman@@UAEPAXI@Z):
+00401050   jmp         CGerman::`scalar deleting destructor' (00401ba0)
+@ILT+80(??1CDerive@@QAE@XZ):
+00401055   jmp         CDerive::~CDerive (004013a0)
+@ILT+85(??0CPerson@@QAE@XZ):
+0040105A   jmp         CPerson::CPerson (004016b0)
+@ILT+90(??_ECChinese@@UAEPAXI@Z):
+0040105F   jmp         CChinese::`scalar deleting destructor' (004018c0)
+@ILT+95(??1CAmerican@@UAE@XZ):
+00401064   jmp         CAmerican::~CAmerican (00401990)
+@ILT+100(?main2@@YAHXZ):
+00401069   jmp         main2 (004014c0)
+@ILT+105(??1CChinese@@UAE@XZ):
+0040106E   jmp         CChinese::~CChinese (00401820)
+@ILT+110(?ShowSpeak@CAmerican@@UAEXXZ):
+00401073   jmp         CAmerican::ShowSpeak (004019e0)
+@ILT+115(?ShowSpeak@CGerman@@UAEXXZ):
+00401078   jmp         CGerman::ShowSpeak (00401b50)
+@ILT+120(_main):
+0040107D   jmp         main (00401550)
+@ILT+125(??0CBase@@QAE@XZ):
+00401082   jmp         CBase::CBase (00401350)
+@ILT+130(?main3@@YAHXZ):
+00401087   jmp         main3 (00401440)
+@ILT+135(?main1@@YAHHQAPAD@Z):
+0040108C   jmp         main1 (00401150)
+@ILT+140(??_ECAmerican@@UAEPAXI@Z):
+00401091   jmp         CAmerican::`scalar deleting destructor' (00401a30)
+@ILT+145(?speak@@YAXPAVCPerson@@@Z):
+00401096   jmp         speak (00401500)
+@ILT+150(??_ECPerson@@UAEPAXI@Z):
+0040109B   jmp         CPerson::`scalar deleting destructor' (00401760)
+@ILT+155(??_ECChinese@@UAEPAXI@Z):
+004010A0   jmp         CChinese::`scalar deleting destructor' (004018c0)
+
+1:    #include<stdio.h>
+2:    class CPerson
+3:    {
+4:    public:
+5:        CPerson()
+004016B0   push        ebp
+004016B1   mov         ebp,esp
+004016B3   sub         esp,44h
+004016B6   push        ebx
+004016B7   push        esi
+004016B8   push        edi
+004016B9   push        ecx
+004016BA   lea         edi,[ebp-44h]
+004016BD   mov         ecx,11h
+004016C2   mov         eax,0CCCCCCCCh
+004016C7   rep stos    dword ptr [edi]
+004016C9   pop         ecx
+004016CA   mov         dword ptr [ebp-4],ecx
+004016CD   mov         eax,dword ptr [ebp-4]
+004016D0   mov         dword ptr [eax],offset CPerson::`vftable' (00425044)
+6:        {
+7:            ShowSpeak();
+004016D6   mov         ecx,dword ptr [ebp-4]
+004016D9   call        @ILT+45(CPerson::ShowSpeak) (00401032)
+8:        }
+004016DE   mov         eax,dword ptr [ebp-4]
+004016E1   pop         edi
+004016E2   pop         esi
+004016E3   pop         ebx
+004016E4   add         esp,44h
+004016E7   cmp         ebp,esp
+004016E9   call        __chkesp (00401ff0)
+004016EE   mov         esp,ebp
+004016F0   pop         ebp
+004016F1   ret
+
+17:   };
+18:
+19:   class CChinese : public CPerson
+20:   {
+21:   public:
+22:       CChinese()
+00401650   push        ebp
+00401651   mov         ebp,esp
+00401653   sub         esp,44h
+00401656   push        ebx
+00401657   push        esi
+00401658   push        edi
+00401659   push        ecx
+0040165A   lea         edi,[ebp-44h]
+0040165D   mov         ecx,11h
+00401662   mov         eax,0CCCCCCCCh
+00401667   rep stos    dword ptr [edi]
+00401669   pop         ecx
+0040166A   mov         dword ptr [ebp-4],ecx
+0040166D   mov         ecx,dword ptr [ebp-4]
+00401670   call        @ILT+85(CPerson::CPerson) (0040105a)	//此处调用虚函数是父类的。
+00401675   mov         eax,dword ptr [ebp-4]
+00401678   mov         dword ptr [eax],offset CChinese::`vftable' (00425038)
+23:       {
+24:
+25:       }
+0040167E   mov         eax,dword ptr [ebp-4]
+00401681   pop         edi
+00401682   pop         esi
+00401683   pop         ebx
+00401684   add         esp,44h
+00401687   cmp         ebp,esp
+00401689   call        __chkesp (00401ff0)
+0040168E   mov         esp,ebp
+00401690   pop         ebp
+00401691   ret
+
+34:   };
+35:
+36:   class CAmerican : public CPerson
+37:   {
+38:   public:
+39:       CAmerican()
+00401930   push        ebp
+00401931   mov         ebp,esp
+00401933   sub         esp,44h
+00401936   push        ebx
+00401937   push        esi
+00401938   push        edi
+00401939   push        ecx
+0040193A   lea         edi,[ebp-44h]
+0040193D   mov         ecx,11h
+00401942   mov         eax,0CCCCCCCCh
+00401947   rep stos    dword ptr [edi]
+00401949   pop         ecx
+0040194A   mov         dword ptr [ebp-4],ecx
+0040194D   mov         ecx,dword ptr [ebp-4]
+00401950   call        @ILT+85(CPerson::CPerson) (0040105a)
+00401955   mov         eax,dword ptr [ebp-4]
+00401958   mov         dword ptr [eax],offset CAmerican::`vftable' (00425074)
+40:       {
+41:
+42:       }
+0040195E   mov         eax,dword ptr [ebp-4]
+00401961   pop         edi
+00401962   pop         esi
+00401963   pop         ebx
+00401964   add         esp,44h
+00401967   cmp         ebp,esp
+00401969   call        __chkesp (00401ff0)
+0040196E   mov         esp,ebp
+00401970   pop         ebp
+00401971   ret
+
+72:   int main()
+73:   {
+00401550   push        ebp
+00401551   mov         ebp,esp
+00401553   push        0FFh
+00401555   push        offset __ehhandler$_main (00413dab)
+0040155A   mov         eax,fs:[00000000]
+00401560   push        eax
+00401561   mov         dword ptr fs:[0],esp
+00401568   sub         esp,50h
+0040156B   push        ebx
+0040156C   push        esi
+0040156D   push        edi
+0040156E   lea         edi,[ebp-5Ch]
+00401571   mov         ecx,14h
+00401576   mov         eax,0CCCCCCCCh
+0040157B   rep stos    dword ptr [edi]
+74:       CChinese Chinese;
+0040157D   lea         ecx,[ebp-10h]
+00401580   call        @ILT+40(CChinese::CChinese) (0040102d)
+00401585   mov         dword ptr [ebp-4],0
+75:       CAmerican American;
+0040158C   lea         ecx,[ebp-14h]
+0040158F   call        @ILT+35(CAmerican::CAmerican) (00401028)
+00401594   mov         byte ptr [ebp-4],1
+76:       CGerman German;
+00401598   lea         ecx,[ebp-18h]
+0040159B   call        @ILT+30(CGerman::CGerman) (00401023)
+004015A0   mov         byte ptr [ebp-4],2
+77:       speak(&Chinese);
+004015A4   lea         eax,[ebp-10h]
+004015A7   push        eax
+004015A8   call        @ILT+145(speak) (00401096)
+004015AD   add         esp,4
+78:       speak(&American);
+004015B0   lea         ecx,[ebp-14h]
+004015B3   push        ecx
+004015B4   call        @ILT+145(speak) (00401096)
+004015B9   add         esp,4
+79:       speak(&German);
+004015BC   lea         edx,[ebp-18h]
+004015BF   push        edx
+004015C0   call        @ILT+145(speak) (00401096)
+004015C5   add         esp,4
+80:       return 0;
+004015C8   mov         dword ptr [ebp-1Ch],0
+004015CF   mov         byte ptr [ebp-4],1
+004015D3   lea         ecx,[ebp-18h]
+004015D6   call        @ILT+70(CGerman::~CGerman) (0040104b)
+004015DB   mov         byte ptr [ebp-4],0
+004015DF   lea         ecx,[ebp-14h]
+004015E2   call        @ILT+95(CAmerican::~CAmerican) (00401064)
+004015E7   mov         dword ptr [ebp-4],0FFFFFFFFh
+004015EE   lea         ecx,[ebp-10h]
+004015F1   call        @ILT+105(CChinese::~CChinese) (0040106e)
+004015F6   mov         eax,dword ptr [ebp-1Ch]
+81:   }
+004015F9   mov         ecx,dword ptr [ebp-0Ch]
+004015FC   mov         dword ptr fs:[0],ecx
+00401603   pop         edi
+00401604   pop         esi
+00401605   pop         ebx
+00401606   add         esp,5Ch
+00401609   cmp         ebp,esp
+0040160B   call        __chkesp (00401ff0)
+00401610   mov         esp,ebp
+00401612   pop         ebp
+00401613   ret
+
+59:       virtual ~CGerman()
+60:       {
+0040F6E0   push        ebp
+0040F6E1   mov         ebp,esp
+0040F6E3   push        0FFh
+0040F6E5   push        offset __ehhandler$??1CGerman@@UAE@XZ (00413dc9)
+0040F6EA   mov         eax,fs:[00000000]
+0040F6F0   push        eax
+0040F6F1   mov         dword ptr fs:[0],esp
+0040F6F8   sub         esp,44h
+0040F6FB   push        ebx
+0040F6FC   push        esi
+0040F6FD   push        edi
+0040F6FE   push        ecx
+0040F6FF   lea         edi,[ebp-50h]
+0040F702   mov         ecx,11h
+0040F707   mov         eax,0CCCCCCCCh
+0040F70C   rep stos    dword ptr [edi]
+0040F70E   pop         ecx
+0040F70F   mov         dword ptr [ebp-10h],ecx
+0040F712   mov         eax,dword ptr [ebp-10h]
+0040F715   mov         dword ptr [eax],offset CGerman::`vftable' (00425094)	还原虚表
+0040F71B   mov         dword ptr [ebp-4],0
+61:           ShowSpeak();						//执行子类虚函数体
+0040F722   mov         ecx,dword ptr [ebp-10h]
+0040F725   call        @ILT+115(CGerman::ShowSpeak) (00401078)	
+62:       }
+0040F72A   mov         dword ptr [ebp-4],0FFFFFFFFh
+0040F731   mov         ecx,dword ptr [ebp-10h]
+0040F734   call        @ILT+50(CPerson::~CPerson) (00401037)	继续调用父类析构函数
+0040F739   mov         ecx,dword ptr [ebp-0Ch]
+0040F73C   mov         dword ptr fs:[0],ecx
+0040F743   pop         edi
+0040F744   pop         esi
+0040F745   pop         ebx
+0040F746   add         esp,50h
+0040F749   cmp         ebp,esp
+0040F74B   call        __chkesp (00401ff0)
+0040F750   mov         esp,ebp
+0040F752   pop         ebp
+0040F753   ret
+
+43:       virtual ~CAmerican()
+44:       {
+00401990   push        ebp
+00401991   mov         ebp,esp
+00401993   sub         esp,44h
+00401996   push        ebx
+00401997   push        esi
+00401998   push        edi
+00401999   push        ecx
+0040199A   lea         edi,[ebp-44h]
+0040199D   mov         ecx,11h
+004019A2   mov         eax,0CCCCCCCCh
+004019A7   rep stos    dword ptr [edi]
+004019A9   pop         ecx
+004019AA   mov         dword ptr [ebp-4],ecx
+004019AD   mov         eax,dword ptr [ebp-4]
+004019B0   mov         dword ptr [eax],offset CAmerican::`vftable' (00425074)
+45:
+46:       }
+004019B6   mov         ecx,dword ptr [ebp-4]
+004019B9   call        @ILT+50(CPerson::~CPerson) (00401037)
+004019BE   pop         edi
+004019BF   pop         esi
+004019C0   pop         ebx
+004019C1   add         esp,44h
+004019C4   cmp         ebp,esp
+004019C6   call        __chkesp (00401ff0)
+004019CB   mov         esp,ebp
+004019CD   pop         ebp
+004019CE   ret
+
+
+@ILT+0(??_ECGerman@@UAEPAXI@Z):
+00401005   jmp         CGerman::`scalar deleting destructor' (0040f730)
+@ILT+5(??_GCAmerican@@UAEPAXI@Z):
+0040100A   jmp         CAmerican::`scalar deleting destructor' (00401aa0)
+@ILT+10(?SetNumber@CBase@@QAEXH@Z):
+0040100F   jmp         CBase::SetNumber (00401280)
+@ILT+15(??1CBase@@QAE@XZ):
+00401014   jmp         CBase::~CBase (004013f0)
+@ILT+20(?ShowSpeak@CChinese@@UAEXXZ):
+00401019   jmp         CChinese::~CChinese (00401870)
+@ILT+25(?ShowNumber@CDerive@@QAEXH@Z):
+0040101E   jmp         CDerive::ShowNumber (004011f0)
+@ILT+30(??0CGerman@@QAE@XZ):
+00401023   jmp         CGerman::CGerman (0040f6e0)
+@ILT+35(??0CAmerican@@QAE@XZ):
+00401028   jmp         CAmerican::CAmerican (00401990)
+@ILT+40(??0CChinese@@QAE@XZ):
+0040102D   jmp         CChinese::CChinese (00401650)
+@ILT+45(?ShowSpeak@CPerson@@UAEXXZ):
+00401032   jmp         CPerson::ShowSpeak (00401710)
+@ILT+50(??1CPerson@@UAE@XZ):
+00401037   jmp         CPerson::~CPerson (00401820)
+@ILT+55(??_GCPerson@@UAEPAXI@Z):
+0040103C   jmp         CPerson::`scalar deleting destructor' (00401790)
+@ILT+60(?GetNumber@CBase@@QAEHXZ):
+00401041   jmp         CBase::GetNumber (004012c0)
+@ILT+65(??0CDerive@@QAE@XZ):
+00401046   jmp         CDerive::CDerive (00401300)
+@ILT+70(??1CGerman@@UAE@XZ):
+0040104B   jmp         CGerman::~CGerman (00401b00)
+@ILT+75(??_ECGerman@@UAEPAXI@Z):
+00401050   jmp         CGerman::`scalar deleting destructor' (0040f730)
+@ILT+80(??1CDerive@@QAE@XZ):
+00401055   jmp         CDerive::~CDerive (004013a0)
+@ILT+85(??0CPerson@@QAE@XZ):
+0040105A   jmp         CPerson::CPerson (004016b0)
+@ILT+90(??_ECChinese@@UAEPAXI@Z):
+0040105F   jmp         CChinese::`scalar deleting destructor' (00401930)
+@ILT+95(??1CAmerican@@UAE@XZ):
+00401064   jmp         CAmerican::~CAmerican (004019e0)
+@ILT+100(?main2@@YAHXZ):
+00401069   jmp         main2 (004014c0)
+@ILT+105(?ShowSpeak@CChinese@@UAEXXZ):
+0040106E   jmp         CChinese::~CChinese (00401870)
+@ILT+110(??1CAmerican@@UAE@XZ):
+00401073   jmp         CAmerican::~CAmerican (004019e0)
+@ILT+115(?ShowSpeak@CGerman@@UAEXXZ):
+00401078   jmp         CGerman::~CGerman+50h (00401b50)
+@ILT+120(_main):
+0040107D   jmp         main (00401550)
+@ILT+125(??0CBase@@QAE@XZ):
+00401082   jmp         CBase::CBase (00401350)
+@ILT+130(?main3@@YAHXZ):
+00401087   jmp         main3 (00401440)
+@ILT+135(?main1@@YAHHQAPAD@Z):
+0040108C   jmp         main1 (00401150)
+@ILT+140(??_GCAmerican@@UAEPAXI@Z):
+00401091   jmp         CAmerican::`scalar deleting destructor' (00401aa0)
+@ILT+145(?speak@@YAXPAVCPerson@@@Z):
+00401096   jmp         speak (00401500)
+@ILT+150(??_GCPerson@@UAEPAXI@Z):
+0040109B   jmp         CPerson::`scalar deleting destructor' (00401790)
+@ILT+155(??_ECChinese@@UAEPAXI@Z):
+004010A0   jmp         CChinese::`scalar deleting destructor' (00401930)
+004010A5   jmp         CChinese::GetClassName (004018c0)
+004010AA   jmp         CGerman::GetClassName (00401ba0)
+004010AF   jmp         CPerson::GetClassName (00401760)
+004010B4   jmp         CAmerican::GetClassName (00401a30)
+
+1:    #include<stdio.h>
+2:    class CPerson
+3:    {
+4:    public:
+5:        CPerson()
+004016B0   push        ebp
+004016B1   mov         ebp,esp
+004016B3   sub         esp,44h
+004016B6   push        ebx
+004016B7   push        esi
+004016B8   push        edi
+004016B9   push        ecx
+004016BA   lea         edi,[ebp-44h]
+004016BD   mov         ecx,11h
+004016C2   mov         eax,0CCCCCCCCh
+004016C7   rep stos    dword ptr [edi]
+004016C9   pop         ecx
+004016CA   mov         dword ptr [ebp-4],ecx
+004016CD   mov         eax,dword ptr [ebp-4]
+004016D0   mov         dword ptr [eax],offset CPerson::`vftable' (00425044)
+6:        {
+7:            ShowSpeak();
+004016D6   mov         ecx,dword ptr [ebp-4]
+004016D9   call        @ILT+45(CPerson::ShowSpeak) (00401032)
+8:        }
+004016DE   mov         eax,dword ptr [ebp-4]
+004016E1   pop         edi
+004016E2   pop         esi
+004016E3   pop         ebx
+004016E4   add         esp,44h
+004016E7   cmp         ebp,esp
+004016E9   call        __chkesp (00401ff0)
+004016EE   mov         esp,ebp
+004016F0   pop         ebp
+004016F1   ret
+
+9:        virtual ~CPerson()
+10:       {
+00401820   push        ebp
+00401821   mov         ebp,esp
+00401823   sub         esp,44h
+00401826   push        ebx
+00401827   push        esi
+00401828   push        edi
+00401829   push        ecx
+0040182A   lea         edi,[ebp-44h]
+0040182D   mov         ecx,11h
+00401832   mov         eax,0CCCCCCCCh
+00401837   rep stos    dword ptr [edi]
+00401839   pop         ecx
+0040183A   mov         dword ptr [ebp-4],ecx
+0040183D   mov         eax,dword ptr [ebp-4]
+00401840   mov         dword ptr [eax],offset CPerson::`vftable' (00425044)
+11:           ShowSpeak();
+00401846   mov         ecx,dword ptr [ebp-4]
+00401849   call        @ILT+45(CPerson::ShowSpeak) (00401032)
+12:       }
+0040184E   pop         edi
+0040184F   pop         esi
+00401850   pop         ebx
+00401851   add         esp,44h
+00401854   cmp         ebp,esp
+00401856   call        __chkesp (00401ff0)
+0040185B   mov         esp,ebp
+0040185D   pop         ebp
+0040185E   ret
+
+13:       virtual void ShowSpeak()
+14:       {
+00401710   push        ebp
+00401711   mov         ebp,esp
+00401713   sub         esp,44h
+00401716   push        ebx
+00401717   push        esi
+00401718   push        edi
+00401719   push        ecx
+0040171A   lea         edi,[ebp-44h]
+0040171D   mov         ecx,11h
+00401722   mov         eax,0CCCCCCCCh
+00401727   rep stos    dword ptr [edi]
+00401729   pop         ecx
+0040172A   mov         dword ptr [ebp-4],ecx
+15:           printf("%s::ShowSpeak()\r\n" , GetClassName());
+0040172D   mov         eax,dword ptr [ebp-4]
+00401730   mov         edx,dword ptr [eax]
+00401732   mov         esi,esp
+00401734   mov         ecx,dword ptr [ebp-4]
+00401737   call        dword ptr [edx+8]
+0040173A   cmp         esi,esp
+0040173C   call        __chkesp (00401ff0)
+00401741   push        eax
+00401742   push        offset string "%s::ShowSpeak()\r\n" (004260b8)
+00401747   call        printf (00402120)
+0040174C   add         esp,8
+16:       }
+0040174F   pop         edi
+00401750   pop         esi
+00401751   pop         ebx
+00401752   add         esp,44h
+00401755   cmp         ebp,esp
+00401757   call        __chkesp (00401ff0)
+0040175C   mov         esp,ebp
+0040175E   pop         ebp
+0040175F   ret
+17:       virtual char * GetClassName()
+18:       {
+00401760   push        ebp
+00401761   mov         ebp,esp
+00401763   sub         esp,44h
+00401766   push        ebx
+00401767   push        esi
+00401768   push        edi
+00401769   push        ecx
+0040176A   lea         edi,[ebp-44h]
+0040176D   mov         ecx,11h
+00401772   mov         eax,0CCCCCCCCh
+00401777   rep stos    dword ptr [edi]
+00401779   pop         ecx
+0040177A   mov         dword ptr [ebp-4],ecx
+19:           return "CPerson";
+0040177D   mov         eax,offset string "CPerson" (00425060)
+20:       }
+00401782   pop         edi
+00401783   pop         esi
+00401784   pop         ebx
+00401785   mov         esp,ebp
+00401787   pop         ebp
+00401788   ret
+
+21:   };
+22:
+23:   class CChinese : public CPerson
+24:   {
+25:   public:
+26:       CChinese()
+00401650   push        ebp
+00401651   mov         ebp,esp
+00401653   sub         esp,44h
+00401656   push        ebx
+00401657   push        esi
+00401658   push        edi
+00401659   push        ecx
+0040165A   lea         edi,[ebp-44h]
+0040165D   mov         ecx,11h
+00401662   mov         eax,0CCCCCCCCh
+00401667   rep stos    dword ptr [edi]
+00401669   pop         ecx
+0040166A   mov         dword ptr [ebp-4],ecx
+0040166D   mov         ecx,dword ptr [ebp-4]
+00401670   call        @ILT+85(CPerson::CPerson) (0040105a)
+00401675   mov         eax,dword ptr [ebp-4]
+00401678   mov         dword ptr [eax],offset CChinese::`vftable' (00425038)
+27:       {
+28:
+29:       }
+0040167E   mov         eax,dword ptr [ebp-4]
+00401681   pop         edi
+00401682   pop         esi
+00401683   pop         ebx
+00401684   add         esp,44h
+00401687   cmp         ebp,esp
+00401689   call        __chkesp (00401ff0)
+0040168E   mov         esp,ebp
+00401690   pop         ebp
+00401691   ret
+
+30:       virtual ~CChinese()
+31:       {
+00401870   push        ebp
+00401871   mov         ebp,esp
+00401873   sub         esp,44h
+00401876   push        ebx
+00401877   push        esi
+00401878   push        edi
+00401879   push        ecx
+0040187A   lea         edi,[ebp-44h]
+0040187D   mov         ecx,11h
+00401882   mov         eax,0CCCCCCCCh
+00401887   rep stos    dword ptr [edi]
+00401889   pop         ecx
+0040188A   mov         dword ptr [ebp-4],ecx
+0040188D   mov         eax,dword ptr [ebp-4]
+00401890   mov         dword ptr [eax],offset CChinese::`vftable' (00425038)
+32:
+33:       }
+00401896   mov         ecx,dword ptr [ebp-4]
+00401899   call        @ILT+50(CPerson::~CPerson) (00401037)
+0040189E   pop         edi
+0040189F   pop         esi
+004018A0   pop         ebx
+004018A1   add         esp,44h
+004018A4   cmp         ebp,esp
+004018A6   call        __chkesp (00401ff0)
+004018AB   mov         esp,ebp
+004018AD   pop         ebp
+004018AE   ret
+
+42:   };
+43:
+44:   class CAmerican : public CPerson
+45:   {
+46:   public:
+47:       CAmerican()
+00401990   push        ebp
+00401991   mov         ebp,esp
+00401993   sub         esp,44h
+00401996   push        ebx
+00401997   push        esi
+00401998   push        edi
+00401999   push        ecx
+0040199A   lea         edi,[ebp-44h]
+0040199D   mov         ecx,11h
+004019A2   mov         eax,0CCCCCCCCh
+004019A7   rep stos    dword ptr [edi]
+004019A9   pop         ecx
+004019AA   mov         dword ptr [ebp-4],ecx
+004019AD   mov         ecx,dword ptr [ebp-4]
+004019B0   call        @ILT+85(CPerson::CPerson) (0040105a)
+004019B5   mov         eax,dword ptr [ebp-4]
+004019B8   mov         dword ptr [eax],offset string "Speak American\n" (00425080)
+48:       {
+49:
+50:       }
+004019BE   mov         eax,dword ptr [ebp-4]
+004019C1   pop         edi
+004019C2   pop         esi
+004019C3   pop         ebx
+004019C4   add         esp,44h
+004019C7   cmp         ebp,esp
+004019C9   call        __chkesp (00401ff0)
+004019CE   mov         esp,ebp
+004019D0   pop         ebp
+004019D1   ret
+
+51:       virtual ~CAmerican()
+52:       {
+004019E0   push        ebp
+004019E1   mov         ebp,esp
+004019E3   sub         esp,44h
+004019E6   push        ebx
+004019E7   push        esi
+004019E8   push        edi
+004019E9   push        ecx
+004019EA   lea         edi,[ebp-44h]
+004019ED   mov         ecx,11h
+004019F2   mov         eax,0CCCCCCCCh
+004019F7   rep stos    dword ptr [edi]
+004019F9   pop         ecx
+004019FA   mov         dword ptr [ebp-4],ecx
+004019FD   mov         eax,dword ptr [ebp-4]
+00401A00   mov         dword ptr [eax],offset string "Speak American\n" (00425080)
+53:
+54:       }
+00401A06   mov         ecx,dword ptr [ebp-4]
+00401A09   call        @ILT+50(CPerson::~CPerson) (00401037)
+00401A0E   pop         edi
+00401A0F   pop         esi
+00401A10   pop         ebx
+00401A11   add         esp,44h
+00401A14   cmp         ebp,esp
+00401A16   call        __chkesp (00401ff0)
+00401A1B   mov         esp,ebp
+00401A1D   pop         ebp
+00401A1E   ret
+
+64:   };
+65:   class CGerman : public CPerson
+66:   {
+67:   public:
+68:       CGerman()
+0040F6E0   push        ebp
+0040F6E1   mov         ebp,esp
+0040F6E3   sub         esp,44h
+0040F6E6   push        ebx
+0040F6E7   push        esi
+0040F6E8   push        edi
+0040F6E9   push        ecx
+0040F6EA   lea         edi,[ebp-44h]
+0040F6ED   mov         ecx,11h
+0040F6F2   mov         eax,0CCCCCCCCh
+0040F6F7   rep stos    dword ptr [edi]
+0040F6F9   pop         ecx
+0040F6FA   mov         dword ptr [ebp-4],ecx
+0040F6FD   mov         ecx,dword ptr [ebp-4]
+0040F700   call        @ILT+85(CPerson::CPerson) (0040105a)
+0040F705   mov         eax,dword ptr [ebp-4]
+0040F708   mov         dword ptr [eax],offset string "Speak German\n" (004250a0)
+69:       {
+70:
+71:       }
+0040F70E   mov         eax,dword ptr [ebp-4]
+0040F711   pop         edi
+0040F712   pop         esi
+0040F713   pop         ebx
+0040F714   add         esp,44h
+0040F717   cmp         ebp,esp
+0040F719   call        __chkesp (00401ff0)
+0040F71E   mov         esp,ebp
+0040F720   pop         ebp
+0040F721   ret
+
+72:       virtual ~CGerman()
+73:       {
+00401B00   push        ebp
+00401B01   mov         ebp,esp
+00401B03   push        0FFh
+00401B05   push        offset __ehhandler$??1CGerman@@UAE@XZ (00413dc9)
+00401B0A   mov         eax,fs:[00000000]
+00401B10   push        eax
+00401B11   mov         dword ptr fs:[0],esp
+00401B18   sub         esp,44h
+00401B1B   push        ebx
+00401B1C   push        esi
+00401B1D   push        edi
+00401B1E   push        ecx
+00401B1F   lea         edi,[ebp-50h]
+00401B22   mov         ecx,11h
+00401B27   mov         eax,0CCCCCCCCh
+00401B2C   rep stos    dword ptr [edi]
+00401B2E   pop         ecx
+00401B2F   mov         dword ptr [ebp-10h],ecx
+00401B32   mov         eax,dword ptr [ebp-10h]
+00401B35   mov         dword ptr [eax],offset string "Speak German\n" (004250a0)
+00401B3B   mov         dword ptr [ebp-4],0
+74:           ShowSpeak();
+00401B42   mov         ecx,dword ptr [ebp-10h]
+00401B45   call        @ILT+45(CPerson::ShowSpeak) (00401032)
+75:       }
+00401B4A   mov         dword ptr [ebp-4],0FFFFFFFFh
+00401B51   mov         ecx,dword ptr [ebp-10h]
+00401B54   call        @ILT+50(CPerson::~CPerson) (00401037)
+00401B59   mov         ecx,dword ptr [ebp-0Ch]
+00401B5C   mov         dword ptr fs:[0],ecx
+00401B63   pop         edi
+00401B64   pop         esi
+00401B65   pop         ebx
+00401B66   add         esp,50h
+00401B69   cmp         ebp,esp
+00401B6B   call        __chkesp (00401ff0)
+00401B70   mov         esp,ebp
+00401B72   pop         ebp
+00401B73   ret
+
+85:   };
+86:   void speak(CPerson *pPerson)
+87:   {
+00401500   push        ebp
+00401501   mov         ebp,esp
+00401503   sub         esp,40h
+00401506   push        ebx
+00401507   push        esi
+00401508   push        edi
+00401509   lea         edi,[ebp-40h]
+0040150C   mov         ecx,10h
+00401511   mov         eax,0CCCCCCCCh
+00401516   rep stos    dword ptr [edi]
+88:       pPerson->ShowSpeak();
+00401518   mov         eax,dword ptr [ebp+8]
+0040151B   mov         edx,dword ptr [eax]
+0040151D   mov         esi,esp
+0040151F   mov         ecx,dword ptr [ebp+8]
+00401522   call        dword ptr [edx+4]
+00401525   cmp         esi,esp
+00401527   call        __chkesp (00401ff0)
+89:   }
+0040152C   pop         edi
+0040152D   pop         esi
+0040152E   pop         ebx
+0040152F   add         esp,40h
+00401532   cmp         ebp,esp
+00401534   call        __chkesp (00401ff0)
+00401539   mov         esp,ebp
+0040153B   pop         ebp
+0040153C   ret
+
+90:   int main()
+91:   {
+00401550   push        ebp
+00401551   mov         ebp,esp
+00401553   push        0FFh
+00401555   push        offset __ehhandler$_main (00413dab)
+0040155A   mov         eax,fs:[00000000]
+00401560   push        eax
+00401561   mov         dword ptr fs:[0],esp
+00401568   sub         esp,50h
+0040156B   push        ebx
+0040156C   push        esi
+0040156D   push        edi
+0040156E   lea         edi,[ebp-5Ch]
+00401571   mov         ecx,14h
+00401576   mov         eax,0CCCCCCCCh
+0040157B   rep stos    dword ptr [edi]
+92:       CChinese Chinese;
+0040157D   lea         ecx,[ebp-10h]
+00401580   call        @ILT+40(CChinese::CChinese) (0040102d)
+00401585   mov         dword ptr [ebp-4],0
+93:       CAmerican American;
+0040158C   lea         ecx,[ebp-14h]
+0040158F   call        @ILT+35(CAmerican::CAmerican) (00401028)
+00401594   mov         byte ptr [ebp-4],1
+94:       CGerman German;
+00401598   lea         ecx,[ebp-18h]
+0040159B   call        @ILT+30(CGerman::CGerman) (00401023)
+004015A0   mov         byte ptr [ebp-4],2
+95:       speak(&Chinese);
+004015A4   lea         eax,[ebp-10h]
+004015A7   push        eax
+004015A8   call        @ILT+145(speak) (00401096)
+004015AD   add         esp,4
+96:       speak(&American);
+004015B0   lea         ecx,[ebp-14h]
+004015B3   push        ecx
+004015B4   call        @ILT+145(speak) (00401096)
+004015B9   add         esp,4
+97:       speak(&German);
+004015BC   lea         edx,[ebp-18h]
+004015BF   push        edx
+004015C0   call        @ILT+145(speak) (00401096)
+004015C5   add         esp,4
+98:       return 0;
+004015C8   mov         dword ptr [ebp-1Ch],0
+004015CF   mov         byte ptr [ebp-4],1
+004015D3   lea         ecx,[ebp-18h]
+004015D6   call        @ILT+70(CGerman::~CGerman) (0040104b)
+004015DB   mov         byte ptr [ebp-4],0
+004015DF   lea         ecx,[ebp-14h]
+004015E2   call        @ILT+95(CAmerican::~CAmerican) (00401064)
+004015E7   mov         dword ptr [ebp-4],0FFFFFFFFh
+004015EE   lea         ecx,[ebp-10h]
+004015F1   call        @ILT+105(CChinese::ShowSpeak) (0040106e)
+004015F6   mov         eax,dword ptr [ebp-1Ch]
+99:   }
+004015F9   mov         ecx,dword ptr [ebp-0Ch]
+004015FC   mov         dword ptr fs:[0],ecx
+00401603   pop         edi
+00401604   pop         esi
+00401605   pop         ebx
+00401606   add         esp,5Ch
+00401609   cmp         ebp,esp
+0040160B   call        __chkesp (00401ff0)
+00401610   mov         esp,ebp
+00401612   pop         ebp
+00401613   ret
+
+
+
+#include<stdio.h>
+class CPerson
+{
+public:
+	CPerson()
+	{
+		ShowSpeak();
+	}
+	virtual ~CPerson()
+	{
+		ShowSpeak();
+	}
+	virtual void ShowSpeak()
+	{
+		printf("%s::ShowSpeak()\r\n" , GetClassName());
+	}
+	virtual char * GetClassName()
+	{
+		return "CPerson";
+	}
+};
+
+class CChinese : public CPerson
+{
+public:
+	CChinese()
+	{
+		ShowSpeak();
+	}
+	virtual ~CChinese()
+	{
+		ShowSpeak();
+	}
+//	virtual void ShowSpeak()
+//	{
+//		printf("Speak Chinese\n");
+//	}
+	virtual char * GetClassName()
+	{
+		return "CChinese";
+	}
+};
+
+class CAmerican : public CPerson
+{
+public:
+	CAmerican()
+	{
+		ShowSpeak();
+	}
+	virtual ~CAmerican()
+	{
+		ShowSpeak();
+	}
+/*	virtual void ShowSpeak()
+	{
+		printf("Speak American\n");
+	}
+*/
+	virtual char * GetClassName()
+	{
+		return "CAmerican";
+	}
+};
+class CGerman : public CPerson
+{
+public:
+	CGerman()
+	{
+		ShowSpeak();
+	}
+	virtual ~CGerman()
+	{
+		ShowSpeak();
+	}
+/*	virtual void ShowSpeak()
+	{
+		printf("Speak German\n");
+	}
+	*/
+	virtual char * GetClassName()
+	{
+		return "CGerman";
+	}
+};	
+void speak(CPerson *pPerson)
+{
+	pPerson->ShowSpeak();
+}
+int main()
+{
+	CChinese Chinese;
+	CAmerican American;
+	CGerman German;
+//	speak(&Chinese);
+//	speak(&American);
+//	speak(&German);
+	return 0;
+}
+
+CPerson::ShowSpeak()	此处虚表是父类的
+CChinese::ShowSpeak()
+CPerson::ShowSpeak()
+CAmerican::ShowSpeak()
+CPerson::ShowSpeak()
+CGerman::ShowSpeak()
+CGerman::ShowSpeak()	此处调用虚函数
+CPerson::ShowSpeak()
+CAmerican::ShowSpeak()
+CPerson::ShowSpeak()
+CChinese::ShowSpeak()	
+CPerson::ShowSpeak()

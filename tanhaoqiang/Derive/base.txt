@@ -1,0 +1,339 @@
+@ILT+0(?SetNumber@CBase@@QAEXH@Z):
+00401005   jmp         CBase::SetNumber (00401190)
+@ILT+5(??1CBase@@QAE@XZ):
+0040100A   jmp         CBase::~CBase (00401300)
+@ILT+10(?ShowNumber@CDerive@@QAEXH@Z):
+0040100F   jmp         CDerive::ShowNumber (00401100)
+@ILT+15(?GetNumber@CBase@@QAEHXZ):
+00401014   jmp         CBase::GetNumber (004011d0)
+@ILT+20(??0CDerive@@QAE@XZ):
+00401019   jmp         CDerive::CDerive (00401210)
+@ILT+25(??1CDerive@@QAE@XZ):
+0040101E   jmp         CDerive::~CDerive (004012b0)
+@ILT+30(_main):
+00401023   jmp         main (00401060)
+@ILT+35(??0CBase@@QAE@XZ):
+00401028   jmp         CBase::CBase (00401260)
+
+CDerive::CDerive:
+00401210   push        ebp
+00401211   mov         ebp,esp
+00401213   sub         esp,44h
+00401216   push        ebx
+00401217   push        esi
+00401218   push        edi
+00401219   push        ecx
+0040121A   lea         edi,[ebp-44h]
+0040121D   mov         ecx,11h
+00401222   mov         eax,0CCCCCCCCh
+00401227   rep stos    dword ptr [edi]
+00401229   pop         ecx
+0040122A   mov         dword ptr [ebp-4],ecx
+0040122D   mov         ecx,dword ptr [ebp-4]
+00401230   call        @ILT+35(CBase::CBase) (00401028)
+00401235   mov         eax,dword ptr [ebp-4]
+00401238   pop         edi
+00401239   pop         esi
+0040123A   pop         ebx
+0040123B   add         esp,44h
+0040123E   cmp         ebp,esp
+00401240   call        __chkesp (00401730)
+00401245   mov         esp,ebp
+00401247   pop         ebp
+00401248   ret
+
+CDerive::~CDerive:
+004012B0   push        ebp
+004012B1   mov         ebp,esp
+004012B3   sub         esp,44h
+004012B6   push        ebx
+004012B7   push        esi
+004012B8   push        edi
+004012B9   push        ecx
+004012BA   lea         edi,[ebp-44h]
+004012BD   mov         ecx,11h
+004012C2   mov         eax,0CCCCCCCCh
+004012C7   rep stos    dword ptr [edi]
+004012C9   pop         ecx
+004012CA   mov         dword ptr [ebp-4],ecx
+004012CD   mov         ecx,dword ptr [ebp-4]
+004012D0   call        @ILT+5(CBase::~CBase) (0040100a)
+004012D5   pop         edi
+004012D6   pop         esi
+004012D7   pop         ebx
+004012D8   add         esp,44h
+004012DB   cmp         ebp,esp
+004012DD   call        __chkesp (00401730)
+004012E2   mov         esp,ebp
+004012E4   pop         ebp
+004012E5   ret
+
+1:    #include<stdio.h>
+2:
+3:    class CBase
+4:    {
+5:    public:
+6:        CBase()
+00401260   push        ebp
+00401261   mov         ebp,esp
+00401263   sub         esp,44h
+00401266   push        ebx
+00401267   push        esi
+00401268   push        edi
+00401269   push        ecx
+0040126A   lea         edi,[ebp-44h]
+0040126D   mov         ecx,11h
+00401272   mov         eax,0CCCCCCCCh
+00401277   rep stos    dword ptr [edi]
+00401279   pop         ecx
+0040127A   mov         dword ptr [ebp-4],ecx
+7:        {
+8:            printf("CBase\n");
+0040127D   push        offset string "CBase\n" (00425020)
+00401282   call        printf (00401860)
+00401287   add         esp,4
+9:        }
+0040128A   mov         eax,dword ptr [ebp-4]
+0040128D   pop         edi
+0040128E   pop         esi
+0040128F   pop         ebx
+00401290   add         esp,44h
+00401293   cmp         ebp,esp
+00401295   call        __chkesp (00401730)
+0040129A   mov         esp,ebp
+0040129C   pop         ebp
+0040129D   ret
+
+10:       ~CBase()
+11:       {
+00401300   push        ebp
+00401301   mov         ebp,esp
+00401303   sub         esp,44h
+00401306   push        ebx
+00401307   push        esi
+00401308   push        edi
+00401309   push        ecx
+0040130A   lea         edi,[ebp-44h]
+0040130D   mov         ecx,11h
+00401312   mov         eax,0CCCCCCCCh
+00401317   rep stos    dword ptr [edi]
+00401319   pop         ecx
+0040131A   mov         dword ptr [ebp-4],ecx
+12:           printf("~CBase\n");
+0040131D   push        offset string "~CBase\n" (00425028)
+00401322   call        printf (00401860)
+00401327   add         esp,4
+13:       }
+0040132A   pop         edi
+0040132B   pop         esi
+0040132C   pop         ebx
+0040132D   add         esp,44h
+00401330   cmp         ebp,esp
+00401332   call        __chkesp (00401730)
+00401337   mov         esp,ebp
+00401339   pop         ebp
+0040133A   ret
+
+14:       void SetNumber(int nInt)
+15:       {
+00401190   push        ebp
+00401191   mov         ebp,esp
+00401193   sub         esp,44h
+00401196   push        ebx
+00401197   push        esi
+00401198   push        edi
+00401199   push        ecx
+0040119A   lea         edi,[ebp-44h]
+0040119D   mov         ecx,11h
+004011A2   mov         eax,0CCCCCCCCh
+004011A7   rep stos    dword ptr [edi]
+004011A9   pop         ecx
+004011AA   mov         dword ptr [ebp-4],ecx
+16:           this->m_nNumber = nInt;
+004011AD   mov         eax,dword ptr [ebp-4]
+004011B0   mov         ecx,dword ptr [ebp+8]
+004011B3   mov         dword ptr [eax],ecx
+17:       }
+004011B5   pop         edi
+004011B6   pop         esi
+004011B7   pop         ebx
+004011B8   mov         esp,ebp
+004011BA   pop         ebp
+004011BB   ret         4
+
+18:       int GetNumber()
+19:       {
+004011D0   push        ebp
+004011D1   mov         ebp,esp
+004011D3   sub         esp,44h
+004011D6   push        ebx
+004011D7   push        esi
+004011D8   push        edi
+004011D9   push        ecx
+004011DA   lea         edi,[ebp-44h]
+004011DD   mov         ecx,11h
+004011E2   mov         eax,0CCCCCCCCh
+004011E7   rep stos    dword ptr [edi]
+004011E9   pop         ecx
+004011EA   mov         dword ptr [ebp-4],ecx
+20:           return this->m_nNumber;
+004011ED   mov         eax,dword ptr [ebp-4]
+004011F0   mov         eax,dword ptr [eax]
+21:       }
+004011F2   pop         edi
+004011F3   pop         esi
+004011F4   pop         ebx
+004011F5   mov         esp,ebp
+004011F7   pop         ebp
+004011F8   ret
+
+22:   private:
+23:       int m_nNumber;
+24:   };
+25:
+26:   class CDerive : public CBase
+27:   {
+28:   public:
+29:       void ShowNumber(int nNumber)
+30:       {
+00401100   push        ebp
+00401101   mov         ebp,esp
+00401103   sub         esp,44h
+00401106   push        ebx
+00401107   push        esi
+00401108   push        edi
+00401109   push        ecx
+0040110A   lea         edi,[ebp-44h]
+0040110D   mov         ecx,11h
+00401112   mov         eax,0CCCCCCCCh
+00401117   rep stos    dword ptr [edi]
+00401119   pop         ecx
+0040111A   mov         dword ptr [ebp-4],ecx
+31:           SetNumber(nNumber);
+0040111D   mov         eax,dword ptr [ebp+8]
+00401120   push        eax
+00401121   mov         ecx,dword ptr [ebp-4]
+00401124   call        @ILT+0(CBase::SetNumber) (00401005)
+32:           m_nDerive = nNumber + 1;
+00401129   mov         ecx,dword ptr [ebp+8]
+0040112C   add         ecx,1
+0040112F   mov         edx,dword ptr [ebp-4]
+00401132   mov         dword ptr [edx+4],ecx
+33:           printf("%d\n" , GetNumber());
+00401135   mov         ecx,dword ptr [ebp-4]
+00401138   call        @ILT+15(CBase::GetNumber) (00401014)
+0040113D   push        eax
+0040113E   push        offset string "%d\n" (0042501c)
+00401143   call        printf (00401860)
+00401148   add         esp,8
+34:           printf("%d\n" , m_nDerive);
+0040114B   mov         eax,dword ptr [ebp-4]
+0040114E   mov         ecx,dword ptr [eax+4]
+00401151   push        ecx
+00401152   push        offset string "%d\n" (0042501c)
+00401157   call        printf (00401860)
+0040115C   add         esp,8
+35:       }
+0040115F   pop         edi
+00401160   pop         esi
+00401161   pop         ebx
+00401162   add         esp,44h
+00401165   cmp         ebp,esp
+00401167   call        __chkesp (00401730)
+0040116C   mov         esp,ebp
+0040116E   pop         ebp
+0040116F   ret         4
+
+36:   private:
+37:       int m_nDerive;
+38:   };
+39:
+40:   int main(int argc , char *argv[])
+41:   {
+00401060   push        ebp
+00401061   mov         ebp,esp
+00401063   push        0FFh
+00401065   push        offset __ehhandler$_main (00413429)
+0040106A   mov         eax,fs:[00000000]
+00401070   push        eax
+00401071   mov         dword ptr fs:[0],esp
+00401078   sub         esp,4Ch
+0040107B   push        ebx
+0040107C   push        esi
+0040107D   push        edi
+0040107E   lea         edi,[ebp-58h]
+00401081   mov         ecx,13h
+00401086   mov         eax,0CCCCCCCCh
+0040108B   rep stos    dword ptr [edi]
+42:       CDerive derive;
+0040108D   lea         ecx,[ebp-14h]
+00401090   call        @ILT+20(CDerive::CDerive) (00401019)
+00401095   mov         dword ptr [ebp-4],0
+43:       derive.ShowNumber(argc);
+0040109C   mov         eax,dword ptr [ebp+8]
+0040109F   push        eax
+004010A0   lea         ecx,[ebp-14h]
+004010A3   call        @ILT+10(CDerive::ShowNumber) (0040100f)
+44:       return 0;
+004010A8   mov         dword ptr [ebp-18h],0
+004010AF   mov         dword ptr [ebp-4],0FFFFFFFFh
+004010B6   lea         ecx,[ebp-14h]
+004010B9   call        @ILT+25(CDerive::~CDerive) (0040101e)
+004010BE   mov         eax,dword ptr [ebp-18h]
+45:   }
+004010C1   mov         ecx,dword ptr [ebp-0Ch]
+004010C4   mov         dword ptr fs:[0],ecx
+004010CB   pop         edi
+004010CC   pop         esi
+004010CD   pop         ebx
+004010CE   add         esp,58h
+004010D1   cmp         ebp,esp
+004010D3   call        __chkesp (00401730)
+004010D8   mov         esp,ebp
+004010DA   pop         ebp
+004010DB   ret
+
+父类有构造函数子类没有则编译器提供一个默认的。子类有父类没有则不一定提供。除非有虚函数等。
+
+46:   int main()
+47:   {
+00401360   push        ebp
+00401361   mov         ebp,esp
+00401363   sub         esp,50h
+00401366   push        ebx
+00401367   push        esi
+00401368   push        edi
+00401369   lea         edi,[ebp-50h]
+0040136C   mov         ecx,14h
+00401371   mov         eax,0CCCCCCCCh
+00401376   rep stos    dword ptr [edi]
+48:       int nTest = 0x87654321;
+00401378   mov         dword ptr [ebp-4],87654321h
+49:       CBase base;
+0040137F   lea         ecx,[ebp-8]
+00401382   call        @ILT+40(CBase::CBase) (0040102d)
+50:       CDerive *pDerive = (CDerive *)(&base);
+00401387   lea         eax,[ebp-8]
+0040138A   mov         dword ptr [ebp-0Ch],eax
+51:       printf("%x\n" , pDerive->m_nDerive);
+0040138D   mov         ecx,dword ptr [ebp-0Ch]
+00401390   mov         edx,dword ptr [ecx+4]		//指针偏移
+00401393   push        edx
+00401394   push        offset string "%x\n" (00425034)
+00401399   call        printf (00401930)
+0040139E   add         esp,8
+52:       return 0;
+004013A1   mov         dword ptr [ebp-10h],0
+004013A8   lea         ecx,[ebp-8]
+004013AB   call        @ILT+5(CBase::~CBase) (0040100a)
+004013B0   mov         eax,dword ptr [ebp-10h]
+53:   }
+004013B3   pop         edi
+004013B4   pop         esi
+004013B5   pop         ebx
+004013B6   add         esp,50h
+004013B9   cmp         ebp,esp
+004013BB   call        __chkesp (00401800)
+004013C0   mov         esp,ebp
+004013C2   pop         ebp
+004013C3   ret

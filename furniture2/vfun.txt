@@ -1,0 +1,67 @@
+@ILT+0(?SitDown@CSofaBed@@UAEHXZ):
+00401005   jmp         CSofaBed::SitDown (00401820)
+@ILT+5(??0CSofaBed@@QAE@XZ):
+0040100A   jmp         CSofaBed::CSofaBed (0040f840)
+@ILT+10(??_DCSofaBed@@QAEXXZ):
+0040100F   jmp         CSofaBed::`vbase destructor' (00401a70)
+@ILT+15(??_GCSofaBed@@UAEPAXI@Z):
+00401014   jmp         CSofaBed::`scalar deleting destructor' (00401ba0)
+@ILT+20(?SitDown@CSofa@@UAEHXZ):
+00401019   jmp         CSofa::SitDown (00401700)
+@ILT+25(??_DCSofa@@QAEXXZ):
+0040101E   jmp         CSofa::`vbase destructor' (00401300)
+@ILT+30(??_DCBed@@QAEXXZ):
+00401023   jmp         CBed::`vbase destructor' (00401860)
+@ILT+35(?Sleep@CSofaBed@@UAEHXZ):
+00401028   jmp         CSofaBed::Sleep (004018f0)
+@ILT+40(??0CFurniture@@QAE@XZ):
+0040102D   jmp         CFurniture::CFurniture (00401350)
+@ILT+45(?GetColor@CSofa@@UAEHXZ):
+00401032   jmp         CSofa::GetColor (004016c0)
+@ILT+50(??_ECSofa@@UAEPAXI@Z):
+00401037   jmp         CSofa::`scalar deleting destructor' (00401260)
+@ILT+55(??1CFurniture@@UAE@XZ):
+0040103C   jmp         CFurniture::~CFurniture (00401470)
+@ILT+60(??_GCBed@@UAEPAXI@Z):
+00401041   jmp         CBed::`scalar deleting destructor' (00401650)
+@ILT+65(?GetArea@CBed@@UAEHXZ):
+00401046   jmp         CBed::GetArea (004017c0)
+@ILT+70(??1CBed@@UAE@XZ):
+0040104B   jmp         CBed::~CBed (00401740)
+@ILT+75(?Sleep@CBed@@UAEHXZ):
+00401050   jmp         CBed::Sleep (004012c0)
+@ILT+80(?GetHeight@CSofaBed@@UAEHXZ):
+00401055   jmp         CSofaBed::GetHeight (00401930)
+@ILT+85(??1CSofaBed@@UAE@XZ):
+0040105A   jmp         CSofaBed::~CSofaBed (0040fa00)
+@ILT+90(_main):
+0040105F   jmp         main (00401130)
+@ILT+95(??_GCFurniture@@UAEPAXI@Z):
+00401064   jmp         CFurniture::`scalar deleting destructor' (00401520)
+@ILT+100(?GetPrice@CFurniture@@UAEHXZ):
+00401069   jmp         CFurniture::GetPrice (004014c0)
+@ILT+105(??0CSofa@@QAE@XZ):
+0040106E   jmp         CSofa::CSofa (00401590)
+@ILT+110(??_ECSofa@@UAEPAXI@Z):
+00401073   jmp         CSofa::`scalar deleting destructor' (00401260)
+@ILT+115(??_GCBed@@UAEPAXI@Z):
+00401078   jmp         CBed::`scalar deleting destructor' (00401650)
+@ILT+120(?Show@CSofaBed@@UAEXXZ):
+0040107D   jmp         CSofaBed::Show (004019a0)
+@ILT+125(??1CSofa@@UAE@XZ):
+00401082   jmp         CSofa::~CSofa (00401390)
+@ILT+130(??0CBed@@QAE@XZ):
+00401087   jmp         CBed::CBed (0040f940)
+@ILT+135(??_GCFurniture@@UAEPAXI@Z):
+0040108C   jmp         CFurniture::`scalar deleting destructor' (00401520)
+@ILT+140(??_GCSofaBed@@UAEPAXI@Z):
+00401091   jmp         CSofaBed::`scalar deleting destructor' (00401ba0)
+00401096   jmp         CSofa::`vector deleting destructor' (00401c70)
+0040109B   jmp         CSofaBed::GetPrice (00401c10)
+004010A0   jmp         CSofa::GetPrice (00401410)
+004010A5   jmp         CBed::GetPrice (004018b0)
+004010AA   jmp         CSofa::GetPrice (00401420)
+004010AF   jmp         CSofaBed::`vector deleting destructor' (00401b50)
+004010B4   jmp         CSofaBed::GetPrice (00401a00)
+004010B9   jmp         CBed::`vector deleting destructor' (00401460)
+004010BE   jmp         CBed::GetPrice (004014f0)

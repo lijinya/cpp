@@ -1,0 +1,746 @@
+1:    /*
+2:     *  File : ABCD.cpp
+3:     *  Author : lijinya
+4:     *  Date : 2015/5/2
+5:     *  Function : test the multi derive
+6:     *          A
+7:     *      B       C
+8:     *          D
+9:     * */
+10:
+11:   #include <iostream>
+12:   using namespace std;
+13:   /*
+14:    *  class Base a
+15:    *  data member is protected
+16:    * */
+17:   class A
+18:   {
+19:       public:
+20:           A()
+00401710   push        ebp
+00401711   mov         ebp,esp
+00401713   sub         esp,44h
+00401716   push        ebx
+00401717   push        esi
+00401718   push        edi
+00401719   push        ecx
+0040171A   lea         edi,[ebp-44h]
+0040171D   mov         ecx,11h
+00401722   mov         eax,0CCCCCCCCh
+00401727   rep stos    dword ptr [edi]
+00401729   pop         ecx
+0040172A   mov         dword ptr [ebp-4],ecx
+0040172D   mov         eax,dword ptr [ebp-4]
+00401730   mov         dword ptr [eax],offset A::`vftable' (0046f020)
+21:           {
+22:               m_nA = 9;
+00401736   mov         ecx,dword ptr [ebp-4]
+00401739   mov         dword ptr [ecx+4],9
+23:               cout << "A "  << m_nA << endl;
+00401740   push        offset @ILT+205(std::endl) (004010d2)
+00401745   mov         edx,dword ptr [ebp-4]
+00401748   mov         eax,dword ptr [edx+4]
+0040174B   push        eax
+0040174C   push        offset string "A " (0046f01c)
+00401751   push        offset std::cout (0047ce90)
+00401756   call        @ILT+720(std::operator<<) (004012d5)
+0040175B   add         esp,8
+0040175E   mov         ecx,eax
+00401760   call        @ILT+270(std::basic_ostream<char,std::char_traits<char> >::operator<<) (00401113)
+00401765   mov         ecx,eax
+00401767   call        @ILT+550(std::basic_ostream<char,std::char_traits<char> >::operator<<) (0040122b)
+24:           }
+0040176C   mov         eax,dword ptr [ebp-4]
+0040176F   pop         edi
+00401770   pop         esi
+00401771   pop         ebx
+00401772   add         esp,44h
+00401775   cmp         ebp,esp
+00401777   call        __chkesp (004215f0)
+0040177C   mov         esp,ebp
+0040177E   pop         ebp
+0040177F   ret
+
+
+
+79:       public:
+80:           int m_nD;
+81:   };
+82:
+83:   int main(int argc , char *argv[])
+84:   {
+00401620   push        ebp
+00401621   mov         ebp,esp
+00401623   push        0FFh
+00401625   push        offset __ehhandler$_main (004484ab)
+0040162A   mov         eax,fs:[00000000]
+00401630   push        eax
+00401631   mov         dword ptr fs:[0],esp
+00401638   sub         esp,80h
+0040163E   push        ebx
+0040163F   push        esi
+00401640   push        edi
+00401641   lea         edi,[ebp-8Ch]
+00401647   mov         ecx,20h
+0040164C   mov         eax,0CCCCCCCCh
+00401651   rep stos    dword ptr [edi]
+85:       A a;
+00401653   lea         ecx,[ebp-14h]
+00401656   call        @ILT+415(A::A) (004011a4)
+0040165B   mov         dword ptr [ebp-4],0
+86:       B b;
+00401662   lea         ecx,[ebp-20h]
+00401665   call        @ILT+400(B::B) (00401195)
+0040166A   mov         byte ptr [ebp-4],1
+87:       C c;
+0040166E   lea         ecx,[ebp-2Ch]
+00401671   call        @ILT+410(C::C) (0040119f)
+00401676   mov         byte ptr [ebp-4],2
+88:       D d;
+0040167A   lea         ecx,[ebp-48h]
+0040167D   call        @ILT+405(D::D) (0040119a)
+89:       return 0;
+00401682   mov         dword ptr [ebp-4Ch],0
+00401689   lea         ecx,[ebp-48h]
+0040168C   call        @ILT+545(D::~D) (00401226)
+00401691   mov         byte ptr [ebp-4],1
+00401695   lea         ecx,[ebp-2Ch]
+00401698   call        @ILT+535(C::~C) (0040121c)
+0040169D   mov         byte ptr [ebp-4],0
+004016A1   lea         ecx,[ebp-20h]
+004016A4   call        @ILT+540(B::~B) (00401221)
+004016A9   mov         dword ptr [ebp-4],0FFFFFFFFh
+004016B0   lea         ecx,[ebp-14h]
+004016B3   call        @ILT+520(A::~A) (0040120d)
+004016B8   mov         eax,dword ptr [ebp-4Ch]
+90:   }
+004016BB   mov         ecx,dword ptr [ebp-0Ch]
+004016BE   mov         dword ptr fs:[0],ecx
+004016C5   pop         edi
+004016C6   pop         esi
+004016C7   pop         ebx
+004016C8   add         esp,8Ch
+004016CE   cmp         ebp,esp
+004016D0   call        __chkesp (004215f0)
+004016D5   mov         esp,ebp
+004016D7   pop         ebp
+004016D8   ret
+
+
+
+@ILT+0(?_Doraise@bad_cast@std@@MBEXXZ):
+00401005   jmp         std::bad_cast::_Doraise (004038a0)
+@ILT+5(??_G?$numpunct@D@std@@UAEPAXI@Z):
+0040100A   jmp         std::numpunct<char>::`scalar deleting destructor' (00406b50)
+@ILT+10(??0facet@locale@std@@IAE@I@Z):
+0040100F   jmp         std::locale::facet::facet (00403be0)
+@ILT+15(?assign@?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@QAEAAV12@PBD@Z):
+00401014   jmp         std::basic_string<char,std::char_traits<char>,std::allocator<char> >::assign (00406280)
+@ILT+20(?deallocate@?$allocator@D@std@@QAEXPAXI@Z):
+00401019   jmp         std::allocator<char>::deallocate (00404c60)
+@ILT+25(?assign@?$char_traits@D@std@@SAPADPADIABD@Z):
+0040101E   jmp         std::char_traits<char>::assign (00404970)
+@ILT+30(?osfx@?$basic_ostream@DU?$char_traits@D@std@@@std@@QAEXXZ):
+00401023   jmp         std::basic_ostream<char,std::char_traits<char> >::osfx (00402860)
+@ILT+35(?_Incref@facet@locale@std@@QAEXXZ):
+00401028   jmp         std::locale::facet::_Incref (00402b00)
+@ILT+40(?good@ios_base@std@@QBE_NXZ):
+0040102D   jmp         std::ios_base::good (00402950)
+@ILT+45(??0bad_cast@std@@QAE@ABV01@@Z):
+00401032   jmp         std::bad_cast::bad_cast (00403970)
+@ILT+50(?_Tidy@?$_Tidyfac@V?$numpunct@D@std@@@std@@SAXXZ):
+00401037   jmp         std::_Tidyfac<std::numpunct<char> >::_Tidy (00407110)
+@ILT+55(?do_thousands_sep@?$numpunct@D@std@@MBEDXZ):
+0040103C   jmp         std::numpunct<char>::do_thousands_sep (004069c0)
+@ILT+60(??E?$ostreambuf_iterator@DU?$char_traits@D@std@@@std@@QAEAAV01@XZ):
+00401041   jmp         std::ostreambuf_iterator<char,std::char_traits<char> >::operator++ (00406440)
+@ILT+65(?do_put@?$num_put@DV?$ostreambuf_iterator@DU?$char_traits@D@std@@@std@@@std@@MBE?AV?$ostreambuf_iterator@DU?$char_traits@D@std@@@2@V32@AAVios_base@2@DPBX@Z):
+00401046   jmp         std::num_put<char,std::ostreambuf_iterator<char,std::char_traits<char> > >::do_put (0040
+@ILT+70(??1locale@std@@QAE@XZ):
+0040104B   jmp         std::locale::~locale (004023e0)
+@ILT+75(?_Getfalse@_Locinfo@std@@QBEPBDXZ):
+00401050   jmp         std::_Locinfo::_Getfalse (00406fb0)
+@ILT+80(?decimal_point@?$numpunct@D@std@@QBEDXZ):
+00401055   jmp         std::numpunct<char>::decimal_point (00406470)
+@ILT+85(?_Tidy@?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@AAEX_N@Z):
+0040105A   jmp         std::basic_string<char,std::char_traits<char>,std::allocator<char> >::_Tidy (004040c0)
+@ILT+90(?fail@ios_base@std@@QBE_NXZ):
+0040105F   jmp         std::ios_base::fail (004029a0)
+@ILT+95(??Bsentry@?$basic_ostream@DU?$char_traits@D@std@@@std@@QBE_NXZ):
+00401064   jmp         std::basic_ostream<char,std::char_traits<char> >::sentry::operator bool (004023a0)
+@ILT+100(?_Init@?$num_put@DV?$ostreambuf_iterator@DU?$char_traits@D@std@@@std@@@std@@IAEXABV_Locinfo@2@@Z):
+00401069   jmp         std::num_put<char,std::ostreambuf_iterator<char,std::char_traits<char> > >::_Init (00406
+@ILT+105(?_Nullstr@?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@CAPBDXZ):
+0040106E   jmp         std::basic_string<char,std::char_traits<char>,std::allocator<char> >::_Nullstr (00404090
+@ILT+110(?pptr@?$basic_streambuf@DU?$char_traits@D@std@@@std@@IBEPADXZ):
+00401073   jmp         std::basic_streambuf<char,std::char_traits<char> >::pptr (00402ed0)
+@ILT+115(??_EB@@UAEPAXI@Z):
+00401078   jmp         B::`scalar deleting destructor' (00401a00)
+@ILT+120(??_EC@@UAEPAXI@Z):
+0040107D   jmp         C::`scalar deleting destructor' (00401bf0)
+@ILT+125(??1facet@locale@std@@UAE@XZ):
+00401082   jmp         std::locale::facet::~facet (00403ba0)
+@ILT+130(?id@?$numpunct@D@std@@$D):
+00401087   jmp         std::numpunct<char>::id (00407450)
+@ILT+135(?id@?$numpunct@D@std@@$E):
+0040108C   jmp         std::numpunct<char>::id (004074f0)
+@ILT+140(?_Save@?$_Tidyfac@V?$num_put@DV?$ostreambuf_iterator@DU?$char_traits@D@std@@@std@@@std@@@std@@SAPAV?$num_put@DV?$ostreambuf_iterator@DU?$char_traits@D@std@@@std@@@2@PAV32@@Z):
+00401091   jmp         std::_Tidyfac<std::num_put<char,std::ostreambuf_iterator<char,std::char_traits<char> > >
+@ILT+145(??0_Lockit@std@@QAE@XZ):
+00401096   jmp         std::_Lockit::_Lockit (00402510)
+@ILT+150(?rdbuf@?$basic_ios@DU?$char_traits@D@std@@@std@@QBEPAV?$basic_streambuf@DU?$char_traits@D@std@@@2@XZ):
+0040109B   jmp         std::basic_ios<char,std::char_traits<char> >::rdbuf (004021f0)
+@ILT+155(?getloc@ios_base@std@@QBE?AVlocale@2@XZ):
+004010A0   jmp         std::ios_base::getloc (00402a30)
+@ILT+160(?use_facet@std@@YAABV?$numpunct@D@1@ABVlocale@1@PBV21@_N@Z):
+004010A5   jmp         std::use_facet (00406680)
+@ILT+165(?setstate@?$basic_ios@DU?$char_traits@D@std@@@std@@QAEXH_N@Z):
+004010AA   jmp         std::basic_ios<char,std::char_traits<char> >::setstate (00402180)
+@ILT+170(?_Save@?$_Tidyfac@V?$numpunct@D@std@@@std@@SAPAV?$numpunct@D@2@PAV32@@Z):
+004010AF   jmp         std::_Tidyfac<std::numpunct<char> >::_Save (00406d90)
+@ILT+175(?_Init@?$numpunct@D@std@@IAEXABV_Locinfo@2@@Z):
+004010B4   jmp         std::numpunct<char>::_Init (00406e80)
+@ILT+180(??1?$num_put@DV?$ostreambuf_iterator@DU?$char_traits@D@std@@@std@@@std@@UAE@XZ):
+004010B9   jmp         std::num_put<char,std::ostreambuf_iterator<char,std::char_traits<char> > >::~num_put<cha
+@ILT+185(?assign@?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@QAEAAV12@PBDI@Z):
+004010BE   jmp         std::basic_string<char,std::char_traits<char>,std::allocator<char> >::assign (004062e0)
+@ILT+190(?id@?$num_put@DV?$ostreambuf_iterator@DU?$char_traits@D@std@@@$D):
+004010C3   jmp          ?? :: ?? ::id (004073b0)
+@ILT+195(?id@?$num_put@DV?$ostreambuf_iterator@DU?$char_traits@D@std@@@$E):
+004010C8   jmp          ?? :: ?? ::id (00407520)
+@ILT+200(?_Tidy@?$_Tidyfac@V?$num_put@DV?$ostreambuf_iterator@DU?$char_traits@D@std@@@std@@@std@@@std@@SAXXZ):
+004010CD   jmp         std::_Tidyfac<std::num_put<char,std::ostreambuf_iterator<char,std::char_traits<char> > >
+@ILT+205(?endl@std@@YAAAV?$basic_ostream@DU?$char_traits@D@std@@@1@AAV21@@Z):
+004010D2   jmp         std::endl (00402b70)
+@ILT+210(?_Maklocstr@std@@YAPADPBDPAD@Z):
+004010D7   jmp         std::_Maklocstr (004071f0)
+@ILT+215(??0?$numpunct@D@std@@QAE@I@Z):
+004010DC   jmp         std::numpunct<char>::numpunct<char> (004068a0)
+@ILT+220(??_EA@@UAEPAXI@Z):
+004010E1   jmp         A::`scalar deleting destructor' (00401810)
+@ILT+225(??_ED@@UAEPAXI@Z):
+004010E6   jmp         D::`scalar deleting destructor' (00401e40)
+@ILT+230(?assign@?$char_traits@D@std@@SAXAADABD@Z):
+004010EB   jmp         std::char_traits<char>::assign (00404a30)
+@ILT+235(?_Putc@?$num_put@DV?$ostreambuf_iterator@DU?$char_traits@D@std@@@std@@@std@@KA?AV?$ostreambuf_iterator@DU?$char_traits@D@std@@@2@V32@PBDI@Z):
+004010F0   jmp         std::num_put<char,std::ostreambuf_iterator<char,std::char_traits<char> > >::_Putc (00405
+@ILT+240(?length@?$char_traits@D@std@@SAIPBD@Z):
+004010F5   jmp         std::char_traits<char>::length (00403580)
+@ILT+245(??_Gfacet@locale@std@@UAEPAXI@Z):
+004010FA   jmp         std::locale::facet::`scalar deleting destructor' (00403c30)
+@ILT+250(?eq_int_type@?$char_traits@D@std@@SA_NABH0@Z):
+004010FF   jmp         std::char_traits<char>::eq_int_type (00402d50)
+@ILT+255(??4?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@QAEAAV01@ABV01@@Z):
+00401104   jmp         std::basic_string<char,std::char_traits<char>,std::allocator<char> >::operator= (0040485
+@ILT+260(?epptr@?$basic_streambuf@DU?$char_traits@D@std@@@std@@IBEPADXZ):
+00401109   jmp         std::basic_streambuf<char,std::char_traits<char> >::epptr (00402f10)
+@ILT+265(?_Eos@?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@AAEXI@Z):
+0040110E   jmp         std::basic_string<char,std::char_traits<char>,std::allocator<char> >::_Eos (004049c0)
+@ILT+270(??6?$basic_ostream@DU?$char_traits@D@std@@@std@@QAEAAV01@H@Z):
+00401113   jmp         std::basic_ostream<char,std::char_traits<char> >::operator<< (00401f10)
+@ILT+275(?_Fput@?$num_put@DV?$ostreambuf_iterator@DU?$char_traits@D@std@@@std@@@std@@KA?AV?$ostreambuf_iterator@DU?$char_traits@D@std@@@2@V32@AAVios_base@2@DPBDII@Z):
+00401118   jmp         std::num_put<char,std::ostreambuf_iterator<char,std::char_traits<char> > >::_Fput (00404
+@ILT+280(?falsename@?$numpunct@D@std@@QBE?AV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@2@XZ):
+0040111D   jmp         std::numpunct<char>::falsename (00405ab0)
+@ILT+285(??4?$ostreambuf_iterator@DU?$char_traits@D@std@@@std@@QAEAAV01@D@Z):
+00401122   jmp         std::ostreambuf_iterator<char,std::char_traits<char> >::operator= (00406370)
+@ILT+290(?do_decimal_point@?$numpunct@D@std@@MBEDXZ):
+00401127   jmp         std::numpunct<char>::do_decimal_point (00406980)
+@ILT+295(?width@ios_base@std@@QAEHH@Z):
+0040112C   jmp         std::ios_base::width (00403610)
+@ILT+300(?tie@?$basic_ios@DU?$char_traits@D@std@@@std@@QBEPAV?$basic_ostream@DU?$char_traits@D@std@@@2@XZ):
+00401131   jmp         std::basic_ios<char,std::char_traits<char> >::tie (004028d0)
+@ILT+305(??8std@@YA_NABV?$allocator@D@0@0@Z):
+00401136   jmp         std::operator== (00406650)
+@ILT+310(?failed@?$ostreambuf_iterator@DU?$char_traits@D@std@@@std@@QBE_NXZ):
+0040113B   jmp         std::ostreambuf_iterator<char,std::char_traits<char> >::failed (00402650)
+@ILT+315(?sputc@?$basic_streambuf@DU?$char_traits@D@std@@@std@@QAEHD@Z):
+00401140   jmp         std::basic_streambuf<char,std::char_traits<char> >::sputc (00402dc0)
+@ILT+320(??_EC@@UAEPAXI@Z):
+00401145   jmp         C::`scalar deleting destructor' (00401bf0)
+@ILT+325(?width@ios_base@std@@QBEHXZ):
+0040114A   jmp         std::ios_base::width (004035d0)
+@ILT+330(?erase@?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@QAEAAV12@II@Z):
+0040114F   jmp         std::basic_string<char,std::char_traits<char>,std::allocator<char> >::erase (00405e20)
+@ILT+335(?_Refcnt@?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@AAEAAEPBD@Z):
+00401154   jmp         std::basic_string<char,std::char_traits<char>,std::allocator<char> >::_Refcnt (00404c20)
+@ILT+340(??0locale@std@@QAE@ABV01@@Z):
+00401159   jmp         std::locale::locale (00402aa0)
+@ILT+345(?do_put@?$num_put@DV?$ostreambuf_iterator@DU?$char_traits@D@std@@@std@@@std@@MBE?AV?$ostreambuf_iterator@DU?$char_traits@D@std@@@2@V32@AAVios_base@2@DJ@Z):
+0040115E   jmp         std::num_put<char,std::ostreambuf_iterator<char,std::char_traits<char> > >::do_put (0040
+@ILT+350(?do_put@?$num_put@DV?$ostreambuf_iterator@DU?$char_traits@D@std@@@std@@@std@@MBE?AV?$ostreambuf_iterator@DU?$char_traits@D@std@@@2@V32@AAVios_base@2@DK@Z):
+00401163   jmp         std::num_put<char,std::ostreambuf_iterator<char,std::char_traits<char> > >::do_put (0040
+@ILT+355(?do_put@?$num_put@DV?$ostreambuf_iterator@DU?$char_traits@D@std@@@std@@@std@@MBE?AV?$ostreambuf_iterator@DU?$char_traits@D@std@@@2@V32@AAVios_base@2@DO@Z):
+00401168   jmp         std::num_put<char,std::ostreambuf_iterator<char,std::char_traits<char> > >::do_put (0040
+@ILT+360(?do_put@?$num_put@DV?$ostreambuf_iterator@DU?$char_traits@D@std@@@std@@@std@@MBE?AV?$ostreambuf_iterator@DU?$char_traits@D@std@@@2@V32@AAVios_base@2@DN@Z):
+0040116D   jmp         std::num_put<char,std::ostreambuf_iterator<char,std::char_traits<char> > >::do_put (0040
+@ILT+365(?assign@?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@QAEAAV12@ABV12@@Z):
+00401172   jmp         std::basic_string<char,std::char_traits<char>,std::allocator<char> >::assign (00405b90)
+@ILT+370(??1?$numpunct@D@std@@UAE@XZ):
+00401177   jmp         std::numpunct<char>::~numpunct<char> (00406bc0)
+@ILT+375(?_Widen@std@@YADDPAD@Z):
+0040117C   jmp         std::_Widen (00406810)
+@ILT+380(?_Ffmt@?$num_put@DV?$ostreambuf_iterator@DU?$char_traits@D@std@@@std@@@std@@KAPADPADDH@Z):
+00401181   jmp         std::num_put<char,std::ostreambuf_iterator<char,std::char_traits<char> > >::_Ffmt (00404
+@ILT+385(??1bad_cast@std@@UAE@XZ):
+00401186   jmp         std::bad_cast::~bad_cast (00403850)
+@ILT+390(?_Decref@facet@locale@std@@QAEPAV123@XZ):
+0040118B   jmp         std::locale::facet::_Decref (00402470)
+@ILT+395(?clear@?$basic_ios@DU?$char_traits@D@std@@@std@@QAEXH_N@Z):
+00401190   jmp         std::basic_ios<char,std::char_traits<char> >::clear (00402230)
+@ILT+400(??0B@@QAE@XZ):
+00401195   jmp         B::B (00401880)
+@ILT+405(??0D@@QAE@XZ):
+0040119A   jmp         D::D (00401c60)
+@ILT+410(??0C@@QAE@XZ):
+0040119F   jmp         C::C (00401a70)
+@ILT+415(??0A@@QAE@XZ):
+004011A4   jmp         A::A (00401710)
+@ILT+420(?capacity@?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@QBEIXZ):
+004011A9   jmp         std::basic_string<char,std::char_traits<char>,std::allocator<char> >::capacity (00405f70
+@ILT+425(?_Gettrue@_Locinfo@std@@QBEPBDXZ):
+004011AE   jmp         std::_Locinfo::_Gettrue (00406ff0)
+@ILT+430(?copy@?$char_traits@D@std@@SAPADPADPBDI@Z):
+004011B3   jmp         std::char_traits<char>::copy (00405dd0)
+@ILT+435(??_Ebad_cast@std@@UAEPAXI@Z):
+004011B8   jmp         std::bad_cast::`scalar deleting destructor' (00403900)
+@ILT+440(??_ED@@WM@AEPAXI@Z):
+004011BD   jmp         D::`vector deleting destructor' (00407580)
+@ILT+445(?opfx@?$basic_ostream@DU?$char_traits@D@std@@@std@@QAE_NXZ):
+004011C2   jmp         std::basic_ostream<char,std::char_traits<char> >::opfx (00402690)
+@ILT+450(??_EB@@UAEPAXI@Z):
+004011C7   jmp         B::`scalar deleting destructor' (00401a00)
+@ILT+455(?thousands_sep@?$numpunct@D@std@@QBEDXZ):
+004011CC   jmp         std::numpunct<char>::thousands_sep (004064d0)
+@ILT+460(?eof@?$char_traits@D@std@@SAHXZ):
+004011D1   jmp         std::char_traits<char>::eof (00402d90)
+@ILT+465(?c_str@?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@QBEPBDXZ):
+004011D6   jmp         std::basic_string<char,std::char_traits<char>,std::allocator<char> >::c_str (00403ff0)
+@ILT+470(??1sentry@?$basic_ostream@DU?$char_traits@D@std@@@std@@QAE@XZ):
+004011DB   jmp         std::basic_ostream<char,std::char_traits<char> >::sentry::~sentry (00402340)
+@ILT+475(?_Copy@?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@AAEXI@Z):
+004011E0   jmp         std::basic_string<char,std::char_traits<char>,std::allocator<char> >::_Copy (00406020)
+@ILT+480(??Bid@locale@std@@QAEIXZ):
+004011E5   jmp         std::locale::id::operator unsigned int (004039d0)
+@ILT+485(?id@?$ctype@G@std@@$D):
+004011EA   jmp         std::ctype<unsigned short>::id (00407310)
+@ILT+490(?id@?$ctype@G@std@@$E):
+004011EF   jmp         std::ctype<unsigned short>::id (00407550)
+@ILT+495(?grouping@?$numpunct@D@std@@QBE?AV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@2@XZ):
+004011F4   jmp         std::numpunct<char>::grouping (00406530)
+
+@ILT+500(?_Rep@?$num_put@DV?$ostreambuf_iterator@DU?$char_traits@D@std@@@std@@@std@@KA?AV?$ostreambuf_iterator@DU?$char_traits@D@std@@@2@V32@DI@Z):
+004011F9   jmp         std::num_put<char,std::ostreambuf_iterator<char,std::char_traits<char> > >::_Rep (00405a
+@ILT+505(?precision@ios_base@std@@QBEHXZ):
+004011FE   jmp         std::ios_base::precision (004052a0)
+@ILT+510(?_Pninc@?$basic_streambuf@DU?$char_traits@D@std@@@std@@IAEPADXZ):
+00401203   jmp         std::basic_streambuf<char,std::char_traits<char> >::_Pninc (00402f60)
+@ILT+515(??_G?$numpunct@D@std@@UAEPAXI@Z):
+00401208   jmp         std::numpunct<char>::`scalar deleting destructor' (00406b50)
+@ILT+520(??1A@@UAE@XZ):
+0040120D   jmp         A::~A (004017a0)
+@ILT+525(?move@?$char_traits@D@std@@SAPADPADPBDI@Z):
+00401212   jmp         std::char_traits<char>::move (00405f20)
+@ILT+530(?_Getlconv@_Locinfo@std@@QBEPBUlconv@@XZ):
+00401217   jmp         std::_Locinfo::_Getlconv (00406f70)
+@ILT+535(??1C@@UAE@XZ):
+0040121C   jmp         C::~C (00401b40)
+@ILT+540(??1B@@UAE@XZ):
+00401221   jmp         B::~B (00401950)
+@ILT+545(??1D@@UAE@XZ):
+00401226   jmp         D::~D (00401d50)
+@ILT+550(??6?$basic_ostream@DU?$char_traits@D@std@@@std@@QAEAAV01@P6AAAV01@AAV01@@Z@Z):
+0040122B   jmp         std::basic_ostream<char,std::char_traits<char> >::operator<< (00401eb0)
+@ILT+555(?flush@?$basic_ostream@DU?$char_traits@D@std@@@std@@QAEAAV12@XZ):
+00401230   jmp         std::basic_ostream<char,std::char_traits<char> >::flush (00402740)
+@ILT+560(??_Ebad_cast@std@@UAEPAXI@Z):
+00401235   jmp         std::bad_cast::`scalar deleting destructor' (00403900)
+@ILT+565(??0?$ostreambuf_iterator@DU?$char_traits@D@std@@@std@@QAE@PAV?$basic_streambuf@DU?$char_traits@D@std@@@1@@Z):
+0040123A   jmp         std::ostreambuf_iterator<char,std::char_traits<char> >::ostreambuf_iterator<char,std::ch
+@ILT+570(?rdstate@ios_base@std@@QBEHXZ):
+0040123F   jmp         std::ios_base::rdstate (00402910)
+@ILT+575(??1_Lockit@std@@QAE@XZ):
+00401244   jmp         std::_Lockit::~_Lockit (00402540)
+@ILT+580(?do_falsename@?$numpunct@D@std@@MBE?AV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@2@XZ):
+00401249   jmp         std::numpunct<char>::do_falsename (00406a70)
+@ILT+585(?do_truename@?$numpunct@D@std@@MBE?AV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@2@XZ):
+0040124E   jmp         std::numpunct<char>::do_truename (00406ae0)
+@ILT+590(??1?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@QAE@XZ):
+00401253   jmp         std::basic_string<char,std::char_traits<char>,std::allocator<char> >::~basic_string<char
+@ILT+595(?pubsync@?$basic_streambuf@DU?$char_traits@D@std@@@std@@QAEHXZ):
+00401258   jmp         std::basic_streambuf<char,std::char_traits<char> >::pubsync (00402800)
+@ILT+600(??_E?$num_put@DV?$ostreambuf_iterator@DU?$char_traits@D@std@@@std@@@std@@UAEPAXI@Z):
+0040125D   jmp         std::num_put<char,std::ostreambuf_iterator<char,std::char_traits<char> > >::`scalar dele
+@ILT+605(?assign@?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@QAEAAV12@ABV12@II@Z):
+00401262   jmp         std::basic_string<char,std::char_traits<char>,std::allocator<char> >::assign (00405bf0)
+@ILT+610(?_Iput@?$num_put@DV?$ostreambuf_iterator@DU?$char_traits@D@std@@@std@@@std@@KA?AV?$ostreambuf_iterator@DU?$char_traits@D@std@@@2@V32@AAVios_base@2@DPADI@Z):
+00401267   jmp         std::num_put<char,std::ostreambuf_iterator<char,std::char_traits<char> > >::_Iput (00405
+@ILT+615(_main):
+0040126C   jmp         main (00401620)
+@ILT+620(??_Gfacet@locale@std@@UAEPAXI@Z):
+00401271   jmp         std::locale::facet::`scalar deleting destructor' (00403c30)
+@ILT+625(?_Allocate@std@@YAPADHPAD@Z):
+00401276   jmp         std::_Allocate (00406840)
+@ILT+630(??0?$num_put@DV?$ostreambuf_iterator@DU?$char_traits@D@std@@@std@@@std@@QAE@I@Z):
+0040127B   jmp         std::num_put<char,std::ostreambuf_iterator<char,std::char_traits<char> > >::num_put<char
+@ILT+635(?do_put@?$num_put@DV?$ostreambuf_iterator@DU?$char_traits@D@std@@@std@@@std@@MBE?AV?$ostreambuf_iterator@DU?$char_traits@D@std@@@2@V32@AAVios_base@2@D_N@Z):
+00401280   jmp         std::num_put<char,std::ostreambuf_iterator<char,std::char_traits<char> > >::do_put (0040
+@ILT+640(?put@?$basic_ostream@DU?$char_traits@D@std@@@std@@QAEAAV12@D@Z):
+00401285   jmp         std::basic_ostream<char,std::char_traits<char> >::put (00402bc0)
+@ILT+645(?max_size@?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@QBEIXZ):
+0040128A   jmp         std::basic_string<char,std::char_traits<char>,std::allocator<char> >::max_size (00405fb0
+@ILT+650(??0bad_cast@std@@QAE@PBD@Z):
+0040128F   jmp         std::bad_cast::bad_cast (004037f0)
+@ILT+655(?size@?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@QBEIXZ):
+00401294   jmp         std::basic_string<char,std::char_traits<char>,std::allocator<char> >::size (00404050)
+@ILT+660(?truename@?$numpunct@D@std@@QBE?AV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@2@XZ):
+00401299   jmp         std::numpunct<char>::truename (00405b20)
+@ILT+665(?allocate@?$allocator@D@std@@QAEPADIPBX@Z):
+0040129E   jmp         std::allocator<char>::allocate (004065a0)
+@ILT+670(?to_int_type@?$char_traits@D@std@@SAHABD@Z):
+004012A3   jmp         std::char_traits<char>::to_int_type (00402e90)
+@ILT+675(?_Split@?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@AAEXXZ):
+004012A8   jmp         std::basic_string<char,std::char_traits<char>,std::allocator<char> >::_Split (004061d0)
+@ILT+680(?sputn@?$basic_streambuf@DU?$char_traits@D@std@@@std@@QAEHPBDH@Z):
+004012AD   jmp         std::basic_streambuf<char,std::char_traits<char> >::sputn (00403a60)
+@ILT+685(?max_size@?$allocator@D@std@@QBEIXZ):
+004012B2   jmp         std::allocator<char>::max_size (004065f0)
+@ILT+690(?_Put@?$num_put@DV?$ostreambuf_iterator@DU?$char_traits@D@std@@@std@@@std@@KA?AV?$ostreambuf_iterator@DU?$char_traits@D@std@@@2@V32@PBDI@Z):
+004012B7   jmp         std::num_put<char,std::ostreambuf_iterator<char,std::char_traits<char> > >::_Put (004058
+@ILT+695(?put@?$num_put@DV?$ostreambuf_iterator@DU?$char_traits@D@std@@@std@@@std@@QBE?AV?$ostreambuf_iterator@DU?$char_traits@D@std@@@2@V32@AAVios_base@2@DJ@Z):
+004012BC   jmp         std::num_put<char,std::ostreambuf_iterator<char,std::char_traits<char> > >::put (0040257
+@ILT+700(??_EA@@UAEPAXI@Z):
+004012C1   jmp         A::`scalar deleting destructor' (00401810)
+@ILT+705(?append@?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@QAEAAV12@ID@Z):
+004012C6   jmp         std::basic_string<char,std::char_traits<char>,std::allocator<char> >::append (004048a0)
+@ILT+710(??0sentry@?$basic_ostream@DU?$char_traits@D@std@@@std@@QAE@AAV12@@Z):
+004012CB   jmp         std::basic_ostream<char,std::char_traits<char> >::sentry::sentry (004022e0)
+@ILT+715(??_E?$num_put@DV?$ostreambuf_iterator@DU?$char_traits@D@std@@@std@@@std@@UAEPAXI@Z):
+004012D0   jmp         std::num_put<char,std::ostreambuf_iterator<char,std::char_traits<char> > >::`scalar dele
+@ILT+720(??6std@@YAAAV?$basic_ostream@DU?$char_traits@D@std@@@0@AAV10@PBD@Z):
+004012D5   jmp         std::operator<< (004031f0)
+@ILT+725(?fill@?$basic_ios@DU?$char_traits@D@std@@@std@@QBEDXZ):
+004012DA   jmp         std::basic_ios<char,std::char_traits<char> >::fill (004022a0)
+@ILT+730(??_ED@@UAEPAXI@Z):
+004012DF   jmp         D::`scalar deleting destructor' (00401e40)
+@ILT+735(?use_facet@std@@YAABV?$num_put@DV?$ostreambuf_iterator@DU?$char_traits@D@std@@@std@@@1@ABVlocale@1@PBV21@_N@Z):
+004012E4   jmp         std::use_facet (00403660)
+@ILT+740(?flags@ios_base@std@@QBEHXZ):
+004012E9   jmp         std::ios_base::flags (004029f0)
+@ILT+745(?do_grouping@?$numpunct@D@std@@MBE?AV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@2@XZ):
+004012EE   jmp         std::numpunct<char>::do_grouping (00406a00)
+@ILT+750(?_Grow@?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@AAE_NI_N@Z):
+004012F3   jmp         std::basic_string<char,std::char_traits<char>,std::allocator<char> >::_Grow (00404a70)
+@ILT+755(?_Ifmt@?$num_put@DV?$ostreambuf_iterator@DU?$char_traits@D@std@@@std@@@std@@KAPADPADDH@Z):
+004012F8   jmp         std::num_put<char,std::ostreambuf_iterator<char,std::char_traits<char> > >::_Ifmt (00405
+@ILT+760(??0?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@QAE@PBDABV?$allocator@D@1@@Z):
+004012FD   jmp         std::basic_string<char,std::char_traits<char>,std::allocator<char> >::basic_string<char,
+@ILT+765(??0?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@QAE@ABV?$allocator@D@1@@Z):
+00401302   jmp         std::basic_string<char,std::char_traits<char>,std::allocator<char> >::basic_string<char,
+@ILT+770(??D?$ostreambuf_iterator@DU?$char_traits@D@std@@@std@@QAEAAV01@XZ):
+00401307   jmp         std::ostreambuf_iterator<char,std::char_traits<char> >::operator* (00406410)
+
+ EAX = 0018FF34 EBX = 7EFDE000
+ ECX = 0018FF34 EDX = 008C1810
+ ESI = 00000000 EDI = 0018FEA8
+ EIP = 00401730 ESP = 0018FE58
+ EBP = 0018FEA8 EFL = 00000202
+ MM0 = 0000000000000000
+ MM1 = 0000000000000000
+ MM2 = 0000000000000000
+ MM3 = 0000000000000000
+
+
+0046F020  C1 12 40 00 7E 41 00  ..@.~A.    A 004012c1
+0046F027  00 42 20 00 00 78 10  .B ..x.
+0046F02E  40 00 7E 42 00 00 43  @.~B..C
+0046F035  20 00 00 45 11 40 00   ..E.@.
+0046F03C  7E 43 00 00 44 20 00  ~C..D .
+0046F043  00 BD 11 40 00 DF 12  ...@...
+0046F04A  40 00 7E 44 00 00 6D  @.~D..m
+0046F051  69 73 73 69 6E 67 20  issing 
+0046F058  6C 6F 63 61 6C 65 20  locale 
+0046F05F  66 61 63 65 74 00 00  facet..
+
+0018FE69  CC CC CC CC CC CC CC  лллллл.
+0018FE70  CC CC CC CC CC CC CC  лллллл.
+0018FE77  CC CC CC CC CC CC CC  лллллл.
+0018FE7E  CC CC CC CC CC CC CC  лллллл.
+0018FE85  CC CC CC CC CC CC CC  лллллл.
+0018FE8C  CC CC CC CC CC CC CC  лллллл.
+0018FE93  CC CC CC CC CC CC CC  лллллл.
+0018FE9A  CC CC CC CC CC CC CC  лллллл.
+0018FEA1  CC CC CC 34 FF 18 00  лл.4...
+0018FEA8  48 FF 18 00 5B 16 40  H...[.@
+
+-->
+ EAX = 0018FF28 EBX = 7EFDE000
+ ECX = 0018FF28 EDX = 0047CE90
+ ESI = 00000000 EDI = 0018FE44
+ EIP = 00401740 ESP = 0018FDF4
+ EBP = 0018FE44 EFL = 00000206
+ MM0 = 0000000000000000
+ MM1 = 0000000000000000
+ MM2 = 0000000000000000
+ MM3 = 0000000000000000
+
+0018FE93  CC CC CC CC CC 28 FF  лллл.(.
+0018FE9A  18 00 3C FF 18 00 C9  ..<....
+0018FEA1  84 44 00 FF FF FF FF  └D.....
+0018FEA8  48 FF 18 00 6A 16 40  H...j.@
+0018FEAF  00 00 00 00 00 00 00  .......
+0018FEB6  00 00 00 E0 FD 7E CC  ...ЮЩ~.
+0018FEBD  CC CC CC CC CC CC CC  лллллл.
+0018FEC4  CC CC CC CC CC CC CC  лллллл.
+0018FECB  CC CC CC CC CC CC CC  лллллл.
+0018FED2  CC CC CC CC CC CC CC  лллллл.
+0018FED9  CC CC CC CC CC CC CC  лллллл.
+0018FEE0  CC CC CC CC CC CC CC  лллллл.
+0018FEE7  CC CC CC CC CC CC CC  лллллл.
+0018FEEE  CC CC CC CC CC CC CC  лллллл.
+0018FEF5  CC CC CC CC CC CC CC  лллллл.
+0018FEFC  CC CC CC CC CC CC CC  лллллл.
+0018FF03  CC CC CC CC CC CC CC  лллллл.
+0018FF0A  CC CC CC CC CC CC CC  лллллл.
+0018FF11  CC CC CC CC CC CC CC  лллллл.
+0018FF18  CC CC CC CC CC CC CC  лллллл.
+0018FF1F  CC CC CC CC CC CC CC  лллллл.
+0018FF26  CC CC 20 F0 46 00 CC  лл ПF..		0046f020 ох╦╦юЮпИ╠М
+
+0018FF1F  CC CC CC CC CC CC CC  лллллл.
+0018FF26  CC CC 20 F0 46 00 09  лл ПF.	
+0018FF2D  00 00 00 CC CC CC CC  ...лллл
+
+ EAX = 0018FF28 EBX = 7EFDE000
+ ECX = 0047CE94 EDX = 0047CE90
+ ESI = 00000000 EDI = 0018FE9C
+ EIP = 004018C1 ESP = 0018FE4C
+ EBP = 0018FEA8 EFL = 00000246
+004018BA   mov         dword ptr [ebp-4],0
+
+0018FE9A  18 00 3C FF 18 00 C9  ..<....
+0018FEA1  84 44 00 00 00 00 00  └D.....
+0018FEA8  48 FF 18 00 6A 16 40  H...j.@
+004018C4   mov         dword ptr [eax],offset B::`vftable' (0046f02c)
+
+0018FF1F  CC CC CC CC CC CC CC  лллллл.
+0018FF26  CC CC 2C F0 46 00 09  лл,ПF.		0046f02c
+0018FF2D  00 00 00 CC CC CC CC  ...лллл
+0018FF34  20 F0 46 00 09 00 00   ПF.	..
+004018CD   mov         dword ptr [ecx+8],0Ah
+0018FF1F  CC CC CC CC CC CC CC  лллллл.
+0018FF26  CC CC 2C F0 46 00 09  лл,ПF.	
+0018FF2D  00 00 00 0A 00 00 00  .......  10  0A
+0018FF34  20 F0 46 00 09 00 00   ПF.	..
+
+0040166A   mov         byte ptr [ebp-4],1
+ EAX = 0018FF28 EBX = 7EFDE000
+ ECX = 0018FF3C EDX = 0047CE90
+ ESI = 00000000 EDI = 0018FF3C
+ EIP = 0040166E ESP = 0018FEB0
+ EBP = 0018FF48 EFL = 00000246
+0018FF3B  00 78 FF 18 00 AB 84  .x...╚└
+0018FF42  44 00 01 00 00 00 88  D......
+0018FF49  FF 18 00 E9 26 42 00  ....&B.
+
+C::::::
+00401A9F   mov         dword ptr [ebp-10h],ecx
+00401AA2   mov         ecx,dword ptr [ebp-10h]
+ EAX = CCCCCCCC EBX = 7EFDE000
+ ECX = 0018FF1C EDX = 0047CE90
+ ESI = 00000000 EDI = 0018FE9C
+ EIP = 00401AA2 ESP = 0018FE4C
+ EBP = 0018FEA8 EFL = 00000202
+0018FE93  CC CC CC CC CC 1C FF  лллл...
+0018FE9A  18 00 3C FF 18 00 09  ..<...	
+0018FEA1  85 44 00 FF FF FF FF  ┘D.....
+
+00401730   mov         dword ptr [eax],offset A::`vftable' (0046f020)
+
+ EAX = 0018FF1C EBX = 7EFDE000
+ ECX = 0018FF1C EDX = 0047CE90
+ ESI = 00000000 EDI = 0018FE44
+ EIP = 00401736 ESP = 0018FDF4
+ EBP = 0018FE44 EFL = 00000206
+0018FF11  CC CC CC CC CC CC CC  лллллл.
+0018FF18  CC CC CC CC 20 F0 46  лллл ПF
+0018FF1F  00 CC CC CC CC CC CC  .лллллл
+0018FF26  CC CC 2C F0 46 00 09  лл,ПF.	
+0018FF2D  00 00 00 0A 00 00 00  .......
+0018FF34  20 F0 46 00 09 00 00   ПF.	..
+
+0018FF11  CC CC CC CC CC CC CC  лллллл.
+0018FF18  CC CC CC CC 20 F0 46  лллл ПF
+0018FF1F  00 09 00 00 00 CC CC  .	...лл  9
+0018FF26  CC CC 2C F0 46 00 09  лл,ПF.	
+0018FF2D  00 00 00 0A 00 00 00  .......
+
+00401AB4   mov         dword ptr [eax],offset C::`vftable' (0046f038)
+
+0018FF11  CC CC CC CC CC CC CC  лллллл.
+0018FF18  CC CC CC CC 38 F0 46  лллл8ПF  ╦╡╦г╦╦юЮ
+0018FF1F  00 09 00 00 00 CC CC  .	...лл
+0018FF26  CC CC 2C F0 46 00 09  лл,ПF.	
+
+0018FF11  CC CC CC CC CC CC CC  лллллл.
+0018FF18  CC CC CC CC 38 F0 46  лллл8ПF
+0018FF1F  00 09 00 00 00 0B 00  .	.....	b 11
+0018FF26  00 00 2C F0 46 00 09  ..,ПF.	
+0018FF2D  00 00 00 0A 00 00 00  .......
+
+D::::
+ EAX = 0018FF1C EBX = 7EFDE000
+ ECX = 0018FF00 EDX = 0047CE90
+ ESI = 00000000 EDI = 0018FF3C
+ EIP = 0040167D ESP = 0018FEB0
+ EBP = 0018FF48 EFL = 00000246
+
+ EAX = CCCCCCCC EBX = 7EFDE000
+ ECX = 0018FF00 EDX = 0047CE90
+ ESI = 00000000 EDI = 0018FE9C
+ EIP = 00401C92 ESP = 0018FE4C
+ EBP = 0018FEA8 EFL = 00000202
+0018FE8C  CC CC CC CC CC CC CC  лллллл.
+0018FE93  CC CC CC CC CC 00 FF  лллл...
+0018FE9A  18 00 3C FF 18 00 55  ..<...U
+0018FEA1  85 44 00 FF FF FF FF  ┘D.....
+
+0018FEF5  CC CC CC CC CC CC CC  лллллл.
+0018FEFC  CC CC CC CC 20 F0 46  лллл ПF
+0018FF03  00 CC CC CC CC CC CC  .лллллл	╣ВсцAюЮ╧╧тЛ
+0018FF0A  CC CC CC CC CC CC CC  лллллл.
+
+0018FEF5  CC CC CC CC CC CC CC  лллллл.
+0018FEFC  CC CC CC CC 20 F0 46  лллл ПF
+0018FF03  00 09 00 00 00 CC CC  .	...лл
+0018FF0A  CC CC CC CC CC CC CC  лллллл.
+
+004018C4   mov         dword ptr [eax],offset B::`vftable' (0046f02c)
+0018FEF5  CC CC CC CC CC CC CC  лллллл.
+0018FEFC  CC CC CC CC 2C F0 46  лллл,ПF   ╠Д2c
+0018FF03  00 09 00 00 00 CC CC  .	...лл
+0018FF0A  CC CC CC CC CC CC CC  лллллл.
+
+0018FEF5  CC CC CC CC CC CC CC  лллллл.
+0018FEFC  CC CC CC CC 2C F0 46  лллл,ПF
+0018FF03  00 09 00 00 00 0A 00  .	.....
+0018FF0A  00 00 CC CC CC CC CC  ..лллл.
+0018FF11  CC CC CC CC CC CC CC  лллллл.
+0018FF18  CC CC CC CC 38 F0 46  лллл8ПF
+0018FF1F  00 09 00 00 00 0B 00  .	.....
+
+00401CA1   mov         ecx,dword ptr [ebp-10h]
+00401CA4   add         ecx,0Ch
+00401CA7   call        @ILT+410(C::C) (0040119f)
+ EAX = 0018FF00 EBX = 7EFDE000
+ ECX = 0018FF0C EDX = 0047CE90		╢кй╠ecx╠Д╩╞,оР╨С╪с12вж╫з ╪╢пИ╠М,Bа╫╦ЖЁит╠
+ ESI = 00000000 EDI = 0018FE9C
+ EIP = 00401CA7 ESP = 0018FE4C
+ EBP = 0018FEA8 EFL = 00000206
+
+0018FEFC  CC CC CC CC 2C F0 46  лллл,ПF
+0018FF03  00 09 00 00 00 0A 00  .	.....
+0018FF0A  00 00 20 F0 46 00 09  .. ПF.		ж╢ппA╧╧тЛ  пИ╠М,9
+0018FF11  00 00 00 CC CC CC CC  ...лллл    
+0018FF18  CC CC CC CC 38 F0 46  лллл8ПF
+0018FF1F  00 09 00 00 00 0B 00  .	.....  рРн╙╣ВсцфДкШ╣д╨╞йЩ,ж╢ппмФ╨С╩А╦д╠Дecx
+
+0018FEFC  CC CC CC CC 2C F0 46  лллл,ПF
+0018FF03  00 09 00 00 00 0A 00  .	.....
+0018FF0A  00 00 38 F0 46 00 09  ..8ПF.	   пИ╠М╦╡╦г38
+0018FF11  00 00 00 CC CC CC CC  ...лллл
+0018FF18  CC CC CC CC 38 F0 46  лллл8ПF
+
+
+00401CB0   mov         eax,dword ptr [ebp-10h]
+00401CB3   mov         dword ptr [eax],offset D::`vftable' (0046f048)
+00401CB9   mov         ecx,dword ptr [ebp-10h]
+00401CBC   mov         dword ptr [ecx+0Ch],offset D::`vftable' (0046f044)
+71:           {
+72:               m_nD = 12;
+
+ EAX = 0018FF00 EBX = 7EFDE000
+ ECX = 0018FE9C EDX = 0047CE90
+ ESI = 00000000 EDI = 0018FE9C
+ EIP = 00401CB9 ESP = 0018FE4C
+ EBP = 0018FEA8 EFL = 00000246
+0018FEEE  CC CC CC CC CC CC CC  лллллл.
+0018FEF5  CC CC CC CC CC CC CC  лллллл.
+0018FEFC  CC CC CC CC 48 F0 46  ллллHПF  48
+0018FF03  00 09 00 00 00 0A 00  .	.....
+0018FF0A  00 00 38 F0 46 00 09  ..8ПF.	
+0018FF11  00 00 00 0B 00 00 00  .......
+0018FF18  CC CC CC CC 38 F0 46  лллл8ПF
+
+0018FF03  00 09 00 00 00 0A 00  .	.....
+0018FF0A  00 00 44 F0 46 00 09  ..DПF.		44  0046f044
+0018FF11  00 00 00 0B 00 00 00  .......
+0018FF18  CC CC CC CC 38 F0 46  лллл8ПF
+
+0046F020  C1 12 40 00 7E 41 00  ..@.~A.
+0046F027  00 42 20 00 00 78 10  .B ..x.
+0046F02E  40 00 7E 42 00 00 43  @.~B..C
+0046F035  20 00 00 45 11 40 00   ..E.@.
+0046F03C  7E 43 00 00 44 20 00  ~C..D .
+0046F043  00 BD 11 40 00 DF 12  ...@...
+0046F04A  40 00 7E 44 00 00 6D  @.~D..m
+0046F051  69 73 73 69 6E 67 20  issing 
+0046F058  6C 6F 63 61 6C 65 20  locale 
+0046F05F  66 61 63 65 74 00 00  facet..
+0046F066  00 00 00 00 00 00 43  ......C
+0046F06D  00 00 00 00 00 00 00  .......
+0046F074  25 70 00 00 FF FF FF  %p.....
+0046F07B  FF 65 00 00 00 45 00  .e...E.
+0046F082  00 00 2C 00 00 00 66  ..,...f
+0046F089  61 6C 73 65 00 00 00  alse...
+0046F090  74 72 75 65 00 00 00  true...
+0046F097  00 E8 1A 47 00 E0 8C  ...G.Ю▄
+0046F09E  40 00 00 00 00 00 04  @......
+0046F0A5  00 00 00 50 1B 47 00  ...P.G.
+0046F0AC  20 8D 40 00 A0 1B 47   █@...G
+0046F0B3  00 50 8D 40 00 00 00  .P█@...
+0046F0BA  00 00 08 00 00 00 08  .......
+0046F0C1  1C 47 00 C0 8D 40 00  .G.ю█@.
+0046F0C8  80 84 40 00 E0 86 40  .└@.Ю├@
+0046F0CF  00 50 80 40 00 90 88  .P.@.░┬
+0046F0D6  40 00 F0 88 40 00 D0  @.П┬@..
+0046F0DD  80 40 00 E0 81 40 00  .@.Ю│@.
+0046F0E4  C0 8A 40 00 50 8B 40  ю┼@.P▀@
+0046F0EB  00 50 8C 40 00 A0 8C  .P▄@.═▄
+0046F0F2  40 00 60 83 40 00 38  @.`┐@.8
+0046F0F9  1C 47 00 90 8D 40 00  .G.░█@.
+0046F100  10 80 40 00 30 80 40  ..@.0.@
+0046F107  00 50 80 40 00 60 80  .P.@.`.
+0046F10E  40 00 70 80 40 00 D0  @.p.@..
+0046F115  80 40 00 E0 81 40 00  .@.Ю│@.
+0046F11C  E0 82 40 00 10 83 40  Ю┌@..┐@
+0046F123  00 40 83 40 00 50 83  .@┐@.P.
+0046F12A  40 00 60 83 40 00 68  @.`┐@.h
+0046F131  1C 47 00 60 8F 40 00  .G.`▐@.
+0046F138  00 00 00 00 00 00 00  .......
+0046F13F  00 69 6F 73 3A 3A 65  .ios::e
+0046F146  6F 66 62 69 74 20 73  ofbit s
+0046F14D  65 74 00 69 6F 73 3A  et.ios:
+0046F154  3A 66 61 69 6C 62 69  :failbi
+0046F15B  74 20 73 65 74 00 00  t set..
+0046F162  00 00 69 6F 73 3A 3A  ..ios::
+0046F169  62 61 64 62 69 74 20  badbit 
+0046F170  73 65 74 00 D0 1C 47  set...G
+0046F177  00 00 99 40 00 50 98  ..≥@.P.
+0046F17E  40 00 70 98 40 00 20  @.p≤@. 
+0046F185  1D 47 00 20 9A 40 00  .G.  @.
+0046F18C  50 98 40 00 F0 99 40  P≤@.П≥@
+0046F193  00 00 00 00 00 69 6E  .....in
+0046F19A  76 61 6C 69 64 20 69  valid i
+0046F1A1  6F 73 3A 3A 69 77 6F  os::iwo
+0046F1A8  72 64 2F 70 77 6F 72  rd/pwor
+0046F1AF  64 20 69 6E 64 65 78  d index
+0046F1B6  00 00 88 1D 47 00 B0  ....G..
+0046F1BD  BB 40 00 00 00 00 00  ╩@.....
+0046F1C4  04 00 00 00 D8 1D 47  ......G
+0046F1CB  00 F0 BB 40 00 28 1E  .П╩@.(.
+0046F1D2  47 00 20 BC 40 00 00  G. ╪@..
+0046F1D9  00 00 00 08 00 00 00  .......
+0046F1E0  90 1E 47 00 90 BC 40  ..G.░╪@
+0046F1E7  00 70 B2 40 00 50 B5  .p╡@.P.

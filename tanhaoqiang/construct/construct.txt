@@ -1,0 +1,877 @@
+1:
+2:    class CNumber
+3:    {
+4:    public:
+5:        CNumber()
+00401060   push        ebp
+00401061   mov         ebp,esp
+00401063   sub         esp,44h
+00401066   push        ebx
+00401067   push        esi
+00401068   push        edi
+00401069   push        ecx
+0040106A   lea         edi,[ebp-44h]
+0040106D   mov         ecx,11h
+00401072   mov         eax,0CCCCCCCCh
+00401077   rep stos    dword ptr [edi]
+00401079   pop         ecx
+0040107A   mov         dword ptr [ebp-4],ecx
+6:        {
+7:            m_nNumber = 1;
+0040107D   mov         eax,dword ptr [ebp-4]
+00401080   mov         dword ptr [eax],1
+8:        }
+00401086   mov         eax,dword ptr [ebp-4]
+00401089   pop         edi
+0040108A   pop         esi
+0040108B   pop         ebx
+0040108C   mov         esp,ebp
+0040108E   pop         ebp
+0040108F   ret
+9:        int m_nNumber;
+10:   };
+11:
+12:   void main()
+13:   {
+00401020   push        ebp
+00401021   mov         ebp,esp
+00401023   sub         esp,44h
+00401026   push        ebx
+00401027   push        esi
+00401028   push        edi
+00401029   lea         edi,[ebp-44h]
+0040102C   mov         ecx,11h
+00401031   mov         eax,0CCCCCCCCh
+00401036   rep stos    dword ptr [edi]
+14:       CNumber number;
+00401038   lea         ecx,[ebp-4]		//ecx对象首地址
+0040103B   call        @ILT+0(CNumber::CNumber) (00401005)
+15:   }
+00401040   pop         edi
+00401041   pop         esi
+00401042   pop         ebx
+00401043   add         esp,44h
+00401046   cmp         ebp,esp
+00401048   call        __chkesp (004010a0)
+0040104D   mov         esp,ebp
+0040104F   pop         ebp
+00401050   ret
+
+12:   void main()
+13:   {
+00401020   push        ebp
+00401021   mov         ebp,esp
+00401023   push        0FFh
+00401025   push        offset __ehhandler$_main (004132fb)
+0040102A   mov         eax,fs:[00000000]
+00401030   push        eax
+00401031   mov         dword ptr fs:[0],esp
+00401038   sub         esp,50h
+0040103B   push        ebx
+0040103C   push        esi
+0040103D   push        edi
+0040103E   lea         edi,[ebp-5Ch]
+00401041   mov         ecx,14h
+00401046   mov         eax,0CCCCCCCCh
+0040104B   rep stos    dword ptr [edi]
+14:       CNumber *pNumber = NULL;
+0040104D   mov         dword ptr [ebp-10h],0
+15:       pNumber = new CNumber;
+00401054   push        4
+00401056   call        operator new (00401250)
+0040105B   add         esp,4
+0040105E   mov         dword ptr [ebp-18h],eax	//返回值 内存首地址
+00401061   mov         dword ptr [ebp-4],0	//保存申请次数
+00401068   cmp         dword ptr [ebp-18h],0	//是否为NULL
+0040106C   je          main+5Bh (0040107b)
+0040106E   mov         ecx,dword ptr [ebp-18h]	//ecx this指针
+00401071   call        @ILT+0(CNumber::CNumber) (00401005)	
+00401076   mov         dword ptr [ebp-1Ch],eax
+00401079   jmp         main+62h (00401082)
+0040107B   mov         dword ptr [ebp-1Ch],0
+00401082   mov         eax,dword ptr [ebp-1Ch]
+00401085   mov         dword ptr [ebp-14h],eax
+00401088   mov         dword ptr [ebp-4],0FFFFFFFFh
+0040108F   mov         ecx,dword ptr [ebp-14h]
+00401092   mov         dword ptr [ebp-10h],ecx
+16:       pNumber->m_nNumber = 3;
+00401095   mov         edx,dword ptr [ebp-10h]
+00401098   mov         dword ptr [edx],3
+17:       printf("%d \r\n" , pNumber->m_nNumber);
+0040109E   mov         eax,dword ptr [ebp-10h]
+004010A1   mov         ecx,dword ptr [eax]
+004010A3   push        ecx
+004010A4   push        offset string "%d \r\n" (0042501c)
+004010A9   call        printf (004011d0)
+004010AE   add         esp,8
+18:   }
+004010B1   mov         ecx,dword ptr [ebp-0Ch]
+004010B4   mov         dword ptr fs:[0],ecx
+004010BB   pop         edi
+004010BC   pop         esi
+004010BD   pop         ebx
+004010BE   add         esp,5Ch
+004010C1   cmp         ebp,esp
+004010C3   call        __chkesp (00401650)
+004010C8   mov         esp,ebp
+004010CA   pop         ebp
+004010CB   ret
+
+1:    #include<stdio.h>
+2:    #include<string.h>
+3:    class CMyString
+4:    {
+5:    public:
+6:        CMyString()
+004012F0   push        ebp
+004012F1   mov         ebp,esp
+004012F3   sub         esp,44h
+004012F6   push        ebx
+004012F7   push        esi
+004012F8   push        edi
+004012F9   push        ecx
+004012FA   lea         edi,[ebp-44h]
+004012FD   mov         ecx,11h
+00401302   mov         eax,0CCCCCCCCh
+00401307   rep stos    dword ptr [edi]
+00401309   pop         ecx
+0040130A   mov         dword ptr [ebp-4],ecx
+7:        {
+8:            m_pString = NULL;
+0040130D   mov         eax,dword ptr [ebp-4]
+00401310   mov         dword ptr [eax],0
+9:        }
+00401316   mov         eax,dword ptr [ebp-4]
+00401319   pop         edi
+0040131A   pop         esi
+0040131B   pop         ebx
+0040131C   mov         esp,ebp
+0040131E   pop         ebp
+0040131F   ret
+
+10:       CMyString(CMyString & str)
+00401330   push        ebp
+00401331   mov         ebp,esp
+00401333   sub         esp,4Ch
+00401336   push        ebx
+00401337   push        esi
+00401338   push        edi
+00401339   push        ecx
+0040133A   lea         edi,[ebp-4Ch]
+0040133D   mov         ecx,13h
+00401342   mov         eax,0CCCCCCCCh
+00401347   rep stos    dword ptr [edi]
+00401349   pop         ecx
+0040134A   mov         dword ptr [ebp-4],ecx
+11:       {
+12:           int nLen = strlen(str.m_pString);
+0040134D   mov         eax,dword ptr [ebp+8]
+00401350   mov         ecx,dword ptr [eax]
+00401352   push        ecx
+00401353   call        strlen (00401bb0)
+00401358   add         esp,4
+0040135B   mov         dword ptr [ebp-8],eax
+13:           this->m_pString = new char[nLen + sizeof(char)];
+0040135E   mov         edx,dword ptr [ebp-8]
+00401361   add         edx,1
+00401364   push        edx
+00401365   call        operator new (00401590)
+0040136A   add         esp,4
+0040136D   mov         dword ptr [ebp-0Ch],eax
+00401370   mov         eax,dword ptr [ebp-4]
+00401373   mov         ecx,dword ptr [ebp-0Ch]
+00401376   mov         dword ptr [eax],ecx
+14:           strcpy(this->m_pString , str.m_pString);
+00401378   mov         edx,dword ptr [ebp+8]
+0040137B   mov         eax,dword ptr [edx]
+0040137D   push        eax
+0040137E   mov         ecx,dword ptr [ebp-4]
+00401381   mov         edx,dword ptr [ecx]
+00401383   push        edx
+00401384   call        strcpy (00401ac0)
+00401389   add         esp,8
+15:       }
+0040138C   mov         eax,dword ptr [ebp-4]
+0040138F   pop         edi
+00401390   pop         esi
+00401391   pop         ebx
+00401392   add         esp,4Ch
+00401395   cmp         ebp,esp
+00401397   call        __chkesp (00401990)
+0040139C   mov         esp,ebp
+0040139E   pop         ebp
+0040139F   ret         4
+16:       ~CMyString()
+17:       {
+004011D0   push        ebp
+004011D1   mov         ebp,esp
+004011D3   sub         esp,48h
+004011D6   push        ebx
+004011D7   push        esi
+004011D8   push        edi
+004011D9   push        ecx
+004011DA   lea         edi,[ebp-48h]
+004011DD   mov         ecx,12h
+004011E2   mov         eax,0CCCCCCCCh
+004011E7   rep stos    dword ptr [edi]
+004011E9   pop         ecx
+004011EA   mov         dword ptr [ebp-4],ecx
+18:           if(m_pString != NULL)
+004011ED   mov         eax,dword ptr [ebp-4]
+004011F0   cmp         dword ptr [eax],0
+004011F3   je          CMyString::~CMyString+42h (00401212)
+19:           {
+20:               delete [] m_pString;
+004011F5   mov         ecx,dword ptr [ebp-4]
+004011F8   mov         edx,dword ptr [ecx]
+004011FA   mov         dword ptr [ebp-8],edx
+004011FD   mov         eax,dword ptr [ebp-8]
+00401200   push        eax
+00401201   call        operator delete (00401480)
+00401206   add         esp,4
+21:               m_pString = NULL;
+00401209   mov         ecx,dword ptr [ebp-4]
+0040120C   mov         dword ptr [ecx],0
+22:           }
+23:       }
+00401212   pop         edi
+00401213   pop         esi
+00401214   pop         ebx
+00401215   add         esp,48h
+00401218   cmp         ebp,esp
+0040121A   call        __chkesp (00401990)
+0040121F   mov         esp,ebp
+00401221   pop         ebp
+00401222   ret
+
+24:       void SetString(char * pStr)
+25:       {
+004013C0   push        ebp
+004013C1   mov         ebp,esp
+004013C3   sub         esp,50h
+004013C6   push        ebx
+004013C7   push        esi
+004013C8   push        edi
+004013C9   push        ecx
+004013CA   lea         edi,[ebp-50h]
+004013CD   mov         ecx,14h
+004013D2   mov         eax,0CCCCCCCCh
+004013D7   rep stos    dword ptr [edi]
+004013D9   pop         ecx
+004013DA   mov         dword ptr [ebp-4],ecx
+26:           int nLen = strlen(pStr);
+004013DD   mov         eax,dword ptr [ebp+8]
+004013E0   push        eax
+004013E1   call        strlen (00401bb0)
+004013E6   add         esp,4
+004013E9   mov         dword ptr [ebp-8],eax
+27:           if(m_pString != NULL)
+004013EC   mov         ecx,dword ptr [ebp-4]
+004013EF   cmp         dword ptr [ecx],0
+004013F2   je          CMyString::SetString+51h (00401411)
+28:           {
+29:               delete [] m_pString;
+004013F4   mov         edx,dword ptr [ebp-4]
+004013F7   mov         eax,dword ptr [edx]
+004013F9   mov         dword ptr [ebp-0Ch],eax
+004013FC   mov         ecx,dword ptr [ebp-0Ch]
+004013FF   push        ecx
+00401400   call        operator delete (00401480)
+00401405   add         esp,4
+30:               m_pString = NULL;
+00401408   mov         edx,dword ptr [ebp-4]
+0040140B   mov         dword ptr [edx],0
+31:           }
+32:           m_pString = new char[nLen + sizeof(char)];
+00401411   mov         eax,dword ptr [ebp-8]
+00401414   add         eax,1
+00401417   push        eax
+00401418   call        operator new (00401590)
+0040141D   add         esp,4
+00401420   mov         dword ptr [ebp-10h],eax
+00401423   mov         ecx,dword ptr [ebp-4]
+00401426   mov         edx,dword ptr [ebp-10h]
+00401429   mov         dword ptr [ecx],edx
+33:           strcpy(m_pString , pStr);
+0040142B   mov         eax,dword ptr [ebp+8]
+0040142E   push        eax
+0040142F   mov         ecx,dword ptr [ebp-4]
+00401432   mov         edx,dword ptr [ecx]
+00401434   push        edx
+00401435   call        strcpy (00401ac0)
+0040143A   add         esp,8
+34:       }
+0040143D   pop         edi
+0040143E   pop         esi
+0040143F   pop         ebx
+00401440   add         esp,50h
+00401443   cmp         ebp,esp
+00401445   call        __chkesp (00401990)
+0040144A   mov         esp,ebp
+0040144C   pop         ebp
+0040144D   ret         4
+
+35:       char * m_pString;
+36:   };
+37:   void show(CMyString str)
+38:   {
+00401180   push        ebp
+00401181   mov         ebp,esp
+00401183   sub         esp,40h
+00401186   push        ebx
+00401187   push        esi
+00401188   push        edi
+00401189   lea         edi,[ebp-40h]
+0040118C   mov         ecx,10h
+00401191   mov         eax,0CCCCCCCCh
+00401196   rep stos    dword ptr [edi]
+39:       printf(str.m_pString);
+00401198   mov         eax,dword ptr [ebp+8]
+0040119B   push        eax
+0040119C   call        printf (00401510)
+004011A1   add         esp,4
+40:   }
+004011A4   lea         ecx,[ebp+8]
+004011A7   call        @ILT+35(CMyString::~CMyString) (00401028)	//析构临时对象
+004011AC   pop         edi
+004011AD   pop         esi
+004011AE   pop         ebx
+004011AF   add         esp,40h
+004011B2   cmp         ebp,esp
+004011B4   call        __chkesp (00401990)
+004011B9   mov         esp,ebp
+004011BB   pop         ebp
+004011BC   ret
+
+41:   void main()
+42:   {
+00401240   push        ebp
+00401241   mov         ebp,esp
+00401243   push        0FFh
+00401245   push        offset __ehhandler$_main (00413649)
+0040124A   mov         eax,fs:[00000000]
+00401250   push        eax
+00401251   mov         dword ptr fs:[0],esp
+00401258   sub         esp,4Ch
+0040125B   push        ebx
+0040125C   push        esi
+0040125D   push        edi
+0040125E   lea         edi,[ebp-58h]
+00401261   mov         ecx,13h
+00401266   mov         eax,0CCCCCCCCh
+0040126B   rep stos    dword ptr [edi]
+43:       CMyString myString;
+0040126D   lea         ecx,[ebp-10h]
+00401270   call        @ILT+20(CMyString::CMyString) (00401019)
+00401275   mov         dword ptr [ebp-4],0
+44:       myString.SetString("Hello");
+0040127C   push        offset string "Hello" (00425024)
+00401281   lea         ecx,[ebp-10h]
+00401284   call        @ILT+0(CMyString::SetString) (00401005)
+45:       show(myString);
+00401289   push        ecx
+0040128A   mov         ecx,esp
+0040128C   mov         dword ptr [ebp-14h],esp
+0040128F   lea         eax,[ebp-10h]
+00401292   push        eax
+00401293   call        @ILT+25(CMyString::CMyString) (0040101e)		//复制产生临时对象
+00401298   mov         dword ptr [ebp-18h],eax
+0040129B   call        @ILT+10(show) (0040100f)
+004012A0   add         esp,4
+46:   }
+004012A3   mov         dword ptr [ebp-4],0FFFFFFFFh
+004012AA   lea         ecx,[ebp-10h]
+004012AD   call        @ILT+35(CMyString::~CMyString) (00401028)
+004012B2   mov         ecx,dword ptr [ebp-0Ch]
+004012B5   mov         dword ptr fs:[0],ecx
+004012BC   pop         edi
+004012BD   pop         esi
+004012BE   pop         ebx
+004012BF   add         esp,58h
+004012C2   cmp         ebp,esp
+004012C4   call        __chkesp (00401990)
+004012C9   mov         esp,ebp
+004012CB   pop         ebp
+004012CC   ret
+
+@ILT+0(?SetString@CMyString@@QAEXPAD@Z):
+00401005   jmp         CMyString::SetString (004013c0)
+@ILT+5(?main1@@YAXXZ):
+0040100A   jmp         main1 (00401060)
+@ILT+10(?show@@YAXVCMyString@@@Z):
+0040100F   jmp         show (00401180)
+@ILT+15(??0CNumber@@QAE@XZ):
+00401014   jmp         CNumber::CNumber (00401140)
+@ILT+20(??0CMyString@@QAE@XZ):
+00401019   jmp         CMyString::CMyString (004012f0)
+@ILT+25(??0CMyString@@QAE@AAV0@@Z):
+0040101E   jmp         CMyString::CMyString (00401330)
+@ILT+30(_main):
+00401023   jmp         main (0040ef70)
+@ILT+35(??1CMyString@@QAE@XZ):
+00401028   jmp         CMyString::~CMyString (004011d0)
+0040102D   jmp         GetMyString (00401240)
+
+41:   CMyString GetMyString()
+42:   {
+00401240   push        ebp
+00401241   mov         ebp,esp
+00401243   push        0FFh
+00401245   push        offset __ehhandler$?GetMyString@@YA?AVCMyString@@XZ (00413660)
+0040124A   mov         eax,fs:[00000000]
+00401250   push        eax
+00401251   mov         dword ptr fs:[0],esp
+00401258   sub         esp,48h
+0040125B   push        ebx
+0040125C   push        esi
+0040125D   push        edi
+0040125E   lea         edi,[ebp-54h]
+00401261   mov         ecx,12h
+00401266   mov         eax,0CCCCCCCCh
+0040126B   rep stos    dword ptr [edi]
+0040126D   mov         dword ptr [ebp-14h],0
+43:       CMyString str;
+00401274   lea         ecx,[ebp-10h]
+00401277   call        @ILT+20(CMyString::CMyString) (00401019)	//临时对象
+0040127C   mov         dword ptr [ebp-4],1		//对象计数器  调试参考
+44:       str.SetString("HELLO");
+00401283   push        offset string "HELLO" (00425024)
+00401288   lea         ecx,[ebp-10h]
+0040128B   call        @ILT+0(CMyString::SetString) (00401005)
+45:       return str;
+00401290   lea         eax,[ebp-10h]
+00401293   push        eax
+00401294   mov         ecx,dword ptr [ebp+8]			//返回值
+00401297   call        @ILT+25(CMyString::CMyString) (0040101e)	//拷贝构造函数
+0040129C   mov         ecx,dword ptr [ebp-14h]
+0040129F   or          ecx,1
+004012A2   mov         dword ptr [ebp-14h],ecx
+004012A5   mov         byte ptr [ebp-4],0			//对象计数器
+004012A9   lea         ecx,[ebp-10h]
+004012AC   call        @ILT+35(CMyString::~CMyString) (00401028)
+004012B1   mov         eax,dword ptr [ebp+8]
+46:   }
+004012B4   mov         ecx,dword ptr [ebp-0Ch]
+004012B7   mov         dword ptr fs:[0],ecx
+004012BE   pop         edi
+004012BF   pop         esi
+004012C0   pop         ebx
+004012C1   add         esp,54h
+004012C4   cmp         ebp,esp
+004012C6   call        __chkesp (00401990)
+004012CB   mov         esp,ebp
+004012CD   pop         ebp
+004012CE   ret
+
+47:   CMyString* GetMyString(CMyString *pMyString)
+48:   {
+0040EF70   push        ebp
+0040EF71   mov         ebp,esp
+0040EF73   push        0FFh
+0040EF75   push        offset __ehhandler$?GetMyString@@YAPAVCMyString@@PAV1@@Z (00413679)
+0040EF7A   mov         eax,fs:[00000000]
+0040EF80   push        eax
+0040EF81   mov         dword ptr fs:[0],esp
+0040EF88   sub         esp,48h
+0040EF8B   push        ebx
+0040EF8C   push        esi
+0040EF8D   push        edi
+0040EF8E   lea         edi,[ebp-54h]
+0040EF91   mov         ecx,12h
+0040EF96   mov         eax,0CCCCCCCCh
+0040EF9B   rep stos    dword ptr [edi]
+49:       CMyString str;
+0040EF9D   lea         ecx,[ebp-10h]
+0040EFA0   call        @ILT+20(CMyString::CMyString) (00401019)
+0040EFA5   mov         dword ptr [ebp-4],0
+50:       str.SetString("HELLO");
+0040EFAC   push        offset string "HELLO" (00425024)
+0040EFB1   lea         ecx,[ebp-10h]
+0040EFB4   call        @ILT+0(CMyString::SetString) (00401005)
+51:       pMyString = &str;
+0040EFB9   lea         eax,[ebp-10h]
+0040EFBC   mov         dword ptr [ebp+8],eax
+52:       return &str;
+0040EFBF   lea         ecx,[ebp-10h]
+0040EFC2   mov         dword ptr [ebp-14h],ecx
+0040EFC5   mov         dword ptr [ebp-4],0FFFFFFFFh
+0040EFCC   lea         ecx,[ebp-10h]
+0040EFCF   call        @ILT+35(CMyString::~CMyString) (00401028)
+0040EFD4   mov         eax,dword ptr [ebp-14h]
+53:   }
+0040EFD7   mov         ecx,dword ptr [ebp-0Ch]
+0040EFDA   mov         dword ptr fs:[0],ecx
+0040EFE1   pop         edi
+0040EFE2   pop         esi
+0040EFE3   pop         ebx
+0040EFE4   add         esp,54h
+0040EFE7   cmp         ebp,esp
+0040EFE9   call        __chkesp (00401990)
+0040EFEE   mov         esp,ebp
+0040EFF0   pop         ebp
+0040EFF1   ret
+
+54:   CMyString g_cms1;
+00401590   push        ebp
+00401591   mov         ebp,esp
+00401593   sub         esp,40h
+00401596   push        ebx
+00401597   push        esi
+00401598   push        edi
+00401599   lea         edi,[ebp-40h]
+0040159C   mov         ecx,10h
+004015A1   mov         eax,0CCCCCCCCh
+004015A6   rep stos    dword ptr [edi]
+004015A8   mov         ecx,offset g_cms1 (0042b180)
+004015AD   call        @ILT+25(CMyString::CMyString) (0040101e)
+004015B2   pop         edi
+004015B3   pop         esi
+004015B4   pop         ebx
+004015B5   add         esp,40h
+004015B8   cmp         ebp,esp
+004015BA   call        __chkesp (00401c40)
+004015BF   mov         esp,ebp
+004015C1   pop         ebp
+004015C2   ret
+
+$E1() line 54
+$E4() + 29 bytes
+_initterm(void (void)* * 0x00427104 $S5, void (void)* * 0x00427208 ___xc_z) line 525
+_cinit() line 192 + 15 bytes
+mainCRTStartup() line 205
+KERNEL32! 75cb33ca()
+NTDLL! 77499ed2()
+NTDLL! 77499ea5()
+
+$E4:
+00401550   push        ebp
+00401551   mov         ebp,esp
+00401553   sub         esp,40h
+00401556   push        ebx
+00401557   push        esi
+00401558   push        edi
+00401559   lea         edi,[ebp-40h]
+0040155C   mov         ecx,10h
+00401561   mov         eax,0CCCCCCCCh
+00401566   rep stos    dword ptr [edi]
+00401568   call        $E1 (00401590)
+0040156D   call        $E3 (004015d0)
+00401572   pop         edi
+00401573   pop         esi
+00401574   pop         ebx
+00401575   add         esp,40h
+00401578   cmp         ebp,esp
+0040157A   call        __chkesp (00401c40)
+0040157F   mov         esp,ebp
+00401581   pop         ebp
+00401582   ret
+
+1:    #include<stdio.h>
+2:
+3:    class CInit
+4:    {
+5:    public:
+6:        void SetNumber(int nNumber)
+7:        {
+004018C0   push        ebp
+004018C1   mov         ebp,esp
+004018C3   sub         esp,44h
+004018C6   push        ebx
+004018C7   push        esi
+004018C8   push        edi
+004018C9   push        ecx
+004018CA   lea         edi,[ebp-44h]
+004018CD   mov         ecx,11h
+004018D2   mov         eax,0CCCCCCCCh
+004018D7   rep stos    dword ptr [edi]
+004018D9   pop         ecx
+004018DA   mov         dword ptr [ebp-4],ecx
+8:            this->m_nNumber = nNumber;
+004018DD   mov         eax,dword ptr [ebp-4]
+004018E0   mov         ecx,dword ptr [ebp+8]
+004018E3   mov         dword ptr [eax],ecx
+9:        }
+004018E5   pop         edi
+004018E6   pop         esi
+004018E7   pop         ebx
+004018E8   mov         esp,ebp
+004018EA   pop         ebp
+004018EB   ret         4
+
+10:       int GetNumber()
+11:       {
+00401900   push        ebp
+00401901   mov         ebp,esp
+00401903   sub         esp,44h
+00401906   push        ebx
+00401907   push        esi
+00401908   push        edi
+00401909   push        ecx
+0040190A   lea         edi,[ebp-44h]
+0040190D   mov         ecx,11h
+00401912   mov         eax,0CCCCCCCCh
+00401917   rep stos    dword ptr [edi]
+00401919   pop         ecx
+0040191A   mov         dword ptr [ebp-4],ecx
+12:           return this->m_nNumber;
+0040191D   mov         eax,dword ptr [ebp-4]
+00401920   mov         eax,dword ptr [eax]
+13:       }
+00401922   pop         edi
+00401923   pop         esi
+00401924   pop         ebx
+00401925   mov         esp,ebp
+00401927   pop         ebp
+00401928   ret
+
+14:       int m_nNumber;
+15:   };
+16:
+17:   int main()
+18:   {
+00401860   push        ebp
+00401861   mov         ebp,esp
+00401863   sub         esp,44h
+00401866   push        ebx
+00401867   push        esi
+00401868   push        edi
+00401869   lea         edi,[ebp-44h]
+0040186C   mov         ecx,11h
+00401871   mov         eax,0CCCCCCCCh
+00401876   rep stos    dword ptr [edi]
+19:       CInit Init;
+20:       Init.SetNumber(9);
+00401878   push        9
+0040187A   lea         ecx,[ebp-4]		//没有虚函数是不一定产生默认构造函数的。父类,类成员没有虚函数
+0040187D   call        @ILT+60(CInit::SetNumber) (00401041)
+21:       printf("%d\n" , Init.GetNumber());
+00401882   lea         ecx,[ebp-4]
+00401885   call        @ILT+20(CInit::GetNumber) (00401019)
+0040188A   push        eax
+0040188B   push        offset string "%d\n" (00425034)
+00401890   call        printf (004019d0)
+00401895   add         esp,8
+22:       return 0;
+00401898   xor         eax,eax
+23:   }
+0040189A   pop         edi
+0040189B   pop         esi
+0040189C   pop         ebx
+0040189D   add         esp,44h
+004018A0   cmp         ebp,esp
+004018A2   call        __chkesp (00401e50)
+004018A7   mov         esp,ebp
+004018A9   pop         ebp
+004018AA   ret
+
+构造函数出现时机:
+局部对象
+堆对象
+返回对象
+全局对象
+静态对象
+
+56:   void main()
+57:   {
+0040F550   push        ebp
+0040F551   mov         ebp,esp
+0040F553   push        0FFh
+0040F555   push        offset __ehhandler$_main (00413cf4)
+0040F55A   mov         eax,fs:[00000000]
+0040F560   push        eax
+0040F561   mov         dword ptr fs:[0],esp
+0040F568   sub         esp,64h
+0040F56B   push        ebx
+0040F56C   push        esi
+0040F56D   push        edi
+0040F56E   lea         edi,[ebp-70h]
+0040F571   mov         ecx,19h
+0040F576   mov         eax,0CCCCCCCCh
+0040F57B   rep stos    dword ptr [edi]
+58:       CMyString myString;
+0040F57D   lea         ecx,[ebp-10h]
+0040F580   call        @ILT+30(CMyString::CMyString) (00401023)
+0040F585   mov         dword ptr [ebp-4],0
+59:       myString.SetString("Hello");
+0040F58C   push        offset string "Hello" (0042502c)
+0040F591   lea         ecx,[ebp-10h]
+0040F594   call        @ILT+0(CMyString::SetString) (00401005)
+60:       show(myString);
+0040F599   push        ecx
+0040F59A   mov         ecx,esp
+0040F59C   mov         dword ptr [ebp-18h],esp
+0040F59F   lea         eax,[ebp-10h]
+0040F5A2   push        eax
+0040F5A3   call        @ILT+35(CMyString::CMyString) (00401028)
+0040F5A8   mov         dword ptr [ebp-28h],eax
+0040F5AB   call        @ILT+10(show) (0040100f)
+0040F5B0   add         esp,4
+61:       show(GetMyString());
+0040F5B3   push        ecx
+0040F5B4   mov         ecx,esp
+0040F5B6   mov         dword ptr [ebp-1Ch],esp
+0040F5B9   push        ecx
+0040F5BA   call        @ILT+15(GetMyString) (00401014)
+0040F5BF   add         esp,4
+0040F5C2   mov         dword ptr [ebp-2Ch],eax
+0040F5C5   call        @ILT+10(show) (0040100f)
+0040F5CA   add         esp,4
+62:       CMyString *pStr = new CMyString[3];
+0040F5CD   push        10h
+0040F5CF   call        operator new (00401a50)
+0040F5D4   add         esp,4
+0040F5D7   mov         dword ptr [ebp-24h],eax
+0040F5DA   mov         byte ptr [ebp-4],1
+0040F5DE   cmp         dword ptr [ebp-24h],0
+0040F5E2   je          main+0C2h (0040f612)
+0040F5E4   push        offset @ILT+55(CMyString::~CMyString) (0040103c)
+0040F5E9   push        offset @ILT+30(CMyString::CMyString) (00401023)
+0040F5EE   mov         edx,dword ptr [ebp-24h]
+0040F5F1   mov         dword ptr [edx],3
+0040F5F7   push        3
+0040F5F9   push        4
+0040F5FB   mov         eax,dword ptr [ebp-24h]
+0040F5FE   add         eax,4
+0040F601   push        eax
+0040F602   call        `eh vector constructor iterator' (0040f790)
+0040F607   mov         ecx,dword ptr [ebp-24h]
+0040F60A   add         ecx,4
+0040F60D   mov         dword ptr [ebp-30h],ecx
+0040F610   jmp         main+0C9h (0040f619)
+0040F612   mov         dword ptr [ebp-30h],0
+0040F619   mov         edx,dword ptr [ebp-30h]
+0040F61C   mov         dword ptr [ebp-20h],edx
+0040F61F   mov         byte ptr [ebp-4],0
+0040F623   mov         eax,dword ptr [ebp-20h]
+0040F626   mov         dword ptr [ebp-14h],eax
+63:   }
+0040F629   mov         dword ptr [ebp-4],0FFFFFFFFh
+0040F630   lea         ecx,[ebp-10h]
+0040F633   call        @ILT+55(CMyString::~CMyString) (0040103c)
+0040F638   mov         ecx,dword ptr [ebp-0Ch]
+0040F63B   mov         dword ptr fs:[0],ecx
+0040F642   pop         edi
+0040F643   pop         esi
+0040F644   pop         ebx
+0040F645   add         esp,70h
+0040F648   cmp         ebp,esp
+0040F64A   call        __chkesp (00401e50)
+0040F64F   mov         esp,ebp
+0040F651   pop         ebp
+0040F652   ret
+
+??_L@YGXPAXIHP6EX0@Z1@Z:
+0040F790   push        ebp
+0040F791   mov         ebp,esp
+0040F793   push        0FFh
+0040F795   push        offset string "stream != NULL"+30h (00426070)
+0040F79A   push        offset __except_handler3 (00407f40)
+0040F79F   mov         eax,fs:[00000000]
+0040F7A5   push        eax
+0040F7A6   mov         dword ptr fs:[0],esp
+0040F7AD   add         esp,0F0h
+0040F7B0   push        ebx
+0040F7B1   push        esi
+0040F7B2   push        edi
+0040F7B3   mov         dword ptr [ebp-20h],0
+0040F7BA   mov         dword ptr [ebp-4],0
+0040F7C1   mov         dword ptr [ebp-1Ch],0
+0040F7C8   jmp         `eh vector constructor iterator'+43h (0040f7d3)
+0040F7CA   mov         eax,dword ptr [ebp-1Ch]
+0040F7CD   add         eax,1
+0040F7D0   mov         dword ptr [ebp-1Ch],eax
+0040F7D3   mov         ecx,dword ptr [ebp-1Ch]
+0040F7D6   cmp         ecx,dword ptr [ebp+10h]		ecx控制循环次数  [ebp + 10h] = 3
+0040F7D9   jge         `eh vector constructor iterator'+5Ch (0040f7ec)
+0040F7DB   mov         ecx,dword ptr [ebp+8]
+0040F7DE   call        dword ptr [ebp+14h]		构造函数
+0040F7E1   mov         edx,dword ptr [ebp+8]
+0040F7E4   add         edx,dword ptr [ebp+0Ch]		元素长度 [ebp + 10h] ==  3
+0040F7E7   mov         dword ptr [ebp+8],edx
+0040F7EA   jmp         `eh vector constructor iterator'+3Ah (0040f7ca)
+0040F7EC   mov         dword ptr [ebp-20h],1
+0040F7F3   mov         dword ptr [ebp-4],0FFFFFFFFh
+0040F7FA   call        `eh vector constructor iterator'+71h (0040f801)
+0040F7FF   jmp         `eh vector constructor iterator'+8Dh (0040f81d)
+0040F801   cmp         dword ptr [ebp-20h],0
+0040F805   jne         `eh vector constructor iterator'+8Ch (0040f81c)
+0040F807   mov         eax,dword ptr [ebp+18h]
+0040F80A   push        eax
+0040F80B   mov         ecx,dword ptr [ebp-1Ch]
+0040F80E   push        ecx
+0040F80F   mov         edx,dword ptr [ebp+0Ch]
+0040F812   push        edx
+0040F813   mov         eax,dword ptr [ebp+8]
+0040F816   push        eax
+0040F817   call        __ArrayUnwind (0040f710)
+0040F81C   ret
+0040F81D   mov         ecx,dword ptr [ebp-10h]
+0040F820   mov         dword ptr fs:[0],ecx
+0040F827   pop         edi
+0040F828   pop         esi
+0040F829   pop         ebx
+0040F82A   mov         esp,ebp
+0040F82C   pop         ebp
+0040F82D   ret         14h
+
+56:   void main()
+57:   {
+0040F550   push        ebp
+0040F551   mov         ebp,esp
+0040F553   push        0FFh
+0040F555   push        offset __ehhandler$_main (00413ceb)
+0040F55A   mov         eax,fs:[00000000]
+0040F560   push        eax
+0040F561   mov         dword ptr fs:[0],esp
+0040F568   sub         esp,50h
+0040F56B   push        ebx
+0040F56C   push        esi
+0040F56D   push        edi
+0040F56E   lea         edi,[ebp-5Ch]
+0040F571   mov         ecx,14h
+0040F576   mov         eax,0CCCCCCCCh
+0040F57B   rep stos    dword ptr [edi]
+58:   //  CMyString myString;
+59:   //  myString.SetString("Hello");
+60:   //  show(myString);
+61:   //  show(GetMyString());
+62:       CMyString *pStr = new CMyString[3];
+0040F57D   push        10h
+0040F57F   call        operator new (00401a50)
+0040F584   add         esp,4		填补push 10h  esp = ebp -50h - 0ch
+0040F587   mov         dword ptr [ebp-18h],eax
+0040F58A   mov         dword ptr [ebp-4],0
+0040F591   cmp         dword ptr [ebp-18h],0
+0040F595   je          main+75h (0040f5c5)
+0040F597   push        offset @ILT+55(CMyString::~CMyString) (0040103c)
+0040F59C   push        offset @ILT+30(CMyString::CMyString) (00401023)
+0040F5A1   mov         eax,dword ptr [ebp-18h]	new 返回值
+0040F5A4   mov         dword ptr [eax],3
+0040F5AA   push        3
+0040F5AC   push        4
+0040F5AE   mov         ecx,dword ptr [ebp-18h]
+0040F5B1   add         ecx,4	第一个元素
+0040F5B4   push        ecx
+0040F5B5   call        `eh vector constructor iterator' (0040f790)
+0040F5BA   mov         edx,dword ptr [ebp-18h]
+0040F5BD   add         edx,4
+0040F5C0   mov         dword ptr [ebp-1Ch],edx   首地址赋值给 ebp - 1ch
+0040F5C3   jmp         main+7Ch (0040f5cc)
+0040F5C5   mov         dword ptr [ebp-1Ch],0
+0040F5CC   mov         eax,dword ptr [ebp-1Ch]
+0040F5CF   mov         dword ptr [ebp-14h],eax
+0040F5D2   mov         dword ptr [ebp-4],0FFFFFFFFh
+0040F5D9   mov         ecx,dword ptr [ebp-14h]
+0040F5DC   mov         dword ptr [ebp-10h],ecx
+63:   }
+0040F5DF   mov         ecx,dword ptr [ebp-0Ch]
+0040F5E2   mov         dword ptr fs:[0],ecx
+0040F5E9   pop         edi
+0040F5EA   pop         esi
+0040F5EB   pop         ebx
+0040F5EC   add         esp,5Ch
+0040F5EF   cmp         ebp,esp
+0040F5F1   call        __chkesp (00401e50)
+0040F5F6   mov         esp,ebp
+0040F5F8   pop         ebp
+0040F5F9   ret

@@ -1,0 +1,141 @@
+1:    #include<stdio.h>
+2:
+3:    int g_VariableType = 117713190;
+4:
+5:    void main()
+6:    {
+00401010   push        ebp
+00401011   mov         ebp,esp
+00401013   sub         esp,40h
+00401016   push        ebx
+00401017   push        esi
+00401018   push        edi
+00401019   lea         edi,[ebp-40h]
+0040101C   mov         ecx,10h
+00401021   mov         eax,0CCCCCCCCh
+00401026   rep stos    dword ptr [edi]
+7:        scanf("%d" , &g_VariableType);
+00401028   push        offset g_VariableType (00427a30)
+0040102D   push        offset string "%d" (00425024)
+00401032   call        scanf (00401100)
+00401037   add         esp,8
+8:        printf("%d \r\n" , g_VariableType);
+0040103A   mov         eax,[g_VariableType (00427a30)]
+0040103F   push        eax
+00401040   push        offset string "%d \r\n" (0042501c)
+00401045   call        printf (00401080)
+0040104A   add         esp,8
+9:    }
+0040104D   pop         edi
+0040104E   pop         esi
+0040104F   pop         ebx
+00401050   add         esp,40h
+00401053   cmp         ebp,esp
+00401055   call        __chkesp (00401160)
+0040105A   mov         esp,ebp
+0040105C   pop         ebp
+0040105D   ret
+
+
+1:    #include<stdio.h>
+2:
+3:    int g_VariableType = 117713190;
+4:    int g_VariableType2 = 117713191;
+5:    void main()
+6:    {
+0040F960   push        ebp
+0040F961   mov         ebp,esp
+0040F963   sub         esp,48h
+0040F966   push        ebx
+0040F967   push        esi
+0040F968   push        edi
+0040F969   lea         edi,[ebp-48h]
+0040F96C   mov         ecx,12h
+0040F971   mov         eax,0CCCCCCCCh
+0040F976   rep stos    dword ptr [edi]
+7:        int nOne = 1;
+0040F978   mov         dword ptr [ebp-4],1
+8:        int nTwo = 2;
+0040F97F   mov         dword ptr [ebp-8],2
+9:        scanf("%d%d" , &nOne , &nTwo);
+0040F986   lea         eax,[ebp-8]
+0040F989   push        eax
+0040F98A   lea         ecx,[ebp-4]
+0040F98D   push        ecx
+0040F98E   push        offset string "%d%d" (00426008)
+0040F993   call        scanf (00401100)
+0040F998   add         esp,0Ch
+10:       scanf("%d%d" , &g_VariableType , &g_VariableType2);
+0040F99B   push        offset g_VariableType2 (00427e78)
+0040F9A0   push        offset g_VariableType (00427e74)
+0040F9A5   push        offset string "%d%d" (00426008)
+0040F9AA   call        scanf (00401100)
+0040F9AF   add         esp,0Ch
+11:       printf("%d %d\r\n" , nOne , nTwo);
+0040F9B2   mov         edx,dword ptr [ebp-8]
+0040F9B5   push        edx
+0040F9B6   mov         eax,dword ptr [ebp-4]
+0040F9B9   push        eax
+0040F9BA   push        offset string "%d \r\n" (0042501c)
+0040F9BF   call        printf (00401080)
+0040F9C4   add         esp,0Ch
+12:       printf("%d %d\r\n" , g_VariableType , g_VariableType2);
+0040F9C7   mov         ecx,dword ptr [g_VariableType2 (00427e78)]
+0040F9CD   push        ecx
+0040F9CE   mov         edx,dword ptr [g_VariableType (00427e74)]
+0040F9D4   push        edx
+0040F9D5   push        offset string "%d \r\n" (0042501c)
+0040F9DA   call        printf (00401080)
+0040F9DF   add         esp,0Ch
+13:   }
+0040F9E2   pop         edi
+0040F9E3   pop         esi
+0040F9E4   pop         ebx
+0040F9E5   add         esp,48h
+0040F9E8   cmp         ebp,esp
+0040F9EA   call        __chkesp (00401160)
+0040F9EF   mov         esp,ebp
+0040F9F1   pop         ebp
+0040F9F2   ret
+
+1:    #include<stdio.h>
+2:    void ShowStatic(int nNumber)
+3:    {
+004010F0   push        ebp
+004010F1   mov         ebp,esp
+004010F3   sub         esp,40h
+004010F6   push        ebx
+004010F7   push        esi
+004010F8   push        edi
+004010F9   lea         edi,[ebp-40h]
+004010FC   mov         ecx,10h
+00401101   mov         eax,0CCCCCCCCh
+00401106   rep stos    dword ptr [edi]
+4:        static int g_snNumber = nNumber;
+00401108   xor         eax,eax
+0040110A   mov         al,[`ShowStatic'::`2'::$S1 (0042ac6c)]
+0040110F   and         eax,1
+00401112   test        eax,eax
+00401114   jne         ShowStatic+3Eh (0040112e)
+00401116   mov         cl,byte ptr [`ShowStatic'::`2'::$S1 (0042ac6c)]
+0040111C   or          cl,1
+0040111F   mov         byte ptr [`ShowStatic'::`2'::$S1 (0042ac6c)],cl
+00401125   mov         edx,dword ptr [ebp+8]
+00401128   mov         dword ptr [`ShowStatic'::`2'::$S1+4 (0042ac70)],edx
+5:        printf("%d \r\n" , g_snNumber);
+0040112E   mov         eax,[`ShowStatic'::`2'::$S1+4 (0042ac70)]
+00401133   push        eax
+00401134   push        offset string "%d \r\n" (00425030)
+00401139   call        printf (004011e0)
+0040113E   add         esp,8
+6:    }
+00401141   pop         edi
+00401142   pop         esi
+00401143   pop         ebx
+00401144   add         esp,40h
+00401147   cmp         ebp,esp
+00401149   call        __chkesp (004012c0)
+0040114E   mov         esp,ebp
+00401150   pop         ebp
+00401151   ret
+

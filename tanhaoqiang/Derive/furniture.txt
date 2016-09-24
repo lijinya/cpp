@@ -1,0 +1,1372 @@
+1:    #include<stdio.h>
+2:    class CFurniture
+3:    {
+4:    public:
+5:        CFurniture()
+004021D0   push        ebp
+004021D1   mov         ebp,esp
+004021D3   sub         esp,44h
+004021D6   push        ebx
+004021D7   push        esi
+004021D8   push        edi
+004021D9   push        ecx
+004021DA   lea         edi,[ebp-44h]
+004021DD   mov         ecx,11h
+004021E2   mov         eax,0CCCCCCCCh
+004021E7   rep stos    dword ptr [edi]
+004021E9   pop         ecx
+004021EA   mov         dword ptr [ebp-4],ecx
+004021ED   mov         eax,dword ptr [ebp-4]
+004021F0   mov         dword ptr [eax],offset CFurniture::`vftable' (0042611c)
+6:        {
+7:            m_nPrice = 0;
+004021F6   mov         ecx,dword ptr [ebp-4]
+004021F9   mov         dword ptr [ecx+4],0
+8:        }
+00402200   mov         eax,dword ptr [ebp-4]
+00402203   pop         edi
+00402204   pop         esi
+00402205   pop         ebx
+00402206   mov         esp,ebp
+00402208   pop         ebp
+00402209   ret
+
+9:        virtual ~CFurniture()
+10:       {
+00402220   push        ebp
+00402221   mov         ebp,esp
+00402223   sub         esp,44h
+00402226   push        ebx
+00402227   push        esi
+00402228   push        edi
+00402229   push        ecx
+0040222A   lea         edi,[ebp-44h]
+0040222D   mov         ecx,11h
+00402232   mov         eax,0CCCCCCCCh
+00402237   rep stos    dword ptr [edi]
+00402239   pop         ecx
+0040223A   mov         dword ptr [ebp-4],ecx
+0040223D   mov         eax,dword ptr [ebp-4]
+00402240   mov         dword ptr [eax],offset CFurniture::`vftable' (0042611c)
+11:           printf("virtual ~CFurniture()\n");
+00402246   push        offset string "virtual ~CFurniture()\n" (00426128)
+0040224B   call        printf (00403020)
+00402250   add         esp,4
+12:       }
+00402253   pop         edi
+00402254   pop         esi
+00402255   pop         ebx
+00402256   add         esp,44h
+00402259   cmp         ebp,esp
+0040225B   call        __chkesp (00402ef0)
+00402260   mov         esp,ebp
+00402262   pop         ebp
+00402263   ret
+
+13:       virtual int GetPrice()
+14:       {
+00402280   push        ebp
+00402281   mov         ebp,esp
+00402283   sub         esp,44h
+00402286   push        ebx
+00402287   push        esi
+00402288   push        edi
+00402289   push        ecx
+0040228A   lea         edi,[ebp-44h]
+0040228D   mov         ecx,11h
+00402292   mov         eax,0CCCCCCCCh
+00402297   rep stos    dword ptr [edi]
+00402299   pop         ecx
+0040229A   mov         dword ptr [ebp-4],ecx
+15:           return m_nPrice;
+0040229D   mov         eax,dword ptr [ebp-4]
+004022A0   mov         eax,dword ptr [eax+4]
+16:       }
+004022A3   pop         edi
+004022A4   pop         esi
+004022A5   pop         ebx
+004022A6   mov         esp,ebp
+004022A8   pop         ebp
+004022A9   ret
+
+17:   protected:
+18:       int m_nPrice;
+19:   };
+20:   class CSofa : virtual public CFurniture
+21:   {
+22:   public:
+23:       CSofa()
+00402330   push        ebp
+00402331   mov         ebp,esp
+00402333   sub         esp,48h
+00402336   push        ebx
+00402337   push        esi
+00402338   push        edi
+00402339   push        ecx
+0040233A   lea         edi,[ebp-48h]
+0040233D   mov         ecx,12h
+00402342   mov         eax,0CCCCCCCCh
+00402347   rep stos    dword ptr [edi]
+00402349   pop         ecx
+0040234A   mov         dword ptr [ebp-4],ecx
+0040234D   mov         dword ptr [ebp-8],0
+00402354   cmp         dword ptr [ebp+8],0
+00402358   je          CSofa::CSofa+48h (00402378)
+0040235A   mov         eax,dword ptr [ebp-4]
+0040235D   mov         dword ptr [eax+4],offset CSofa::`vbtable' (0042615c)
+00402364   mov         ecx,dword ptr [ebp-4]
+00402367   add         ecx,0Ch
+0040236A   call        @ILT+120(CFurniture::CFurniture) (0040107d)	跳过调用父类构造函数
+0040236F   mov         ecx,dword ptr [ebp-8]
+00402372   or          ecx,1
+00402375   mov         dword ptr [ebp-8],ecx
+00402378   mov         edx,dword ptr [ebp-4]
+0040237B   mov         dword ptr [edx],offset CSofa::`vftable' (00426150)
+00402381   mov         eax,dword ptr [ebp-4]
+00402384   mov         ecx,dword ptr [eax+4]
+00402387   mov         edx,dword ptr [ecx+4]
+0040238A   mov         eax,dword ptr [ebp-4]
+0040238D   mov         dword ptr [eax+edx+4],offset CSofa::`vftable' (00426144)
+24:       {
+25:           m_nPrice = 1;
+00402395   mov         ecx,dword ptr [ebp-4]
+00402398   mov         edx,dword ptr [ecx+4]
+0040239B   mov         eax,dword ptr [edx+4]
+0040239E   mov         ecx,dword ptr [ebp-4]
+004023A1   mov         dword ptr [ecx+eax+8],1
+26:           m_nColor = 2;
+004023A9   mov         edx,dword ptr [ebp-4]
+004023AC   mov         dword ptr [edx+8],2
+27:       }
+004023B3   mov         eax,dword ptr [ebp-4]
+004023B6   pop         edi
+004023B7   pop         esi
+004023B8   pop         ebx
+004023B9   add         esp,48h
+004023BC   cmp         ebp,esp
+004023BE   call        __chkesp (00402ef0)
+004023C3   mov         esp,ebp
+004023C5   pop         ebp
+004023C6   ret         4
+
+28:       virtual ~CSofa()
+29:       {
+004023F0   push        ebp
+004023F1   mov         ebp,esp
+004023F3   sub         esp,44h
+004023F6   push        ebx
+004023F7   push        esi
+004023F8   push        edi
+004023F9   push        ecx
+004023FA   lea         edi,[ebp-44h]
+004023FD   mov         ecx,11h
+00402402   mov         eax,0CCCCCCCCh
+00402407   rep stos    dword ptr [edi]
+00402409   pop         ecx
+0040240A   mov         dword ptr [ebp-4],ecx
+0040240D   mov         eax,dword ptr [ebp-4]
+00402410   mov         dword ptr [eax-0Ch],offset CSofa::`vftable' (00426150)
+00402417   mov         ecx,dword ptr [ebp-4]
+0040241A   mov         edx,dword ptr [ecx-8]
+0040241D   mov         eax,dword ptr [edx+4]
+00402420   mov         ecx,dword ptr [ebp-4]
+00402423   mov         dword ptr [ecx+eax-8],offset CSofa::`vftable' (00426144)
+30:           printf("virtual ~CSofa()\n");
+0040242B   push        offset string "virtual ~CSofa()\n" (00426168)
+00402430   call        printf (00403020)
+00402435   add         esp,4
+31:       }
+00402438   pop         edi
+00402439   pop         esi
+0040243A   pop         ebx
+0040243B   add         esp,44h
+0040243E   cmp         ebp,esp
+00402440   call        __chkesp (00402ef0)
+00402445   mov         esp,ebp
+00402447   pop         ebp
+00402448   ret
+
+32:       virtual int GeyColor()
+33:       {
+00402460   push        ebp
+00402461   mov         ebp,esp
+00402463   sub         esp,44h
+00402466   push        ebx
+00402467   push        esi
+00402468   push        edi
+00402469   push        ecx
+0040246A   lea         edi,[ebp-44h]
+0040246D   mov         ecx,11h
+00402472   mov         eax,0CCCCCCCCh
+00402477   rep stos    dword ptr [edi]
+00402479   pop         ecx
+0040247A   mov         dword ptr [ebp-4],ecx
+34:           return m_nColor;
+0040247D   mov         eax,dword ptr [ebp-4]
+00402480   mov         eax,dword ptr [eax+8]
+35:       }
+00402483   pop         edi
+00402484   pop         esi
+00402485   pop         ebx
+00402486   mov         esp,ebp
+00402488   pop         ebp
+00402489   ret
+
+36:       virtual int SitDown()
+37:       {
+004024A0   push        ebp
+004024A1   mov         ebp,esp
+004024A3   sub         esp,44h
+004024A6   push        ebx
+004024A7   push        esi
+004024A8   push        edi
+004024A9   push        ecx
+004024AA   lea         edi,[ebp-44h]
+004024AD   mov         ecx,11h
+004024B2   mov         eax,0CCCCCCCCh
+004024B7   rep stos    dword ptr [edi]
+004024B9   pop         ecx
+004024BA   mov         dword ptr [ebp-4],ecx
+38:           return printf("Sit down and rest your legs\n");
+004024BD   push        offset string "Sit down and rest your legs\n" (00426180)
+004024C2   call        printf (00403020)
+004024C7   add         esp,4
+39:       }
+004024CA   pop         edi
+004024CB   pop         esi
+004024CC   pop         ebx
+004024CD   add         esp,44h
+004024D0   cmp         ebp,esp
+004024D2   call        __chkesp (00402ef0)
+004024D7   mov         esp,ebp
+004024D9   pop         ebp
+004024DA   ret
+
+40:   protected:
+41:       int m_nColor;
+42:   };
+43:   class CBed : virtual public CFurniture
+44:   {
+45:   public:
+46:       CBed()
+004025C0   push        ebp
+004025C1   mov         ebp,esp
+004025C3   sub         esp,48h
+004025C6   push        ebx
+004025C7   push        esi
+004025C8   push        edi
+004025C9   push        ecx
+004025CA   lea         edi,[ebp-48h]
+004025CD   mov         ecx,12h
+004025D2   mov         eax,0CCCCCCCCh
+004025D7   rep stos    dword ptr [edi]
+004025D9   pop         ecx
+004025DA   mov         dword ptr [ebp-4],ecx
+004025DD   mov         dword ptr [ebp-8],0
+004025E4   cmp         dword ptr [ebp+8],0
+004025E8   je          CBed::CBed+48h (00402608)
+004025EA   mov         eax,dword ptr [ebp-4]
+004025ED   mov         dword ptr [eax+4],offset CBed::`vbtable' (004261bc)
+004025F4   mov         ecx,dword ptr [ebp-4]
+004025F7   add         ecx,10h
+004025FA   call        @ILT+120(CFurniture::CFurniture) (0040107d)
+004025FF   mov         ecx,dword ptr [ebp-8]
+00402602   or          ecx,1
+00402605   mov         dword ptr [ebp-8],ecx
+00402608   mov         edx,dword ptr [ebp-4]
+0040260B   mov         dword ptr [edx],offset CBed::`vftable' (004261b0)
+00402611   mov         eax,dword ptr [ebp-4]
+00402614   mov         ecx,dword ptr [eax+4]
+00402617   mov         edx,dword ptr [ecx+4]
+0040261A   mov         eax,dword ptr [ebp-4]
+0040261D   mov         dword ptr [eax+edx+4],offset CBed::`vftable' (004261a4)
+47:       {
+48:           m_nPrice = 3;
+00402625   mov         ecx,dword ptr [ebp-4]
+00402628   mov         edx,dword ptr [ecx+4]
+0040262B   mov         eax,dword ptr [edx+4]
+0040262E   mov         ecx,dword ptr [ebp-4]
+00402631   mov         dword ptr [ecx+eax+8],3
+49:           m_nLength = 2;
+00402639   mov         edx,dword ptr [ebp-4]
+0040263C   mov         dword ptr [edx+8],2
+50:           m_nWidth = 1;
+00402643   mov         eax,dword ptr [ebp-4]
+00402646   mov         dword ptr [eax+0Ch],1
+51:       }
+0040264D   mov         eax,dword ptr [ebp-4]
+00402650   pop         edi
+00402651   pop         esi
+00402652   pop         ebx
+00402653   add         esp,48h
+00402656   cmp         ebp,esp
+00402658   call        __chkesp (00402ef0)
+0040265D   mov         esp,ebp
+0040265F   pop         ebp
+00402660   ret         4
+
+52:       ~CBed()
+53:       {
+004027F0   push        ebp
+004027F1   mov         ebp,esp
+004027F3   sub         esp,44h
+004027F6   push        ebx
+004027F7   push        esi
+004027F8   push        edi
+004027F9   push        ecx
+004027FA   lea         edi,[ebp-44h]
+004027FD   mov         ecx,11h
+00402802   mov         eax,0CCCCCCCCh
+00402807   rep stos    dword ptr [edi]
+00402809   pop         ecx
+0040280A   mov         dword ptr [ebp-4],ecx
+0040280D   mov         eax,dword ptr [ebp-4]
+00402810   mov         dword ptr [eax-10h],offset CBed::`vftable' (004261b0)
+00402817   mov         ecx,dword ptr [ebp-4]
+0040281A   mov         edx,dword ptr [ecx-0Ch]
+0040281D   mov         eax,dword ptr [edx+4]
+00402820   mov         ecx,dword ptr [ebp-4]
+00402823   mov         dword ptr [ecx+eax-0Ch],offset CBed::`vftable' (004261a4)
+54:           printf("virtual ~CBed()\n");
+0040282B   push        offset string "virtual ~CBed()\n" (004261d8)
+00402830   call        printf (00403020)
+00402835   add         esp,4
+55:       }
+00402838   pop         edi
+00402839   pop         esi
+0040283A   pop         ebx
+0040283B   add         esp,44h
+0040283E   cmp         ebp,esp
+00402840   call        __chkesp (00402ef0)
+00402845   mov         esp,ebp
+00402847   pop         ebp
+00402848   ret
+
+64:   protected:
+65:       int m_nLength;
+66:       int m_nWidth;
+67:   };
+68:   class CSofaBed : public CSofa , public CBed
+69:   {
+70:   public:
+71:       CSofaBed()
+004020B0   push        ebp
+004020B1   mov         ebp,esp
+004020B3   push        0FFh
+004020B5   push        offset __ehhandler$??0CSofaBed@@QAE@XZ (00414d86)
+004020BA   mov         eax,fs:[00000000]
+004020C0   push        eax
+004020C1   mov         dword ptr fs:[0],esp
+004020C8   sub         esp,48h
+004020CB   push        ebx
+004020CC   push        esi
+004020CD   push        edi
+004020CE   push        ecx
+004020CF   lea         edi,[ebp-54h]
+004020D2   mov         ecx,12h
+004020D7   mov         eax,0CCCCCCCCh
+004020DC   rep stos    dword ptr [edi]
+004020DE   pop         ecx
+004020DF   mov         dword ptr [ebp-10h],ecx
+004020E2   mov         dword ptr [ebp-14h],0
+004020E9   cmp         dword ptr [ebp+8],0
+004020ED   je          CSofaBed::CSofaBed+6Eh (0040211e)
+004020EF   mov         eax,dword ptr [ebp-10h]
+004020F2   mov         dword ptr [eax+4],offset CSofaBed::`vbtable' (00426110)
+004020F9   mov         ecx,dword ptr [ebp-10h]
+004020FC   mov         dword ptr [ecx+10h],offset CSofaBed::`vbtable' (00426104)
+00402103   mov         ecx,dword ptr [ebp-10h]
+00402106   add         ecx,20h
+00402109   call        @ILT+120(CFurniture::CFurniture) (0040107d)
+0040210E   mov         edx,dword ptr [ebp-14h]
+00402111   or          edx,1
+00402114   mov         dword ptr [ebp-14h],edx
+00402117   mov         dword ptr [ebp-4],0
+0040211E   push        0
+00402120   mov         ecx,dword ptr [ebp-10h]
+00402123   call        @ILT+245(CSofa::CSofa) (004010fa)
+00402128   mov         dword ptr [ebp-4],1
+0040212F   push        0
+00402131   mov         ecx,dword ptr [ebp-10h]
+00402134   add         ecx,0Ch
+00402137   call        @ILT+285(CBed::CBed) (00401122)
+0040213C   mov         eax,dword ptr [ebp-10h]
+0040213F   mov         dword ptr [eax],offset CSofaBed::`vftable' (004260f4)
+00402145   mov         ecx,dword ptr [ebp-10h]
+00402148   mov         dword ptr [ecx+0Ch],offset CSofaBed::`vftable' (004260e8)
+0040214F   mov         edx,dword ptr [ebp-10h]
+00402152   mov         eax,dword ptr [edx+4]
+00402155   mov         ecx,dword ptr [eax+4]
+00402158   mov         edx,dword ptr [ebp-10h]
+0040215B   mov         dword ptr [edx+ecx+4],offset CSofaBed::`vftable' (004260dc)
+72:       {
+73:           m_nHeight = 6;
+00402163   mov         eax,dword ptr [ebp-10h]
+00402166   mov         dword ptr [eax+1Ch],6
+74:       }
+0040216D   mov         dword ptr [ebp-4],0FFFFFFFFh
+00402174   mov         eax,dword ptr [ebp-10h]
+00402177   mov         ecx,dword ptr [ebp-0Ch]
+0040217A   mov         dword ptr fs:[0],ecx
+00402181   pop         edi
+00402182   pop         esi
+00402183   pop         ebx
+00402184   add         esp,54h
+00402187   cmp         ebp,esp
+00402189   call        __chkesp (00402ef0)
+0040218E   mov         esp,ebp
+00402190   pop         ebp
+00402191   ret         4
+
+75:       virtual ~CSofaBed()
+76:       {
+00402A10   push        ebp
+00402A11   mov         ebp,esp
+00402A13   push        0FFh
+00402A15   push        offset __ehhandler$??1CSofaBed@@UAE@XZ (00414dac)
+00402A1A   mov         eax,fs:[00000000]
+00402A20   push        eax
+00402A21   mov         dword ptr fs:[0],esp
+00402A28   sub         esp,48h
+00402A2B   push        ebx
+00402A2C   push        esi
+00402A2D   push        edi
+00402A2E   push        ecx
+00402A2F   lea         edi,[ebp-54h]
+00402A32   mov         ecx,12h
+00402A37   mov         eax,0CCCCCCCCh
+00402A3C   rep stos    dword ptr [edi]
+00402A3E   pop         ecx
+00402A3F   mov         dword ptr [ebp-10h],ecx
+00402A42   mov         eax,dword ptr [ebp-10h]
+00402A45   mov         dword ptr [eax-20h],offset CSofaBed::`vftable' (004260f4)
+00402A4C   mov         ecx,dword ptr [ebp-10h]
+00402A4F   mov         dword ptr [ecx-14h],offset CSofaBed::`vftable' (004260e8)
+00402A56   mov         edx,dword ptr [ebp-10h]
+00402A59   mov         eax,dword ptr [edx-1Ch]
+00402A5C   mov         ecx,dword ptr [eax+4]
+00402A5F   mov         edx,dword ptr [ebp-10h]
+00402A62   mov         dword ptr [edx+ecx-1Ch],offset CSofaBed::`vftable' (004260dc)
+00402A6A   mov         dword ptr [ebp-4],0
+77:           printf("virtual ~CSofaBed\n");
+00402A71   push        offset string "virtual ~CSofaBed\n" (00426230)
+00402A76   call        printf (00403020)
+00402A7B   add         esp,4
+78:       }
+00402A7E   mov         eax,dword ptr [ebp-10h]
+00402A81   sub         eax,20h
+00402A84   test        eax,eax
+00402A86   je          CSofaBed::~CSofaBed+83h (00402a93)
+00402A88   mov         ecx,dword ptr [ebp-10h]
+00402A8B   sub         ecx,14h
+00402A8E   mov         dword ptr [ebp-14h],ecx
+00402A91   jmp         CSofaBed::~CSofaBed+8Ah (00402a9a)
+00402A93   mov         dword ptr [ebp-14h],0
+00402A9A   mov         ecx,dword ptr [ebp-14h]
+00402A9D   add         ecx,10h
+00402AA0   call        @ILT+205(CBed::~CBed) (004010d2)
+00402AA5   mov         dword ptr [ebp-4],0FFFFFFFFh
+00402AAC   mov         ecx,dword ptr [ebp-10h]
+00402AAF   sub         ecx,14h
+00402AB2   call        @ILT+280(CSofa::~CSofa) (0040111d)
+00402AB7   mov         ecx,dword ptr [ebp-0Ch]
+00402ABA   mov         dword ptr fs:[0],ecx
+00402AC1   pop         edi
+00402AC2   pop         esi
+00402AC3   pop         ebx
+00402AC4   add         esp,54h
+00402AC7   cmp         ebp,esp
+00402AC9   call        __chkesp (00402ef0)
+00402ACE   mov         esp,ebp
+00402AD0   pop         ebp
+00402AD1   ret
+
+79:       virtual int SitDown()
+80:       {
+00402860   push        ebp
+00402861   mov         ebp,esp
+00402863   sub         esp,44h
+00402866   push        ebx
+00402867   push        esi
+00402868   push        edi
+00402869   push        ecx
+0040286A   lea         edi,[ebp-44h]
+0040286D   mov         ecx,11h
+00402872   mov         eax,0CCCCCCCCh
+00402877   rep stos    dword ptr [edi]
+00402879   pop         ecx
+0040287A   mov         dword ptr [ebp-4],ecx
+81:           return printf("Sit Down on the sofa bed\n");
+0040287D   push        offset string "Sit Down on the sofa bed\n" (004261ec)
+00402882   call        printf (00403020)
+00402887   add         esp,4
+82:       }
+0040288A   pop         edi
+0040288B   pop         esi
+0040288C   pop         ebx
+0040288D   add         esp,44h
+00402890   cmp         ebp,esp
+00402892   call        __chkesp (00402ef0)
+00402897   mov         esp,ebp
+00402899   pop         ebp
+0040289A   ret
+
+83:       virtual int Sleep()
+84:       {
+004028B0   push        ebp
+004028B1   mov         ebp,esp
+004028B3   sub         esp,44h
+004028B6   push        ebx
+004028B7   push        esi
+004028B8   push        edi
+004028B9   push        ecx
+004028BA   lea         edi,[ebp-44h]
+004028BD   mov         ecx,11h
+004028C2   mov         eax,0CCCCCCCCh
+004028C7   rep stos    dword ptr [edi]
+004028C9   pop         ecx
+004028CA   mov         dword ptr [ebp-4],ecx
+85:           return printf("go to sleep on the sofa bed\n");
+004028CD   push        offset string "go to sleep on the sofa bed\n" (0042620c)
+004028D2   call        printf (00403020)
+004028D7   add         esp,4
+86:       }
+004028DA   pop         edi
+004028DB   pop         esi
+004028DC   pop         ebx
+004028DD   add         esp,44h
+004028E0   cmp         ebp,esp
+004028E2   call        __chkesp (00402ef0)
+004028E7   mov         esp,ebp
+004028E9   pop         ebp
+004028EA   ret
+
+87:       virtual int GetHeight()
+88:       {
+00402900   push        ebp
+00402901   mov         ebp,esp
+00402903   sub         esp,44h
+00402906   push        ebx
+00402907   push        esi
+00402908   push        edi
+00402909   push        ecx
+0040290A   lea         edi,[ebp-44h]
+0040290D   mov         ecx,11h
+00402912   mov         eax,0CCCCCCCCh
+00402917   rep stos    dword ptr [edi]
+00402919   pop         ecx
+0040291A   mov         dword ptr [ebp-4],ecx
+89:           return m_nHeight;
+0040291D   mov         eax,dword ptr [ebp-4]
+00402920   mov         eax,dword ptr [eax+1Ch]
+90:       }
+00402923   pop         edi
+00402924   pop         esi
+00402925   pop         ebx
+00402926   mov         esp,ebp
+00402928   pop         ebp
+00402929   ret
+
+91:   protected:
+92:       int m_nHeight;
+93:   };
+94:
+95:   int main()
+96:   {
+004105F0   push        ebp
+004105F1   mov         ebp,esp
+004105F3   sub         esp,80h
+004105F9   push        ebx
+004105FA   push        esi
+004105FB   push        edi
+004105FC   lea         edi,[ebp-80h]
+004105FF   mov         ecx,20h
+00410604   mov         eax,0CCCCCCCCh
+00410609   rep stos    dword ptr [edi]
+97:       CSofaBed SofaBed;
+0041060B   push        1		构造标志,构造祖父类
+0041060D   lea         ecx,[ebp-28h]
+00410610   call        @ILT+25(CSofaBed::CSofaBed) (0040101e)
+98:       CFurniture * pFurniture = &SofaBed;
+00410615   lea         eax,[ebp-28h]		 EAX = 0018FF20
+00410618   test        eax,eax
+0041061A   jne         main+35h (00410625)
+0041061C   mov         dword ptr [ebp-3Ch],0
+00410623   jmp         main+42h (00410632)
+00410625   mov         ecx,dword ptr [ebp-24h]	 ECX = 00426110
+00410628   mov         edx,dword ptr [ecx+4]	[ecx+4] = 2
+0041062B   lea         eax,[ebp+edx-24h]
+0041062F   mov         dword ptr [ebp-3Ch],eax
+00410632   mov         ecx,dword ptr [ebp-3Ch]
+00410635   mov         dword ptr [ebp-2Ch],ecx
+99:       CSofa * pSofa = &SofaBed;
+00410638   lea         edx,[ebp-28h]
+0041063B   mov         dword ptr [ebp-30h],edx
+100:      CBed * pBed = &SofaBed;
+0041063E   lea         eax,[ebp-28h]
+00410641   test        eax,eax
+00410643   je          main+5Dh (0041064d)
+00410645   lea         ecx,[ebp-1Ch]			ECX = 0018FF2C 
+00410648   mov         dword ptr [ebp-40h],ecx
+0041064B   jmp         main+64h (00410654)
+0041064D   mov         dword ptr [ebp-40h],0
+00410654   mov         edx,dword ptr [ebp-40h]		EDX = 0018FF2C
+00410657   mov         dword ptr [ebp-34h],edx		E8 60 42 00
+101:      return 0;
+0041065A   mov         dword ptr [ebp-38h],0
+00410661   lea         ecx,[ebp-28h]
+00410664   call        @ILT+40(CSofaBed::`vbase destructor') (0040102d)
+00410669   mov         eax,dword ptr [ebp-38h]
+102:  }
+0041066C   pop         edi
+0041066D   pop         esi
+0041066E   pop         ebx
+0041066F   add         esp,80h
+00410675   cmp         ebp,esp
+00410677   call        __chkesp (00402ef0)
+0041067C   mov         esp,ebp
+0041067E   pop         ebp
+0041067F   ret
+
+
+CSofaBed::`vbase destructor':
+004029B0   push        ebp
+004029B1   mov         ebp,esp
+004029B3   sub         esp,44h
+004029B6   push        ebx
+004029B7   push        esi
+004029B8   push        edi
+004029B9   push        ecx
+004029BA   lea         edi,[ebp-44h]
+004029BD   mov         ecx,11h
+004029C2   mov         eax,0CCCCCCCCh
+004029C7   rep stos    dword ptr [edi]
+004029C9   pop         ecx
+004029CA   mov         dword ptr [ebp-4],ecx
+004029CD   mov         ecx,dword ptr [ebp-4]
+004029D0   add         ecx,20h
+004029D3   call        @ILT+220(CSofaBed::~CSofaBed) (004010e1)
+004029D8   mov         ecx,dword ptr [ebp-4]
+004029DB   add         ecx,20h
+004029DE   call        @ILT+175(CFurniture::~CFurniture) (004010b4)
+004029E3   pop         edi
+004029E4   pop         esi
+004029E5   pop         ebx
+004029E6   add         esp,44h
+004029E9   cmp         ebp,esp
+004029EB   call        __chkesp (00402ef0)
+004029F0   mov         esp,ebp
+004029F2   pop         ebp
+004029F3   ret
+
+
+ EAX = 0018FF20
+0018FF20  F4 60 42 00 10 61 42 00 02 00 00  鬬B..aB....
+0018FF2B  00 E8 60 42 00 04 61 42 00 02 00  .鑐B..aB...
+0018FF36  00 00 01 00 00 00 06 00 00 00 DC  ...........
+00410625   mov         ecx,dword ptr [ebp-24h]
+ ECX = 00426110
+00426105  FF FF FF 10 00 00 00 00 00 00 00  ...........
+00426110  FC FF FF FF 1C 00 00 00 00 00 00  ...........
+0042611B  00 EB 10 40 00 F0 10 40 00 00 00  ...@...@...
+00426126  00 00 76 69 72 74 75 61 6C 20 7E  ..virtual ~
+00426131  43 46 75 72 6E 69 74 75 72 65 28  CFurniture(
+0042613C  29 0A 00 00 00 00 00 00 9B 10 40  ).........@
+00426147  00 F0 10 40 00 00 00 00 00 8C 10  ...@.......
+00426152  40 00 41 10 40 00 00 00 00 00 FC  @.A.@......
+0042615D  FF FF FF 08 00 00 00 00 00 00 00  ...........
+00426168  76 69 72 74 75 61 6C 20 7E 43 53  virtual ~CS
+00426173  6F 66 61 28 29 0A 00 00 00 00 00  ofa()......
+0042617E  00 00 53 69 74 20 64 6F 77 6E 20  ..Sit down 
+00426189  61 6E 64 20 72 65 73 74 20 79 6F  and rest yo
+00426194  75 72 20 6C 65 67 73 0A 00 00 00  ur legs....
+0042619F  00 00 00 00 00 0E 11 40 00 F0 10  .......@...
+004261AA  40 00 00 00 00 00 CD 10 40 00 D7  @.......@..
+004261B5  10 40 00 00 00 00 00 FC FF FF FF  .@.........
+004261C0  0C 00 00 00 00 00 00 00 67 6F 20  ........go 
+004261CB  74 6F 20 73 6C 65 65 70 21 0A 00  to sleep!..
+004261D6  00 00 76 69 72 74 75 61 6C 20 7E  ..virtual ~
+004261E1  43 42 65 64 28 29 0A 00 00 00 00  CBed().....
+004261EC  53 69 74 20 44 6F 77 6E 20 6F 6E  Sit Down on
+004261F7  20 74 68 65 20 73 6F 66 61 20 62   the sofa b
+00426202  65 64 0A 00 00 00 00 00 00 00 67  ed........g
+0042620D  6F 20 74 6F 20 73 6C 65 65 70 20  o to sleep 
+00426218  6F 6E 20 74 68 65 20 73 6F 66 61  on the sofa
+00426223  20 62 65 64 0A 00 00 00 00 00 00   bed.......
+0042622E  00 00 76 69 72 74 75 61 6C 20 7E  ..virtual ~
+00426239  43 53 6F 66 61 42 65 64 0A 00 00  CSofaBed...
+00426244  00 00 00 00 69 33 38 36 5C 63 68  ....i386\ch
+0042624F  6B 65 73 70 2E 63 00 00 00 00 00  kesp.c.....
+0042625A  00 00 54 68 65 20 76 61 6C 75 65  ..The value
+00426265  20 6F 66 20 45 53 50 20 77 61 73   of ESP was
+00426270  20 6E 6F 74 20 70 72 6F 70 65 72   not proper
+0042627B  6C 79 20 73 61 76 65 64 20 61 63  ly saved ac
+00426286  72 6F 73 73 20 61 20 66 75 6E 63  ross a func
+00426291  74 69 6F 6E 20 63 61 6C 6C 2E 20  tion call. 
+0042629C  20 54 68 69 73 20 69 73 20 75 73   This is us
+004262A7  75 61 6C 6C 79 20 61 20 72 65 73  ually a res
+004262B2  75 6C 74 20 6F 66 20 63 61 6C 6C  ult of call
+004262BD  69 6E 67 20 61 20 66 75 6E 63 74  ing a funct
+004262C8  69 6F 6E 20 64 65 63 6C 61 72 65  ion declare
+004262D3  64 20 77 69 74 68 20 6F 6E 65 20  d with one 
+004262DE  63 61 6C 6C 69 6E 67 20 63 6F 6E  calling con
+004262E9  76 65 6E 74 69 6F 6E 20 77 69 74  vention wit
+004262F4  68 20 61 20 66 75 6E 63 74 69 6F  h a functio
+004262FF  6E 20 70 6F 69 6E 74 65 72 20 64  n pointer d
+0042630A  65 63 6C 61 72 65 64 20 77 69 74  eclared wit
+00426315  68 20 61 20 64 69 66 66 65 72 65  h a differe
+00426320  6E 74 20 63 61 6C 6C 69 6E 67 20  nt calling 
+0042632B  63 6F 6E 76 65 6E 74 69 6F 6E 2E  convention.
+00426336  20 00 70 72 69 6E 74 66 2E 63 00   .printf.c.
+00426341  00 00 00 66 6F 72 6D 61 74 20 21  ...format !
+0042634C  3D 20 4E 55 4C 4C 00 00 64 62 67  = NULL..dbg
+00426357  64 65 6C 2E 63 70 70 00 00 5F 42  del.cpp.._B
+00426362  4C 4F 43 4B 5F 54 59 50 45 5F 49  LOCK_TYPE_I
+0042636D  53 5F 56 41 4C 49 44 28 70 48 65  S_VALID(pHe
+00426378  61 64 2D 3E 6E 42 6C 6F 63 6B 55  ad->nBlockU
+00426383  73 65 29 00 00 FF FF FF FF 38 32  se)......82
+0042638E  40 00 53 32 40 00 00 00 00 00 FF  @.S2@......
+00426399  FF FF FF D9 38 40 00 E6 38 40 00  ....8@..8@.
+004263A4  00 00 00 00 FF FF FF FF 00 00 00  ...........
+004263AF  00 03 3B 40 00 00 00 00 00 C4 3A  ..;@......:
+004263BA  40 00 D1 3A 40 00 FF FF FF FF 2C  @..:@.....,
+004263C5  3E 40 00 32 3E 40 00 00 00 00 00  >@.2>@.....
+004263D0  FF FF FF FF AE 3E 40 00 BD 3E 40  .....>@..>@
+
+0018FF1C  CC CC CC CC F4 60 42 00 10 61 42  烫烫鬬B..aB		ebp-24h  00426110
+0018FF27  00 02 00 00 00 E8 60 42 00 04 61  .....鑐B..a
+0018FF32  42 00 02 00 00 00 01 00 00 00 06  B..........
+0018FF3D  00 00 00 DC 60 42 00 03 00 00 00  ...躟B.....
+0018FF48  88 FF 18 00 29 32 40 00 01 00 00  ....)2@....
+0018FF53  00 A8 19 52 00 20 1A 52 00 00 00  ...R. .R...
+0018FF5E  00 00 00 00 00 00 00 E0 FD 7E 00  .......帻~.
+0018FF69  00 00 00 00 00 00 00 5C FF 18 00  .......\...
+0018FF74  00 00 00 00 C4 FF 18 00 70 8E 40  ........p嶡
+0018FF7F  00 88 63 42 00 00 00 00 00 94 FF  .坈B.......
+0018FF8A  18 00 CA 33 3E 75 00 E0 FD 7E D4  ...3>u.帻~.
+0018FF95  FF 18 00 D2 9E 4E 77 00 E0 FD 7E  ...覟Nw.帻~
+0018FFA0  0E 75 4A 77 00 00 00 00 00 00 00  .uJw.......
+0018FFAB  00 00 E0 FD 7E 00 00 00 00 00 00  ..帻~......
+0018FFB6  00 00 00 00 00 00 A0 FF 18 00 00  ...........
+0018FFC1  00 00 00 FF FF FF FF CD 1E 52 77  .........Rw
+0018FFCC  FA 4F 1F 00 00 00 00 00 EC FF 18  鶲.........
+0018FFD7  00 A5 9E 4E 77 40 31 40 00 00 E0  .Nw@1@...
+0018FFE2  FD 7E 00 00 00 00 00 00 00 00 00  齸.........
+0018FFED  00 00 00 00 00 00 00 40 31 40 00  .......@1@.
+0018FFF8  00 E0 FD 7E 00 00 00 00 41 63 74  .帻~....Act
+00190003  78 20 00 00 00 01 00 00 00 0C 33  x ........3
+0019000E  00 00 DC 00 00 00 00 00 00 00 20  .......... 
+
+00426109  00 00 00 00 00 00 00 FC FF FF FF  ...........
+00426114  1C 00 00 00 00 00 00 00 EB 10 40  ..........@
+0042611F  00 F0 10 40 00 00 00 00 00 76 69  ...@.....vi
+
+00410625   mov         ecx,dword ptr [ebp-24h]
+00410628   mov         edx,dword ptr [ecx+4]		edx = 1ch  [ecx+4]是取其中内容
+
+0018FF24  10 61 42 00 02 00 00 00 E8 60 42  .aB.....鑐B
+0018FF2F  00 04 61 42 00 02 00 00 00 01 00  ..aB.......
+0018FF3A  00 00 06 00 00 00 DC 60 42 00 03  ......躟B..		祖父类首地址004260dc
+0018FF45  00 00 00 88 FF 18 00 29 32 40 00  .......)2@.
+0018FF50  01 00 00 00 A8 19 52 00 20 1A 52  ......R. .R
+0041062B   lea         eax,[ebp+edx-24h]	 EAX = 0018FF40		是取[ebp+edx-24h]内容所在地址,即是	
+
+??_7CSofaBed@@6BCFurniture@@@:
+004260DC   xor         dl,byte ptr [eax]
+004260DE   inc         eax
+004260DF   add         al,dh
+004260E1   adc         byte ptr [eax],al
+004260E4   add         byte ptr [eax],al
+004260E6   add         byte ptr [eax],al
+						ebp+edx-24h的值
+??_7CSofaBed@@6BCBed@@@:
+004260E8   int         10h		CBed虚函数表地址
+004260EA   inc         eax
+004260EB   add         byte ptr [eax+10h],bh
+004260EE   inc         eax
+004260EF   add         byte ptr [eax],al
+004260F1   add         byte ptr [eax],al
+004260F3   add         byte ptr [eax+edx+10050040h],cl
+004260FA   inc         eax
+004260FB   add         ah,bl
+004260FD   adc         byte ptr [eax],al
+00426100   add         byte ptr [eax],al
+00426102   add         byte ptr [eax],al
+
+??_8CSofaBed@@7BCSofa@@@:	Sofa父类
+00426110   cld
+00426111   ???
+00426112   ???
+00426113   call        fword ptr [eax+eax]
+00426116   add         byte ptr [eax],al
+00426118   add         byte ptr [eax],al
+0042611A   add         byte ptr [eax],al
+
+??_8CSofaBed@@7BCBed@@@:
+00426104   cld
+00426105   ???
+00426106   ???
+00426107   call        dword ptr [eax]
+00426109   add         byte ptr [eax],al
+0042610B   add         byte ptr [eax],al
+0042610D   add         byte ptr [eax],al
+0042610F   add         ah,bh
+00426111   ???
+00426112   ???
+00426113   call        fword ptr [eax+eax]
+00426116   add         byte ptr [eax],al
+00426118   add         byte ptr [eax],al
+0042611A   add         byte ptr [eax],al
+
+0018FF03  CC CC CC CC CC CC CC CC CC 40 FF  烫烫烫烫藹.
+0018FF0E  18 00 CC CC CC CC CC CC CC CC CC  ..烫烫烫烫.
+0018FF19  CC CC CC CC CC CC CC F4 60 42 00  烫烫烫挑`B.
+0018FF24  10 61 42 00 02 00 00 00 E8 60 42  .aB.....鑐B
+0018FF2F  00 04 61 42 00 02 00 00 00 01 00  ..aB.......
+
+00410635   mov         dword ptr [ebp-2Ch],ecx
+
+0018FF19  CC CC CC 40 FF 18 00 F4 60 42 00  烫藹...鬬B.
+0018FF24  10 61 42 00 02 00 00 00 E8 60 42  .aB.....鑐B
+
+??_7CSofaBed@@6BCSofa@@@:		CSofa虚函数基地址
+004260F4   mov         word ptr [eax],ss
+004260F6   inc         eax
+004260F7   add         byte ptr ds:[0DC004010h],al
+004260FD   adc         byte ptr [eax],al
+00426100   add         byte ptr [eax],al
+00426102   add         byte ptr [eax],al
+
+0041063B   mov         dword ptr [ebp-30h],edx
+100:      CBed * pBed = &SofaBed;
+0041063E   lea         eax,[ebp-28h]
+0018FF0E  18 00 CC CC CC CC CC CC CC CC 20  ..烫烫烫烫 
+0018FF19  FF 18 00 40 FF 18 00 F4 60 42 00  ...@...鬬B.
+0018FF24  10 61 42 00 02 00 00 00 E8 60 42  .aB.....鑐B
+
+00410645   lea         ecx,[ebp-1Ch]		 ECX = 0018FF2C 
+ebp-24h ebp-1ch  8byte
+0041064D   mov         dword ptr [ebp-40h],0
+00410654   mov         edx,dword ptr [ebp-40h]	EDX = 0018FF2C
+
+
+
+101:      pFurniture->m_nPrice = 88;
+0041065A   mov         eax,dword ptr [ebp-2Ch]
+0041065D   mov         dword ptr [eax+4],58h
+102:      pSofa->m_nColor = 8;
+00410664   mov         ecx,dword ptr [ebp-30h]
+00410667   mov         dword ptr [ecx+8],8
+103:      pSofa->m_nPrice = 90;
+0041066E   mov         edx,dword ptr [ebp-30h]
+00410671   mov         eax,dword ptr [edx+4]
+00410674   mov         ecx,dword ptr [eax+4]
+00410677   mov         edx,dword ptr [ebp-30h]
+0041067A   mov         dword ptr [edx+ecx+8],5Ah
+104:      pBed->m_nLength = 13;
+00410682   mov         eax,dword ptr [ebp-34h]
+00410685   mov         dword ptr [eax+8],0Dh
+105:      pBed->m_nWidth = 66;
+0041068C   mov         ecx,dword ptr [ebp-34h]
+0041068F   mov         dword ptr [ecx+0Ch],42h
+106:      SofaBed.m_nHeight = 45;
+00410696   mov         dword ptr [ebp-0Ch],2Dh
+107:      return 0;
+0041069D   mov         dword ptr [ebp-38h],0
+004106A4   lea         ecx,[ebp-28h]
+004106A7   call        @ILT+40(CSofaBed::`vbase destructor') (0040102d)
+004106AC   mov         eax,dword ptr [ebp-38h]
+108:  }
+
+ EBP = 0018FF48		ebp-2ch	0x18ff1c
+ EAX = 0018FF40 
+0041065D   mov         dword ptr [eax+4],58h
+0018FF1C  40 FF 18 00 F4 60 42 00 10 61 42  @...鬬B..aB
+0018FF27  00 02 00 00 00 E8 60 42 00 04 61  .....鑐B..a
+0018FF32  42 00 02 00 00 00 01 00 00 00 06  B..........
+0018FF3D  00 00 00 DC 60 42 00 58 00 00 00  ...躟B.X...	0x58
+0018FF48  88 FF 18 00 29 32 40 00 01 00 00  ....)2@....
+0018FF53  00 B8 19 87 00 30 1A 87 00 00 00  .....0.....
+
+00410664   mov         ecx,dword ptr [ebp-30h]
+ECX = 0018FF20
+00410667   mov         dword ptr [ecx+8],8
+0018FF11  CC CC CC 2C FF 18 00 20 FF 18 00  烫.,... ...
+0018FF1C  40 FF 18 00 F4 60 42 00 10 61 42  @...鬬B..aB
+0018FF27  00 08 00 00 00 E8 60 42 00 04 61  .....鑐B..a	0x08
+0018FF32  42 00 02 00 00 00 01 00 00 00 06  B..........
+0018FF3D  00 00 00 DC 60 42 00 58 00 00 00  ...躟B.X...
+0018FF48  88 FF 18 00 29 32 40 00 01 00 00  ....)2@....
+0018FF53  00 B8 19 87 00 30 1A 87 00 00 00  .....0.....
+
+0041066E   mov         edx,dword ptr [ebp-30h]
+EDX = 0018FF20
+00410671   mov         eax,dword ptr [edx+4]
+EAX = 00426110
+00410674   mov         ecx,dword ptr [eax+4]	 ECX = 0000001C 
+
+0041067A   mov         dword ptr [edx+ecx+8],5Ah
+0018FF11  CC CC CC 2C FF 18 00 20 FF 18 00  烫.,... ...
+0018FF1C  40 FF 18 00 F4 60 42 00 10 61 42  @...鬬B..aB
+0018FF27  00 08 00 00 00 E8 60 42 00 04 61  .....鑐B..a
+0018FF32  42 00 02 00 00 00 01 00 00 00 06  B..........
+0018FF3D  00 00 00 DC 60 42 00 5A 00 00 00  ...躟B.Z...		0x5a 90
+0018FF48  88 FF 18 00 29 32 40 00 01 00 00  ....)2@....
+0018FF53  00 B8 19 87 00 30 1A 87 00 00 00  .....0.....
+ EAX = 00426110 EBX = 7EFDE000
+ ECX = 0000001C EDX = 0018FF20
+ ESI = 00000000 EDI = 0018FF48
+ EIP = 00410682 ESP = 0018FEBC
+ EBP = 0018FF48 EFL = 00000202
+
+00410682   mov         eax,dword ptr [ebp-34h]
+00410685   mov         dword ptr [eax+8],0Dh
+
+0018FF1C  40 FF 18 00 F4 60 42 00 10 61 42  @...鬬B..aB
+0018FF27  00 08 00 00 00 E8 60 42 00 04 61  .....鑐B..a
+0018FF32  42 00 0D 00 00 00 01 00 00 00 06  B..........
+0018FF3D  00 00 00 DC 60 42 00 5A 00 00 00  ...躟B.Z...
+0018FF48  88 FF 18 00 29 32 40 00 01 00 00  ....)2@....
+0018FF53  00 B8 19 87 00 30 1A 87 00 00 00  .....0.....
+0018FF5E  00 00 00 00 00 00 00 E0 FD 7E 00  .......帻~.
+
+104:      pBed->m_nLength = 13;
+00410682   mov         eax,dword ptr [ebp-34h]
+00410685   mov         dword ptr [eax+8],0Dh
+105:      pBed->m_nWidth = 66;
+0041068C   mov         ecx,dword ptr [ebp-34h]
+0041068F   mov         dword ptr [ecx+0Ch],42h
+106:      SofaBed.m_nHeight = 45;
+00410696   mov         dword ptr [ebp-0Ch],2Dh
+107:      return 0;
+0041069D   mov         dword ptr [ebp-38h],0
+
+ EAX = 0018FF2C EBX = 7EFDE000
+ ECX = 0018FF2C EDX = 0018FF20
+ ESI = 00000000 EDI = 0018FF48
+ EIP = 004106A4 ESP = 0018FEBC
+ EBP = 0018FF48 EFL = 00000202
+
+0018FF06  CC CC 2C FF 18 00 40 FF 18 00 00  烫,...@....
+0018FF11  00 00 00 2C FF 18 00 20 FF 18 00  ...,... ...
+0018FF1C  40 FF 18 00 F4 60 42 00 10 61 42  @...鬬B..aB
+0018FF27  00 08 00 00 00 E8 60 42 00 04 61  .....鑐B..a
+0018FF32  42 00 0D 00 00 00 42 00 00 00 2D  B.....B...-	m_nHeight = 45;
+0018FF3D  00 00 00 DC 60 42 00 5A 00 00 00  ...躟B.Z...
+0018FF48  88 FF 18 00 29 32 40 00 01 00 00  ....)2@....
+
+0018FF06  CC CC 
+		2C FF 18 00 
+		40 FF 18 00 
+		00 00 00 00 烫,...@....
+		2C FF 18 00 
+		20 FF 18 00  ...,... ...	
+0018FF1C  	40 FF 18 00 
+		F4 60 42 00 	this指针 ebp-28h	ebp xx480
+		10 61 42 00 @...鬬B..aB 	
+		08 00 00 00 		pSofa->m_nColor = 8;
+		E8 60 42 00	
+	 	04 61 42 00   .....鑐B..a	
+		0D 00 00 00 		pBed->m_nLength = 13;
+		42 00 00 00 		pBed->m_nWidth = 66;
+		2D 00 00 00  B.....B...-	SofaBed.m_nHeight = 45;	
+		DC 60 42 00 		
+		5A 00 00 00  ...躟B.Z...	pSofa->m_nPrice = 90;覆盖88
+0018FF48  88 FF 18 00 29 32 40 00 01 00 00  ....)2@....
+
+class CSofaBed : public CSofa , public CBed
+{
+public:
+	class CFurniture
+	{
+	public:
+		int m_nPrice;
+	};
+	class CSofa : virtual public CFurniture
+	{
+		public:
+			int m_nColor;
+	};
+	class CBed : virtual public CFurniture
+	{
+	public:
+		int m_nLength;
+		int m_nWidth;
+	};
+public:
+	int m_nHeight;
+};
+
+		F4 60 42 00 	this指针 ebp-28h	ebp xx48h	第一个基类以定义的虚函数	
+		10 61 42 00 @...鬬B..aB 	CSofa数据区域
+		08 00 00 00 		pSofa->m_nColor = 8;
+		E8 60 42 00			第二个父类以定义的虚函数
+	 	04 61 42 00   .....鑐B..a	第二个父类区域
+		0D 00 00 00 		pBed->m_nLength = 13;
+		42 00 00 00 		pBed->m_nWidth = 66;
+		2D 00 00 00  B.....B...-	SofaBed.m_nHeight = 45;	本类成员变量区域
+		DC 60 42 00 			祖父类数据区域
+		5A 00 00 00  ...躟B.Z...	pSofa->m_nPrice = 90;覆盖88
+
+004260E4  00000000  004010CD  00401078  00000000  
+004260F4  0040108C  00401005  004010DC  00000000  所有虚函数地址,以0结束。
+00426104  FFFFFFFC  00000010  00000000  FFFFFFFC  
+00426114  0000001C  00000000  004010EB  004010F0  
+00426124  00000000  74726976  206C6175  7546437E
+
+00410615   lea         eax,[ebp-28h]
+@ILT+135(?GeyColor@CSofa@@UAEHXZ):
+0040108C   jmp         CSofa::GeyColor (00402460)
+
+	   虚函数表地址
+0018FF20  004260F4  00426110  00000002  004260E8  
+0018FF30  00426104  00000002  00000001  00000006  
+0018FF40  004260DC  00000003  0018FF88  00403229  
+0018FF50  00000001  001F19B8  001F1A30  00000000  
+
+
+
+@ILT+200(?GetArea@CBed@@UAEHXZ):
+004010CD   jmp         CBed::GetArea (00402690)
+
+004260C4  206C6175  6C696863  00000A64  00000000  
+004260D4  00401118  00403130  00401032  004010F0  
+004260E4  00000000  004010CD  00401078  00000000  
+004260F4  0040108C  00401005  004010DC  00000000  
+00426104  FFFFFFFC  00000010  00000000  FFFFFFFC  
+00426114  0000001C  00000000  004010EB  004010F0  
+00426124  00000000  74726976  206C6175  7546437E
+
+FFFFFFFC  00000010  00000000表示没有。空表。
+
+虚表地址都一样,static存储结构。
+同类对象共享一个虚表。
+
+004020F2   mov         dword ptr [eax+4],offset CSofaBed::`vbtable' (00426110)
+004020F9   mov         ecx,dword ptr [ebp-10h]
+
+0018FF20  CCCCCCCC  00426110  CCCCCCCC  CCCCCCCC  
+0018FF30  CCCCCCCC  CCCCCCCC  CCCCCCCC  CCCCCCCC  
+0018FF40  CCCCCCCC  CCCCCCCC  0018FF88  00403229  
+0018FF50  00000001  002819B8  00281A30  00000000
+0018FF60  00000000  7EFDE000  00000000  00000000
+
+00426100  0040114A  FFFFFFFC  00000010  00000000  
+00426110  FFFFFFFC  0000001C  00000000  004010EB  
+00426120  004010F0  00000000  74726976  206C6175
+
+0018FF20  CCCCCCCC  00426110  CCCCCCCC  CCCCCCCC  
+0018FF30  00426104  CCCCCCCC  CCCCCCCC  CCCCCCCC  
+0018FF40  CCCCCCCC  CCCCCCCC  0018FF88  00403229  
+0018FF50  00000001  002819B8  00281A30  00000000
+004020FC   mov         dword ptr [ecx+10h],offset CSofaBed::`vbtable' (00426104)
+004260F4  0040108C  00401005  004010DC  0040114A  
+00426104  FFFFFFFC  00000010  00000000  FFFFFFFC  
+00426114  0000001C  00000000  004010EB  004010F0
+
+5:        CFurniture()
+004021D0   push        ebp
+004021D1   mov         ebp,esp
+004021D3   sub         esp,44h
+004021D6   push        ebx
+004021D7   push        esi
+004021D8   push        edi
+004021D9   push        ecx
+004021DA   lea         edi,[ebp-44h]
+004021DD   mov         ecx,11h
+004021E2   mov         eax,0CCCCCCCCh
+004021E7   rep stos    dword ptr [edi]
+004021E9   pop         ecx
+004021EA   mov         dword ptr [ebp-4],ecx
+004021ED   mov         eax,dword ptr [ebp-4]
+004021F0   mov         dword ptr [eax],offset CFurniture::`vftable' (0042611c)
+
+	0018FF40
+0018FF20  CCCCCCCC  00426110  CCCCCCCC  CCCCCCCC  
+0018FF30  00426104  CCCCCCCC  CCCCCCCC  CCCCCCCC  
+0018FF40  0042611C  CCCCCCCC  0018FF88  00403229
+
+0042611C  004010EB  004010F0  00000000  74726976  
+0042612C  206C6175  7546437E  74696E72  28657275
+
+00402378   mov         edx,dword ptr [ebp-4]
+0040237B   mov         dword ptr [edx],offset CSofa::`vftable' (00426150)
+
+ EAX = CCCCCCCC EBX = 7EFDE000
+ ECX = 0018FF20 EDX = 0018FF20
+ ESI = 00000000 EDI = 0018FE44
+ EIP = 0040237B ESP = 0018FDF0
+ EBP = 0018FE44 EFL = 00000246
+0018FF20  00426150  00426110  CCCCCCCC  CCCCCCCC  
+0018FF30  00426104  CCCCCCCC  CCCCCCCC  CCCCCCCC  
+0018FF40  0042611C  00000000  0018FF88  00403229  
+0018FF50  00000001  002819B8  00281A30  00000000
+
+0040238A   mov         eax,dword ptr [ebp-4]
+0040238D   mov         dword ptr [eax+edx+4],offset CSofa::`vftable' (00426144)
+
+0018FF20  00426150  00426110  CCCCCCCC  CCCCCCCC  
+0018FF30  00426104  CCCCCCCC  CCCCCCCC  CCCCCCCC  
+0018FF40  00426144  00000000  0018FF88  00403229  
+0018FF50  00000001  002819B8  00281A30  00000000
+
+00402608   mov         edx,dword ptr [ebp-4]
+0040260B   mov         dword ptr [edx],offset CBed::`vftable' (004261b0)
+ EAX = CCCCCCCC EBX = 7EFDE000
+ ECX = 0018FF2C EDX = 0018FF2C
+ ESI = 00000000 EDI = 0018FE44
+ EIP = 00402611 ESP = 0018FDF0
+ EBP = 0018FE44 EFL = 00000246
+0018FF20  00426150  00426110  00000002  004261B0  
+0018FF30  00426104  CCCCCCCC  CCCCCCCC  CCCCCCCC  
+0018FF40  00426144  00000001  0018FF88  00403229  
+0018FF50  00000001  002819B8  00281A30  00000000
+
+00402617   mov         edx,dword ptr [ecx+4]
+0040261A   mov         eax,dword ptr [ebp-4]
+0040261D   mov         dword ptr [eax+edx+4],offset CBed::`vftable' (004261a4)
+
+0018FF20  00426150  00426110  00000002  004261B0  
+0018FF30  00426104  CCCCCCCC  CCCCCCCC  CCCCCCCC  
+0018FF40  004261A4  00000001  0018FF88  00403229  
+0018FF50  00000001  002819B8  00281A30  00000000
+
+0040213C   mov         eax,dword ptr [ebp-10h]
+0040213F   mov         dword ptr [eax],offset CSofaBed::`vftable' (004260f4)
+
+0018FF20  004260F4  00426110  00000002  004261B0  
+0018FF30  00426104  00000002  00000001  CCCCCCCC  
+0018FF40  004261A4  00000003  0018FF88  00403229  
+0018FF50  00000001  002819B8  00281A30  00000000
+
+00402145   mov         ecx,dword ptr [ebp-10h]
+00402148   mov         dword ptr [ecx+0Ch],offset CSofaBed::`vftable' (004260e8)
+
+0018FF20  004260F4  00426110  00000002  004260E8  
+0018FF30  00426104  00000002  00000001  CCCCCCCC  
+0018FF40  004261A4  00000003  0018FF88  00403229  
+0018FF50  00000001  002819B8  00281A30  00000000
+
+00402155   mov         ecx,dword ptr [eax+4]
+00402158   mov         edx,dword ptr [ebp-10h]
+0040215B   mov         dword ptr [edx+ecx+4],offset CSofaBed::`vftable' (004260dc)
+
+0018FF20  004260F4  00426110  00000002  004260E8  
+0018FF30  00426104  00000002  00000001  CCCCCCCC  
+0018FF40  004260DC  00000003  0018FF88  00403229  
+0018FF50  00000001  002819B8  00281A30  00000000
+
+00426084  00000000  0040100F  0040105F  004010C8  
+00426094  00000000  656D4143  61636972  0000006E  
+004260A4  00401091  0040105F  00401037  00000000  
+004260B4  72654743  006E616D  00000000  74726976  
+004260C4  206C6175  6C696863  00000A64  00000000  
+004260D4  00401118  00403130  00401032  004010F0	祖父类  
+004260E4  00000000  004010CD  00401078  00000000  	~CBed
+004260F4  0040108C  00401005  004010DC  0040114A  	~CSofa
+00426104  FFFFFFFC  00000010  00000000  FFFFFFFC  	CBed , CSofa
+00426114  0000001C  00000000  004010EB  004010F0  
+00426124  00000000  74726976  206C6175  7546437E  
+00426134  74696E72  28657275  00000A29  00000000  
+00426144  0040109B  004010F0  00000000  0040108C  
+00426154  00401041  00000000  FFFFFFFC  00000008  
+00426164  00000000  74726976  206C6175  6F53437E  
+00426174  29286166  0000000A  00000000  20746953  
+00426184  6E776F64  646E6120  73657220  6F792074  
+00426194  6C207275  0A736765  00000000  00000000  
+004261A4  0040110E  004010F0  00000000  004010CD  
+004261B4  004010D7  00000000  FFFFFFFC  0000000C  
+004261C4  00000000  74206F67  6C73206F  21706565  
+004261D4  0000000A  74726976  206C6175  6542437E  
+004261E4  0A292864  00000000  20746953  6E776F44  
+004261F4  206E6F20  20656874  61666F73  64656220  
+00426204  0000000A  00000000  74206F67  6C73206F  
+00426214  20706565  74206E6F  73206568  2061666F
+
+F4 60 42 00 	this指针 ebp-28h	ebp xx48h	第一个基类未定义的虚函数	
+		10 61 42 00 @...鬬B..aB 	CSofa数据区域
+		08 00 00 00 		pSofa->m_nColor = 8;
+		E8 60 42 00			第二个父类未定义的虚函数
+	 	04 61 42 00   .....鑐B..a	第二个父类区域
+		0D 00 00 00 		pBed->m_nLength = 13;
+		42 00 00 00 		pBed->m_nWidth = 66;
+		2D 00 00 00  B.....B...-	SofaBed.m_nHeight = 45;	本类成员变量区域
+		DC 60 42 00 			祖父类数据区域
+		5A 00 00 00  ...躟B.Z...	pSofa->m_nPrice = 90;覆盖88
+
+0018FF20  004260F4  00426110  00000002  004260E8  
+0018FF30  00426104  00000002  00000001  00000006  
+0018FF40  004260DC  00000003  0018FF88  00403229  
+0018FF50  00000001  002819B8  00281A30  00000000
+
+00401005	@ILT+0(?SitDown@CSofaBed@@UAEHXZ):
+00401005   jmp         CSofaBed::SitDown (00402860)
+
+0040114A   jmp         CSofaBed::Show (00402940)
+
+@ILT+0(?SitDown@CSofaBed@@UAEHXZ):
+00401005   jmp         CSofaBed::SitDown (00402860)
+@ILT+5(??_ECGerman@@UAEPAXI@Z):
+0040100A   jmp         CGerman::`scalar deleting destructor' (00401e80)
+@ILT+10(??_ECAmerican@@UAEPAXI@Z):
+0040100F   jmp         CAmerican::`scalar deleting destructor' (00401c90)
+@ILT+15(?SetNumber@CBase@@QAEXH@Z):
+00401014   jmp         CBase::SetNumber (004013c0)
+@ILT+20(?GetClassName@CChinese@@UAEPADXZ):
+00401019   jmp         CChinese::GetClassName (00401a60)
+@ILT+25(??0CSofaBed@@QAE@XZ):
+0040101E   jmp         CSofaBed::CSofaBed (004020b0)
+@ILT+30(??0CVirtualBase@@QAE@XZ):
+00401023   jmp         CVirtualBase::CVirtualBase (00402010)
+@ILT+35(??1CBase@@QAE@XZ):
+00401028   jmp         CBase::~CBase (00401530)
+@ILT+40(??_DCSofaBed@@QAEXXZ):
+0040102D   jmp         CSofaBed::`vbase destructor' (00402a10)
+@ILT+45(??_GCSofaBed@@UAEPAXI@Z):
+00401032   jmp         CSofaBed::`scalar deleting destructor' (004029b0)
+@ILT+50(?GetClassName@CGerman@@UAEPADXZ):
+00401037   jmp         CGerman::GetClassName (00401e40)
+@ILT+55(?ShowNumber@CDerive@@QAEXH@Z):
+0040103C   jmp         CDerive::ShowNumber (00401330)
+@ILT+60(?SitDown@CSofa@@UAEHXZ):
+00401041   jmp         CSofa::SitDown (004024a0)
+@ILT+65(??_DCSofa@@QAEXXZ):
+00401046   jmp         CSofa::`vbase destructor' (00402560)
+@ILT+70(??0CGerman@@QAE@XZ):
+0040104B   jmp         CGerman::CGerman (00401d00)
+@ILT+75(??0CAmerican@@QAE@XZ):
+00401050   jmp         CAmerican::CAmerican (00401b10)
+@ILT+80(??0CChinese@@QAE@XZ):
+00401055   jmp         CChinese::CChinese (00401750)
+@ILT+85(??_DCBed@@QAEXXZ):
+0040105A   jmp         CBed::`vbase destructor' (00402790)
+@ILT+90(?ShowSpeak@CPerson@@UAEXXZ):
+0040105F   jmp         CPerson::ShowSpeak (004018a0)
+@ILT+95(??_GCPerson@@UAEPAXI@Z):
+00401064   jmp         CPerson::`scalar deleting destructor' (00401950)
+@ILT+100(??1CPerson@@UAE@XZ):
+00401069   jmp         CPerson::~CPerson (00401850)
+@ILT+105(?GetNumber@CBase@@QAEHXZ):
+0040106E   jmp         CBase::GetNumber (00401400)
+@ILT+110(??0CDerive@@QAE@XZ):
+00401073   jmp         CDerive::CDerive (00401440)
+@ILT+115(?Sleep@CSofaBed@@UAEHXZ):
+00401078   jmp         CSofaBed::Sleep (004028b0)
+@ILT+120(??0CFurniture@@QAE@XZ):
+0040107D   jmp         CFurniture::CFurniture (004021d0)
+@ILT+125(?main4@@YAHXZ):
+00401082   jmp         main4 (00401690)
+@ILT+130(??1CGerman@@UAE@XZ):
+00401087   jmp         CGerman::~CGerman (00401da0)
+@ILT+135(?GeyColor@CSofa@@UAEHXZ):
+0040108C   jmp         CSofa::GeyColor (00402460)
+@ILT+140(??_ECGerman@@UAEPAXI@Z):
+00401091   jmp         CGerman::`scalar deleting destructor' (00401e80)
+@ILT+145(??1CDerive@@QAE@XZ):
+00401096   jmp         CDerive::~CDerive (004014e0)
+@ILT+150(??_ECSofa@@UAEPAXI@Z):
+0040109B   jmp         CSofa::`scalar deleting destructor' (004024f0)
+@ILT+155(??0CPerson@@QAE@XZ):
+004010A0   jmp         CPerson::CPerson (004017f0)
+@ILT+160(??_GCChinese@@UAEPAXI@Z):
+004010A5   jmp         CChinese::`scalar deleting destructor' (00401aa0)
+@ILT+165(??1CAmerican@@UAE@XZ):
+004010AA   jmp         CAmerican::~CAmerican (00401bb0)
+@ILT+170(?main2@@YAHXZ):
+004010AF   jmp         main2 (00401600)
+@ILT+175(??1CFurniture@@UAE@XZ):
+004010B4   jmp         CFurniture::~CFurniture (00402220)
+@ILT+180(?GetClassName@CPerson@@UAEPADXZ):
+004010B9   jmp         CPerson::GetClassName (00401910)
+@ILT+185(??1CChinese@@UAE@XZ):
+004010BE   jmp         CChinese::~CChinese (004019c0)
+@ILT+190(??_ECBed@@UAEPAXI@Z):
+004010C3   jmp         CBed::`scalar deleting destructor' (00402720)
+@ILT+195(?GetClassName@CAmerican@@UAEPADXZ):
+004010C8   jmp         CAmerican::GetClassName (00401c50)
+@ILT+200(?GetArea@CBed@@UAEHXZ):
+004010CD   jmp         CBed::GetArea (00402690)
+@ILT+205(??1CBed@@UAE@XZ):
+004010D2   jmp         CBed::~CBed (004027f0)
+@ILT+210(?Sleep@CBed@@UAEHXZ):
+004010D7   jmp         CBed::Sleep (004026d0)
+@ILT+215(?GetHeight@CSofaBed@@UAEHXZ):
+004010DC   jmp         CSofaBed::GetHeight (00402900)
+@ILT+220(??1CSofaBed@@UAE@XZ):
+004010E1   jmp         CSofaBed::~CSofaBed (004106d0)
+@ILT+225(_main):
+004010E6   jmp         main (004105f0)
+@ILT+230(??_GCFurniture@@UAEPAXI@Z):
+004010EB   jmp         CFurniture::`scalar deleting destructor' (004022c0)
+@ILT+235(?GetPrice@CFurniture@@UAEHXZ):
+004010F0   jmp         CFurniture::GetPrice (00402280)
+@ILT+240(??0CBase@@QAE@XZ):
+004010F5   jmp         CBase::CBase (00401490)
+@ILT+245(??0CSofa@@QAE@XZ):
+004010FA   jmp         CSofa::CSofa (00402330)
+@ILT+250(?main6@@YAHXZ):
+004010FF   jmp         main6 (00401ef0)
+@ILT+255(?main3@@YAHXZ):
+00401104   jmp         main3 (00401580)
+@ILT+260(??_ECSofa@@UAEPAXI@Z):
+00401109   jmp         CSofa::`scalar deleting destructor' (004024f0)
+@ILT+265(??_ECBed@@UAEPAXI@Z):
+0040110E   jmp         CBed::`scalar deleting destructor' (00402720)
+@ILT+270(?main1@@YAHHQAPAD@Z):
+00401113   jmp         main1 (00401290)
+@ILT+275(?show@CVirtualChild@@UAEXXZ):
+00401118   jmp         CVirtualChild::show (00401f60)
+@ILT+280(??1CSofa@@UAE@XZ):
+0040111D   jmp         CSofa::~CSofa (004023f0)
+@ILT+285(??0CBed@@QAE@XZ):
+00401122   jmp         CBed::CBed (004025c0)
+@ILT+290(??_ECAmerican@@UAEPAXI@Z):
+00401127   jmp         CAmerican::`scalar deleting destructor' (00401c90)
+@ILT+295(?speak@@YAXPAVCPerson@@@Z):
+0040112C   jmp         speak (00401640)
+@ILT+300(??_GCFurniture@@UAEPAXI@Z):
+00401131   jmp         CFurniture::`scalar deleting destructor' (004022c0)
+@ILT+305(??_GCPerson@@UAEPAXI@Z):
+00401136   jmp         CPerson::`scalar deleting destructor' (00401950)
+@ILT+310(??_GCSofaBed@@UAEPAXI@Z):
+0040113B   jmp         CSofaBed::`scalar deleting destructor' (004029b0)
+@ILT+315(??0CVirtualChild@@QAE@XZ):
+00401140   jmp         CVirtualChild::CVirtualChild (00401fb0)
+@ILT+320(??_GCChinese@@UAEPAXI@Z):
+00401145   jmp         CChinese::`scalar deleting destructor' (00401aa0)
+0040114A   jmp         CSofaBed::Show (00402940)
+
+@ILT+135(?GeyColor@CSofa@@UAEHXZ):
+0040108C   jmp         CSofa::GeyColor (00402460)
+
+@ILT+215(?GetHeight@CSofaBed@@UAEHXZ):
+004010DC   jmp         CSofaBed::GetHeight (00402900)
+
+0018FF0C  CCCCCCCC  CCCCCCCC  CCCCCCCC  
+0018FF18  00426110  CCCCCCCC  CCCCCCCC  00426110 00426104Sofa类虚表
+0018FF24  00426104  CCCCCCCC  CCCCCCCC  
+0018FF30  CCCCCCCC  0042611C  00000000  0042611c祖父类虚表
+0018FF3C  0018FF78  00414D69  FFFFFFFF  
+0018FF48  0018FF88  00403229  00000001
+
+0018FF0C  CCCCCCCC  CCCCCCCC  00426150  00426150
+0018FF18  00426110  CCCCCCCC  CCCCCCCC  
+0018FF24  00426104  CCCCCCCC  CCCCCCCC  
+0018FF30  CCCCCCCC  00426144  00000000  00426144 CSofa
+0018FF3C  0018FF78  00414D69  FFFFFFFF  
+0018FF48  0018FF88  00403229  00000001
+
+0018FF0C  CCCCCCCC  CCCCCCCC  00426150  
+0018FF18  00426110  00000002  004261B0    004261b0 004261a4 CBed类虚函数表
+0018FF24  00426104  CCCCCCCC  CCCCCCCC  
+0018FF30  CCCCCCCC  004261A4  00000001  
+0018FF3C  0018FF78  00414D69  FFFFFFFF  
+0018FF48  0018FF88  00403229  00000001
+
+0018FF0C  CCCCCCCC  CCCCCCCC  004260F4  004260F4 E8 DC CSofaBed类虚表
+0018FF18  00426110  00000002  004260E8  
+0018FF24  00426104  00000002  00000001  
+0018FF30  CCCCCCCC  004260DC  00000003  
+0018FF3C  0018FF78  00414D69  FFFFFFFF  
+0018FF48  0018FF88  00403229  00000001
+

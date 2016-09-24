@@ -1,0 +1,313 @@
+1:    #include<stdio.h>
+2:
+3:    class CGlobal
+4:    {
+5:    public:
+6:        CGlobal()
+004012D0   push        ebp
+004012D1   mov         ebp,esp
+004012D3   sub         esp,44h
+004012D6   push        ebx
+004012D7   push        esi
+004012D8   push        edi
+004012D9   push        ecx
+004012DA   lea         edi,[ebp-44h]
+004012DD   mov         ecx,11h
+004012E2   mov         eax,0CCCCCCCCh
+004012E7   rep stos    dword ptr [edi]
+004012E9   pop         ecx
+004012EA   mov         dword ptr [ebp-4],ecx
+004012ED   mov         eax,dword ptr [ebp-4]
+004012F0   mov         dword ptr [eax],offset CGlobal::`vftable' (00425044)
+7:        {
+8:            printf("CGlobal\r\n");
+004012F6   push        offset string "CGlobal\r\n" (00425038)
+004012FB   call        printf (00401d50)
+00401300   add         esp,4
+9:        }
+00401303   mov         eax,dword ptr [ebp-4]
+00401306   pop         edi
+00401307   pop         esi
+00401308   pop         ebx
+00401309   add         esp,44h
+0040130C   cmp         ebp,esp
+0040130E   call        __chkesp (00401c20)
+00401313   mov         esp,ebp
+00401315   pop         ebp
+00401316   ret
+10:       CGlobal(int nInt)
+00401520   push        ebp
+00401521   mov         ebp,esp
+00401523   sub         esp,44h
+00401526   push        ebx
+00401527   push        esi
+00401528   push        edi
+00401529   push        ecx
+0040152A   lea         edi,[ebp-44h]
+0040152D   mov         ecx,11h
+00401532   mov         eax,0CCCCCCCCh
+00401537   rep stos    dword ptr [edi]
+00401539   pop         ecx
+0040153A   mov         dword ptr [ebp-4],ecx
+0040153D   mov         eax,dword ptr [ebp-4]
+00401540   mov         dword ptr [eax],offset CGlobal::`vftable' (00425044)
+11:       {
+12:           printf("CGlobal(int nInt) %d\r\n" , nInt);
+00401546   mov         ecx,dword ptr [ebp+8]
+00401549   push        ecx
+0040154A   push        offset string "CGlobal(int nInt) %d\r\n" (00425058)
+0040154F   call        printf (00401d50)
+00401554   add         esp,8
+13:       }
+00401557   mov         eax,dword ptr [ebp-4]
+0040155A   pop         edi
+0040155B   pop         esi
+0040155C   pop         ebx
+0040155D   add         esp,44h
+00401560   cmp         ebp,esp
+00401562   call        __chkesp (00401c20)
+00401567   mov         esp,ebp
+00401569   pop         ebp
+0040156A   ret         4
+14:       CGlobal(char *pChar)
+004016A0   push        ebp
+004016A1   mov         ebp,esp
+004016A3   sub         esp,44h
+004016A6   push        ebx
+004016A7   push        esi
+004016A8   push        edi
+004016A9   push        ecx
+004016AA   lea         edi,[ebp-44h]
+004016AD   mov         ecx,11h
+004016B2   mov         eax,0CCCCCCCCh
+004016B7   rep stos    dword ptr [edi]
+004016B9   pop         ecx
+004016BA   mov         dword ptr [ebp-4],ecx
+004016BD   mov         eax,dword ptr [ebp-4]
+004016C0   mov         dword ptr [eax],offset CGlobal::`vftable' (00425044)
+15:       {
+16:           printf("CGlobal(char *pChar) %s\r\n" , pChar);
+004016C6   mov         ecx,dword ptr [ebp+8]
+004016C9   push        ecx
+004016CA   push        offset string "CGlobal(char *pChar) %s\r\n" (00425080)
+004016CF   call        printf (00401d50)
+004016D4   add         esp,8
+17:       }
+004016D7   mov         eax,dword ptr [ebp-4]
+004016DA   pop         edi
+004016DB   pop         esi
+004016DC   pop         ebx
+004016DD   add         esp,44h
+004016E0   cmp         ebp,esp
+004016E2   call        __chkesp (00401c20)
+004016E7   mov         esp,ebp
+004016E9   pop         ebp
+004016EA   ret         4
+18:       virtual ~CGlobal()
+19:       {
+004013A0   push        ebp
+004013A1   mov         ebp,esp
+004013A3   sub         esp,44h
+004013A6   push        ebx
+004013A7   push        esi
+004013A8   push        edi
+004013A9   push        ecx
+004013AA   lea         edi,[ebp-44h]
+004013AD   mov         ecx,11h
+004013B2   mov         eax,0CCCCCCCCh
+004013B7   rep stos    dword ptr [edi]
+004013B9   pop         ecx
+004013BA   mov         dword ptr [ebp-4],ecx
+004013BD   mov         eax,dword ptr [ebp-4]
+004013C0   mov         dword ptr [eax],offset CGlobal::`vftable' (00425044)
+20:           printf("~CGlobal()\r\n");
+004013C6   push        offset string "~CGlobal()\r\n" (00425048)
+004013CB   call        printf (00401d50)
+004013D0   add         esp,4
+21:       }
+004013D3   pop         edi
+004013D4   pop         esi
+004013D5   pop         ebx
+004013D6   add         esp,44h
+004013D9   cmp         ebp,esp
+004013DB   call        __chkesp (00401c20)
+004013E0   mov         esp,ebp
+004013E2   pop         ebp
+004013E3   ret
+
+26:   };
+27:
+28:   CGlobal g_Global_void;
+00401290   push        ebp
+00401291   mov         ebp,esp
+00401293   sub         esp,40h
+00401296   push        ebx
+00401297   push        esi
+00401298   push        edi
+00401299   lea         edi,[ebp-40h]
+0040129C   mov         ecx,10h
+004012A1   mov         eax,0CCCCCCCCh
+004012A6   rep stos    dword ptr [edi]
+004012A8   mov         ecx,offset g_Global_void (0042af8c)
+004012AD   call        @ILT+55(CGlobal::CGlobal) (0040103c)
+004012B2   pop         edi
+004012B3   pop         esi
+004012B4   pop         ebx
+004012B5   add         esp,40h
+004012B8   cmp         ebp,esp
+004012BA   call        __chkesp (00401c20)
+004012BF   mov         esp,ebp
+004012C1   pop         ebp
+004012C2   ret
+
+29:   CGlobal g_Global_int(10);
+004014D0   push        ebp
+004014D1   mov         ebp,esp
+004014D3   sub         esp,40h
+004014D6   push        ebx
+004014D7   push        esi
+004014D8   push        edi
+004014D9   lea         edi,[ebp-40h]
+004014DC   mov         ecx,10h
+004014E1   mov         eax,0CCCCCCCCh
+004014E6   rep stos    dword ptr [edi]
+004014E8   push        0Ah
+004014EA   mov         ecx,offset g_Global_int (0042af90)
+004014EF   call        @ILT+5(CGlobal::CGlobal) (0040100a)
+004014F4   pop         edi
+004014F5   pop         esi
+004014F6   pop         ebx
+004014F7   add         esp,40h
+004014FA   cmp         ebp,esp
+004014FC   call        __chkesp (00401c20)
+00401501   mov         esp,ebp
+00401503   pop         ebp
+00401504   ret
+30:   CGlobal g_Global_char("hello c++");
+00401650   push        ebp
+00401651   mov         ebp,esp
+00401653   sub         esp,40h
+00401656   push        ebx
+00401657   push        esi
+00401658   push        edi
+00401659   lea         edi,[ebp-40h]
+0040165C   mov         ecx,10h
+00401661   mov         eax,0CCCCCCCCh
+00401666   rep stos    dword ptr [edi]
+00401668   push        offset string "hello c++" (00425074)
+0040166D   mov         ecx,offset g_Global_char (0042af94)
+00401672   call        @ILT+0(CGlobal::CGlobal) (00401005)
+00401677   pop         edi
+00401678   pop         esi
+00401679   pop         ebx
+0040167A   add         esp,40h
+0040167D   cmp         ebp,esp
+0040167F   call        __chkesp (00401c20)
+00401684   mov         esp,ebp
+00401686   pop         ebp
+00401687   ret
+31:
+32:   int main()
+33:   {
+00401790   push        ebp
+00401791   mov         ebp,esp
+00401793   sub         esp,40h
+00401796   push        ebx
+00401797   push        esi
+00401798   push        edi
+00401799   lea         edi,[ebp-40h]
+0040179C   mov         ecx,10h
+004017A1   mov         eax,0CCCCCCCCh
+004017A6   rep stos    dword ptr [edi]
+34:       g_Global_void.show();
+004017A8   mov         ecx,offset g_Global_void (0042af8c)
+004017AD   call        @ILT+35(CGlobal::show) (00401028)
+35:       g_Global_int.show();
+004017B2   mov         ecx,offset g_Global_int (0042af90)
+004017B7   call        @ILT+35(CGlobal::show) (00401028)
+36:       g_Global_char.show();
+004017BC   mov         ecx,offset g_Global_char (0042af94)
+004017C1   call        @ILT+35(CGlobal::show) (00401028)
+37:       return 0;
+004017C6   xor         eax,eax
+38:   }
+004017C8   pop         edi
+004017C9   pop         esi
+004017CA   pop         ebx
+004017CB   add         esp,40h
+004017CE   cmp         ebp,esp
+004017D0   call        __chkesp (00401c20)
+004017D5   mov         esp,ebp
+004017D7   pop         ebp
+004017D8   ret
+
+
+$E4:
+00401250   push        ebp
+00401251   mov         ebp,esp
+00401253   sub         esp,40h
+00401256   push        ebx
+00401257   push        esi
+00401258   push        edi
+00401259   lea         edi,[ebp-40h]
+0040125C   mov         ecx,10h
+00401261   mov         eax,0CCCCCCCCh
+00401266   rep stos    dword ptr [edi]
+00401268   call        $E1 (00401290)
+0040126D   call        $E3 (00401400)
+00401272   pop         edi
+00401273   pop         esi
+00401274   pop         ebx
+00401275   add         esp,40h
+00401278   cmp         ebp,esp
+0040127A   call        __chkesp (00401c20)
+0040127F   mov         esp,ebp
+00401281   pop         ebp
+00401282   ret
+
+$E2:
+00401450   push        ebp
+00401451   mov         ebp,esp
+00401453   sub         esp,40h
+00401456   push        ebx
+00401457   push        esi
+00401458   push        edi
+00401459   lea         edi,[ebp-40h]
+0040145C   mov         ecx,10h
+00401461   mov         eax,0CCCCCCCCh
+00401466   rep stos    dword ptr [edi]
+00401468   mov         ecx,offset g_Global_void (0042af8c)
+0040146D   call        @ILT+45(CGlobal::~CGlobal) (00401032)
+00401472   pop         edi
+00401473   pop         esi
+00401474   pop         ebx
+00401475   add         esp,40h
+00401478   cmp         ebp,esp
+0040147A   call        __chkesp (00401c20)
+0040147F   mov         esp,ebp
+00401481   pop         ebp
+00401482   ret
+
+$E3:
+00401400   push        ebp
+00401401   mov         ebp,esp
+00401403   sub         esp,40h
+00401406   push        ebx
+00401407   push        esi
+00401408   push        edi
+00401409   lea         edi,[ebp-40h]
+0040140C   mov         ecx,10h
+00401411   mov         eax,0CCCCCCCCh
+00401416   rep stos    dword ptr [edi]
+00401418   push        offset $E2 (00401450)
+0040141D   call        atexit (00401f10)
+00401422   add         esp,4
+00401425   pop         edi
+00401426   pop         esi
+00401427   pop         ebx
+00401428   add         esp,40h
+0040142B   cmp         ebp,esp
+0040142D   call        __chkesp (00401c20)
+00401432   mov         esp,ebp
+00401434   pop         ebp
+00401435   ret

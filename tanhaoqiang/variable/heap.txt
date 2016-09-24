@@ -1,0 +1,520 @@
+pCharMalloc = 00513A38
+00513A10  A1 D5 D7 4F 89 BB 00 18  ≌譕壔..
+00513A18  C0 06 51 00 00 00 00 00  ..Q.....
+00513A20  00 00 00 00 00 00 00 00  ........
+00513A28  28 00 00 00 01 00 00 00  (.......
+00513A30  36 00 00 00 FD FD FD FD  6...
+00513A38  CD CD CD CD CD CD CD CD  屯屯屯屯
+
+00513A10  A1 D5 D7 4F 
+	  89 BB 00 18  ≌譕壔..
+00513A18  C0 06 51 00 
+	  00 00 00 00  ..Q.....	Next
+00513A20  00 00 00 00 		Prev
+	  00 00 00 00  ........	nLine
+00513A28  28 00 00 00 		大小
+	  01 00 00 00  (.......	BlockUse
+00513A30  36 00 00 00 		使用次数
+	  FD FD FD FD  6...	填充  越界检查标志。
+00513A38  CD CD CD CD 
+	  CD CD CD CD  屯屯屯屯
+
+typedef struct _CrtMemBlockHeader
+{
+        struct _CrtMemBlockHeader * pBlockHeaderNext;
+        struct _CrtMemBlockHeader * pBlockHeaderPrev;
+        char *                      szFileName;
+        int                         nLine;
+        size_t                      nDataSize;
+        int                         nBlockUse;
+        long                        lRequest;
+        unsigned char               gap[nNoMansLandSize];
+        /* followed by:
+         *  unsigned char           data[nDataSize];
+         *  unsigned char           anotherGap[nNoMansLandSize];
+         */
+} _CrtMemBlockHeader;
+
+typedef struct _CrtMemBlockHeader
+{
+        struct _CrtMemBlockHeader * pBlockHeaderNext;
+        struct _CrtMemBlockHeader * pBlockHeaderPrev;
+        char *                      szFileName;
+        int                         nLine;
+#ifdef _WIN64
+        /* These items are reversed on Win64 to eliminate gaps in the struct
+         * and ensure that sizeof(struct)%16 == 0, so 16-byte alignment is
+         * maintained in the debug heap.
+         */
+        int                         nBlockUse;
+        size_t                      nDataSize;
+#else  /* _WIN64 */
+        size_t                      nDataSize;
+        int                         nBlockUse;
+#endif  /* _WIN64 */
+        long                        lRequest;
+        unsigned char               gap[nNoMansLandSize];
+        /* followed by:
+         *  unsigned char           data[nDataSize];
+         *  unsigned char           anotherGap[nNoMansLandSize];
+         */
+} _CrtMemBlockHeader;
+
+
+
+1:    #include<stdlib.h>
+2:
+3:    int main()
+4:    {
+00401160   push        ebp
+00401161   mov         ebp,esp
+00401163   sub         esp,50h
+00401166   push        ebx
+00401167   push        esi
+00401168   push        edi
+00401169   lea         edi,[ebp-50h]
+0040116C   mov         ecx,14h
+00401171   mov         eax,0CCCCCCCCh
+00401176   rep stos    dword ptr [edi]
+5:        char *pCharMalloc = (char *)malloc(10);
+00401178   push        0Ah
+0040117A   call        malloc (00401310)
+0040117F   add         esp,4
+00401182   mov         dword ptr [ebp-4],eax
+6:        char *pCharNew = new char[10];
+00401185   push        0Ah
+00401187   call        operator new (00403320)
+0040118C   add         esp,4
+0040118F   mov         dword ptr [ebp-0Ch],eax
+00401192   mov         eax,dword ptr [ebp-0Ch]
+00401195   mov         dword ptr [ebp-8],eax
+7:
+8:        if(pCharNew != NULL)
+00401198   cmp         dword ptr [ebp-8],0
+0040119C   je          main+57h (004011b7)
+9:        {
+10:           delete [] pCharNew;
+0040119E   mov         ecx,dword ptr [ebp-8]
+004011A1   mov         dword ptr [ebp-10h],ecx
+004011A4   mov         edx,dword ptr [ebp-10h]
+004011A7   push        edx
+004011A8   call        operator delete (00403290)
+004011AD   add         esp,4
+11:           pCharNew = NULL;
+004011B0   mov         dword ptr [ebp-8],0
+12:       }
+13:
+14:       if(pCharMalloc != NULL)
+004011B7   cmp         dword ptr [ebp-4],0
+004011BB   je          main+70h (004011d0)
+15:       {
+16:           free(pCharMalloc);
+004011BD   mov         eax,dword ptr [ebp-4]
+004011C0   push        eax
+004011C1   call        free (00401d90)
+004011C6   add         esp,4
+17:           pCharMalloc = NULL;
+004011C9   mov         dword ptr [ebp-4],0
+18:       }
+19:       return 0;
+004011D0   xor         eax,eax
+20:   }
+004011D2   pop         edi
+004011D3   pop         esi
+004011D4   pop         ebx
+004011D5   add         esp,50h
+004011D8   cmp         ebp,esp
+004011DA   call        __chkesp (004012d0)
+004011DF   mov         esp,ebp
+004011E1   pop         ebp
+004011E2   ret
+
+
+operator new:
+00403320   push        ebp
+00403321   mov         ebp,esp
+00403323   push        ecx
+00403324   push        1
+00403326   mov         eax,dword ptr [cb]
+00403329   push        eax
+0040332A   call        _nh_malloc (00401370)
+0040332F   add         esp,8
+00403332   mov         dword ptr [res],eax
+00403335   mov         eax,dword ptr [res]
+00403338   mov         esp,ebp
+0040333A   pop         ebp
+0040333B   ret
+
+_nh_malloc:
+00401370   push        ebp
+00401371   mov         ebp,esp
+00401373   push        0
+00401375   push        0
+00401377   push        1
+00401379   mov         eax,dword ptr [nhFlag]
+0040137C   push        eax
+0040137D   mov         ecx,dword ptr [nSize]
+00401380   push        ecx
+00401381   call        _nh_malloc_dbg (00401390)
+00401386   add         esp,14h
+00401389   pop         ebp
+0040138A   ret
+
+
+_nh_malloc_dbg:
+00401390   push        ebp
+00401391   mov         ebp,esp
+00401393   push        ecx
+00401394   mov         eax,dword ptr [nLine]
+00401397   push        eax
+00401398   mov         ecx,dword ptr [szFileName]
+0040139B   push        ecx
+0040139C   mov         edx,dword ptr [nBlockUse]
+0040139F   push        edx
+004013A0   mov         eax,dword ptr [nSize]
+004013A3   push        eax
+004013A4   call        _heap_alloc_dbg (00401400)
+004013A9   add         esp,10h
+004013AC   mov         dword ptr [pvBlk],eax
+004013AF   cmp         dword ptr [pvBlk],0
+004013B3   jne         _nh_malloc_dbg+2Bh (004013bb)
+004013B5   cmp         dword ptr [nhFlag],0
+004013B9   jne         _nh_malloc_dbg+30h (004013c0)
+004013BB   mov         eax,dword ptr [pvBlk]
+004013BE   jmp         _nh_malloc_dbg+46h (004013d6)
+004013C0   mov         ecx,dword ptr [nSize]
+004013C3   push        ecx
+004013C4   call        _callnewh (00406450)
+004013C9   add         esp,4
+004013CC   test        eax,eax
+004013CE   jne         _nh_malloc_dbg+44h (004013d4)
+004013D0   xor         eax,eax
+004013D2   jmp         _nh_malloc_dbg+46h (004013d6)
+004013D4   jmp         _nh_malloc_dbg+4 (00401394)
+004013D6   mov         esp,ebp
+004013D8   pop         ebp
+004013D9   ret
+
+
+_heap_alloc_dbg:
+00401400   push        ebp
+00401401   mov         ebp,esp
+00401403   sub         esp,10h
+00401406   push        ebx
+00401407   push        esi
+00401408   push        edi
+00401409   mov         dword ptr [fIgnore],0
+00401410   mov         eax,[__crtDbgFlag (00412038)]
+00401415   and         eax,4
+00401418   test        eax,eax
+0040141A   je          _heap_alloc_dbg+4Ch (0040144c)
+0040141C   call        _CrtCheckMemory (00402470)
+00401421   test        eax,eax
+00401423   jne         _heap_alloc_dbg+46h (00401446)
+00401425   push        offset string "_CrtCheckMemory()" (00410310)
+0040142A   push        0
+0040142C   push        14Ch
+00401431   push        offset string "dbgheap.c" (00410304)
+00401436   push        2
+00401438   call        _CrtDbgReport (00404880)
+0040143D   add         esp,14h
+00401440   cmp         eax,1
+00401443   jne         _heap_alloc_dbg+46h (00401446)
+00401445   int         3
+00401446   xor         ecx,ecx
+00401448   test        ecx,ecx
+0040144A   jne         _heap_alloc_dbg+1Ch (0040141c)
+0040144C   mov         edx,dword ptr [_lRequestCurr (0041203c)]
+00401452   mov         dword ptr [lRequest],edx
+00401455   mov         eax,dword ptr [lRequest]
+00401458   cmp         eax,dword ptr [__crtBreakAlloc (00412040)]
+0040145E   jne         _heap_alloc_dbg+61h (00401461)
+00401460   int         3
+00401461   mov         ecx,dword ptr [nLine]
+00401464   push        ecx
+00401465   mov         edx,dword ptr [szFileName]
+00401468   push        edx
+00401469   mov         eax,dword ptr [lRequest]
+0040146C   push        eax
+0040146D   mov         ecx,dword ptr [nBlockUse]
+00401470   push        ecx
+00401471   mov         edx,dword ptr [nSize]
+00401474   push        edx
+00401475   push        0
+00401477   push        1
+00401479   call        dword ptr [__pfnAllocHook (00412330)]
+0040147F   add         esp,1Ch
+00401482   test        eax,eax
+00401484   jne         _heap_alloc_dbg+0E4h (004014e4)
+00401486   cmp         dword ptr [szFileName],0
+0040148A   je          _heap_alloc_dbg+0B7h (004014b7)
+0040148C   mov         eax,dword ptr [nLine]
+0040148F   push        eax
+00401490   mov         ecx,dword ptr [szFileName]
+00401493   push        ecx
+00401494   push        offset string "Client hook allocation failure a"... (004102cc)
+00401499   push        0
+0040149B   push        0
+0040149D   push        0
+0040149F   push        0
+004014A1   call        _CrtDbgReport (00404880)
+004014A6   add         esp,1Ch
+004014A9   cmp         eax,1
+004014AC   jne         _heap_alloc_dbg+0AFh (004014af)
+004014AE   int         3
+004014AF   xor         edx,edx
+004014B1   test        edx,edx
+004014B3   jne         _heap_alloc_dbg+8Ch (0040148c)
+004014B5   jmp         _heap_alloc_dbg+0DDh (004014dd)
+004014B7   push        offset string "Client hook allocation failure.\n"... (004102a8)
+004014BC   push        offset string "%s" (004102a4)
+004014C1   push        0
+004014C3   push        0
+004014C5   push        0
+004014C7   push        0
+004014C9   call        _CrtDbgReport (00404880)
+004014CE   add         esp,18h
+004014D1   cmp         eax,1
+004014D4   jne         _heap_alloc_dbg+0D7h (004014d7)
+004014D6   int         3
+004014D7   xor         eax,eax
+004014D9   test        eax,eax
+004014DB   jne         _heap_alloc_dbg+0B7h (004014b7)
+004014DD   xor         eax,eax
+004014DF   jmp         _heap_alloc_dbg+30Ch (0040170c)
+004014E4   mov         ecx,dword ptr [nBlockUse]
+004014E7   and         ecx,0FFFFh
+004014ED   cmp         ecx,2
+004014F0   je          _heap_alloc_dbg+106h (00401506)
+004014F2   mov         edx,dword ptr [__crtDbgFlag (00412038)]
+004014F8   and         edx,1
+004014FB   test        edx,edx
+004014FD   jne         _heap_alloc_dbg+106h (00401506)
+004014FF   mov         dword ptr [fIgnore],1
+00401506   cmp         dword ptr [nSize],0E0h
+0040150A   ja          _heap_alloc_dbg+117h (00401517)
+0040150C   mov         eax,dword ptr [nSize]
+0040150F   add         eax,24h
+00401512   cmp         eax,0E0h
+00401515   jbe         _heap_alloc_dbg+143h (00401543)
+00401517   mov         ecx,dword ptr [nSize]
+0040151A   push        ecx
+0040151B   push        offset string "Invalid allocation size: %u byte"... (00410280)
+00401520   push        0
+00401522   push        0
+00401524   push        0
+00401526   push        1
+00401528   call        _CrtDbgReport (00404880)
+0040152D   add         esp,18h
+00401530   cmp         eax,1
+00401533   jne         _heap_alloc_dbg+136h (00401536)
+00401535   int         3
+00401536   xor         edx,edx
+00401538   test        edx,edx
+0040153A   jne         _heap_alloc_dbg+117h (00401517)
+0040153C   xor         eax,eax
+0040153E   jmp         _heap_alloc_dbg+30Ch (0040170c)
+00401543   mov         eax,dword ptr [nBlockUse]
+00401546   and         eax,0FFFFh
+0040154B   cmp         eax,4
+0040154E   je          _heap_alloc_dbg+190h (00401590)
+00401550   cmp         dword ptr [nBlockUse],1
+00401554   je          _heap_alloc_dbg+190h (00401590)
+00401556   mov         ecx,dword ptr [nBlockUse]
+00401559   and         ecx,0FFFFh
+0040155F   cmp         ecx,2
+00401562   je          _heap_alloc_dbg+190h (00401590)
+00401564   cmp         dword ptr [nBlockUse],3
+00401568   je          _heap_alloc_dbg+190h (00401590)
+0040156A   push        offset string "Error: memory allocation: bad me"... (0041024c)
+0040156F   push        offset string "%s" (004102a4)
+00401574   push        0
+00401576   push        0
+00401578   push        0
+0040157A   push        1
+0040157C   call        _CrtDbgReport (00404880)
+00401581   add         esp,18h
+00401584   cmp         eax,1
+00401587   jne         _heap_alloc_dbg+18Ah (0040158a)
+00401589   int         3
+0040158A   xor         edx,edx
+0040158C   test        edx,edx
+0040158E   jne         _heap_alloc_dbg+16Ah (0040156a)
+00401590   mov         eax,dword ptr [nSize]
+00401593   add         eax,24h
+00401596   mov         dword ptr [blockSize],eax
+00401599   mov         ecx,dword ptr [blockSize]
+0040159C   push        ecx
+0040159D   call        _heap_alloc_base (00406560)
+004015A2   add         esp,4
+004015A5   mov         dword ptr [pHead],eax
+004015A8   cmp         dword ptr [pHead],0
+004015AC   jne         _heap_alloc_dbg+1B5h (004015b5)
+004015AE   xor         eax,eax
+004015B0   jmp         _heap_alloc_dbg+30Ch (0040170c)
+004015B5   mov         edx,dword ptr [_lRequestCurr (0041203c)]
+004015BB   add         edx,1
+004015BE   mov         dword ptr [_lRequestCurr (0041203c)],edx
+004015C4   cmp         dword ptr [fIgnore],0
+004015C8   je          _heap_alloc_dbg+213h (00401613)
+004015CA   mov         eax,dword ptr [pHead]
+004015CD   mov         dword ptr [eax],0
+004015D3   mov         ecx,dword ptr [pHead]
+004015D6   mov         dword ptr [ecx+4],0
+004015DD   mov         edx,dword ptr [pHead]
+004015E0   mov         dword ptr [edx+8],0
+004015E7   mov         eax,dword ptr [pHead]
+004015EA   mov         dword ptr [eax+0Ch],0FEDCBABCh
+004015F1   mov         ecx,dword ptr [pHead]
+004015F4   mov         edx,dword ptr [nSize]
+004015F7   mov         dword ptr [ecx+10h],edx
+004015FA   mov         eax,dword ptr [pHead]
+004015FD   mov         dword ptr [eax+14h],3
+00401604   mov         ecx,dword ptr [pHead]
+00401607   mov         dword ptr [ecx+18h],0
+0040160E   jmp         _heap_alloc_dbg+2B3h (004016b3)
+00401613   mov         edx,dword ptr [_lTotalAlloc (0041493c)]
+00401619   add         edx,dword ptr [nSize]
+0040161C   mov         dword ptr [_lTotalAlloc (0041493c)],edx
+00401622   mov         eax,[_lCurAlloc (00414944)]
+00401627   add         eax,dword ptr [nSize]
+0040162A   mov         [_lCurAlloc (00414944)],eax
+0040162F   mov         ecx,dword ptr [_lCurAlloc (00414944)]
+00401635   cmp         ecx,dword ptr [_lMaxAlloc (00414948)]
+0040163B   jbe         _heap_alloc_dbg+249h (00401649)
+0040163D   mov         edx,dword ptr [_lCurAlloc (00414944)]
+00401643   mov         dword ptr [_lMaxAlloc (00414948)],edx
+00401649   cmp         dword ptr [_pFirstBlock (00414940)],0
+00401650   je          _heap_alloc_dbg+25Fh (0040165f)
+00401652   mov         eax,[_pFirstBlock (00414940)]
+00401657   mov         ecx,dword ptr [pHead]
+0040165A   mov         dword ptr [eax+4],ecx
+0040165D   jmp         _heap_alloc_dbg+268h (00401668)
+0040165F   mov         edx,dword ptr [pHead]
+00401662   mov         dword ptr [_pLastBlock (00414938)],edx
+00401668   mov         eax,dword ptr [pHead]
+0040166B   mov         ecx,dword ptr [_pFirstBlock (00414940)]
+00401671   mov         dword ptr [eax],ecx
+00401673   mov         edx,dword ptr [pHead]
+00401676   mov         dword ptr [edx+4],0
+0040167D   mov         eax,dword ptr [pHead]
+00401680   mov         ecx,dword ptr [szFileName]
+00401683   mov         dword ptr [eax+8],ecx
+00401686   mov         edx,dword ptr [pHead]
+00401689   mov         eax,dword ptr [nLine]
+0040168C   mov         dword ptr [edx+0Ch],eax
+0040168F   mov         ecx,dword ptr [pHead]
+00401692   mov         edx,dword ptr [nSize]
+00401695   mov         dword ptr [ecx+10h],edx
+00401698   mov         eax,dword ptr [pHead]
+0040169B   mov         ecx,dword ptr [nBlockUse]
+0040169E   mov         dword ptr [eax+14h],ecx
+004016A1   mov         edx,dword ptr [pHead]
+004016A4   mov         eax,dword ptr [lRequest]
+004016A7   mov         dword ptr [edx+18h],eax
+004016AA   mov         ecx,dword ptr [pHead]
+004016AD   mov         dword ptr [_pFirstBlock (00414940)],ecx
+004016B3   push        4
+004016B5   xor         edx,edx
+004016B7   mov         dl,byte ptr [_bNoMansLandFill (00412044)]
+004016BD   push        edx
+004016BE   mov         eax,dword ptr [pHead]
+004016C1   add         eax,1Ch
+004016C4   push        eax
+004016C5   call        memset (00406480)
+004016CA   add         esp,0Ch
+004016CD   push        4
+004016CF   xor         ecx,ecx
+004016D1   mov         cl,byte ptr [_bNoMansLandFill (00412044)]
+004016D7   push        ecx
+004016D8   mov         edx,dword ptr [nSize]
+004016DB   mov         eax,dword ptr [pHead]
+004016DE   lea         ecx,[eax+edx+20h]
+004016E2   push        ecx
+004016E3   call        memset (00406480)
+004016E8   add         esp,0Ch
+004016EB   mov         edx,dword ptr [nSize]
+004016EE   push        edx
+004016EF   xor         eax,eax
+004016F1   mov         al,[_bCleanLandFill (00412046)]
+004016F6   push        eax
+004016F7   mov         ecx,dword ptr [pHead]
+004016FA   add         ecx,20h
+004016FD   push        ecx
+004016FE   call        memset (00406480)
+00401703   add         esp,0Ch
+00401706   mov         eax,dword ptr [pHead]
+00401709   add         eax,20h
+0040170C   pop         edi
+0040170D   pop         esi
+0040170E   pop         ebx
+0040170F   mov         esp,ebp
+00401711   pop         ebp
+00401712   ret
+
+_heap_alloc_base:
+00406560   push        ebp
+00406561   mov         ebp,esp
+00406563   push        ecx
+00406564   cmp         dword ptr [___active_heap (00414e7c)],3
+0040656B   jne         _heap_alloc_base+37h (00406597)
+0040656D   mov         eax,dword ptr [size]
+00406570   cmp         eax,dword ptr [___sbh_threshold (00414e9c)]
+00406576   ja          _heap_alloc_base+35h (00406595)
+00406578   mov         ecx,dword ptr [size]
+0040657B   push        ecx
+0040657C   call        __sbh_alloc_block (004075a0)
+00406581   add         esp,4
+00406584   mov         dword ptr [pvReturn],eax
+00406587   cmp         dword ptr [pvReturn],0
+0040658B   je          _heap_alloc_base+35h (00406595)
+0040658D   mov         eax,dword ptr [pvReturn]
+00406590   jmp         _heap_alloc_base+0C2h (00406622)
+00406595   jmp         _heap_alloc_base+97h (004065f7)
+00406597   cmp         dword ptr [___active_heap (00414e7c)],2
+0040659E   jne         _heap_alloc_base+97h (004065f7)
+004065A0   cmp         dword ptr [size],0
+004065A4   je          _heap_alloc_base+54h (004065b4)
+004065A6   mov         edx,dword ptr [size]
+004065A9   add         edx,0Fh
+004065AC   and         edx,0F0h
+004065AF   mov         dword ptr [size],edx
+004065B2   jmp         _heap_alloc_base+5Bh (004065bb)
+004065B4   mov         dword ptr [size],10h
+004065BB   mov         eax,dword ptr [size]
+004065BE   cmp         eax,dword ptr [___old_sbh_threshold (0041435c)]
+004065C4   ja          _heap_alloc_base+83h (004065e3)
+004065C6   mov         ecx,dword ptr [size]
+004065C9   shr         ecx,4
+004065CC   push        ecx
+004065CD   call        __old_sbh_alloc_block (00409020)
+004065D2   add         esp,4
+004065D5   mov         dword ptr [pvReturn],eax
+004065D8   cmp         dword ptr [pvReturn],0
+004065DC   je          _heap_alloc_base+83h (004065e3)
+004065DE   mov         eax,dword ptr [pvReturn]
+004065E1   jmp         _heap_alloc_base+0C2h (00406622)
+004065E3   mov         edx,dword ptr [size]
+004065E6   push        edx
+004065E7   push        0
+004065E9   mov         eax,[__crtheap (00414e78)]
+004065EE   push        eax
+004065EF   call        dword ptr [__imp__HeapAlloc@12 (0041003c)]
+004065F5   jmp         _heap_alloc_base+0C2h (00406622)
+004065F7   cmp         dword ptr [size],0
+004065FB   jne         _heap_alloc_base+0A4h (00406604)
+004065FD   mov         dword ptr [size],1
+00406604   mov         ecx,dword ptr [size]
+00406607   add         ecx,0Fh
+0040660A   and         ecx,0F0h
+0040660D   mov         dword ptr [size],ecx
+00406610   mov         edx,dword ptr [size]
+00406613   push        edx
+00406614   push        0
+00406616   mov         eax,[__crtheap (00414e78)]
+0040661B   push        eax
+0040661C   call        dword ptr [__imp__HeapAlloc@12 (0041003c)]
+00406622   mov         esp,ebp
+00406624   pop         ebp
+00406625   ret
+

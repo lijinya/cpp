@@ -1,0 +1,165 @@
+1:    int main(int argc , char *argv[] , char *envp)
+2:    {
+00401010   push        ebp
+00401011   mov         ebp,esp
+00401013   sub         esp,44h
+00401016   push        ebx
+00401017   push        esi
+00401018   push        edi
+00401019   lea         edi,[ebp-44h]
+0040101C   mov         ecx,11h
+00401021   mov         eax,0CCCCCCCCh
+00401026   rep stos    dword ptr [edi]
+3:        argv[1][0] |= argc -1;
+00401028   mov         eax,dword ptr [ebp+0Ch]
+0040102B   mov         ecx,dword ptr [eax+4]
+0040102E   mov         edx,dword ptr [ebp+8]
+00401031   sub         edx,1
+00401034   mov         al,byte ptr [ecx]
+00401036   or          al,dl
+00401038   mov         ecx,dword ptr [ebp+0Ch]
+0040103B   mov         edx,dword ptr [ecx+4]
+0040103E   mov         byte ptr [edx],al
+4:        argv[1][1] ^= argc -1;
+00401040   mov         eax,dword ptr [ebp+0Ch]
+00401043   mov         ecx,dword ptr [eax+4]
+00401046   mov         edx,dword ptr [ebp+8]
+00401049   sub         edx,1
+0040104C   mov         al,byte ptr [ecx+1]
+0040104F   xor         al,dl
+00401051   mov         ecx,dword ptr [ebp+0Ch]
+00401054   mov         edx,dword ptr [ecx+4]
+00401057   mov         byte ptr [edx+1],al
+5:        argv[1][2] = argv[1][2] * (argc -1) * 6;
+0040105A   mov         eax,dword ptr [ebp+0Ch]
+0040105D   mov         ecx,dword ptr [eax+4]
+00401060   movsx       edx,byte ptr [ecx+2]
+00401064   mov         eax,dword ptr [ebp+8]
+00401067   sub         eax,1
+0040106A   imul        edx,eax
+0040106D   imul        edx,edx,6
+00401070   mov         ecx,dword ptr [ebp+0Ch]
+00401073   mov         eax,dword ptr [ecx+4]
+00401076   mov         byte ptr [eax+2],dl
+6:        argv[1][3] = argv[1][2] / 4;
+00401079   mov         ecx,dword ptr [ebp+0Ch]
+0040107C   mov         edx,dword ptr [ecx+4]
+0040107F   movsx       eax,byte ptr [edx+2]
+00401083   cdq
+00401084   and         edx,3
+00401087   add         eax,edx
+00401089   sar         eax,2
+0040108C   mov         ecx,dword ptr [ebp+0Ch]
+0040108F   mov         edx,dword ptr [ecx+4]
+00401092   mov         byte ptr [edx+3],al
+7:        argv[1][4] = argv[1][4] << 3;
+00401095   mov         eax,dword ptr [ebp+0Ch]
+00401098   mov         ecx,dword ptr [eax+4]
+0040109B   movsx       edx,byte ptr [ecx+4]
+0040109F   shl         edx,3
+004010A2   mov         eax,dword ptr [ebp+0Ch]
+004010A5   mov         ecx,dword ptr [eax+4]
+004010A8   mov         byte ptr [ecx+4],dl
+8:        argv[1][5] = argv[1][5] >> 2;
+004010AB   mov         edx,dword ptr [ebp+0Ch]
+004010AE   mov         eax,dword ptr [edx+4]
+004010B1   movsx       ecx,byte ptr [eax+5]
+004010B5   sar         ecx,2
+004010B8   mov         edx,dword ptr [ebp+0Ch]
+004010BB   mov         eax,dword ptr [edx+4]
+004010BE   mov         byte ptr [eax+5],cl
+9:        argv[1][6] = argv[1][6] & ((argc - 1) & 7);
+004010C1   mov         ecx,dword ptr [ebp+0Ch]
+004010C4   mov         edx,dword ptr [ecx+4]
+004010C7   movsx       eax,byte ptr [edx+6]
+004010CB   mov         ecx,dword ptr [ebp+8]
+004010CE   sub         ecx,1
+004010D1   and         ecx,7
+004010D4   and         eax,ecx
+004010D6   mov         edx,dword ptr [ebp+0Ch]
+004010D9   mov         ecx,dword ptr [edx+4]
+004010DC   mov         byte ptr [ecx+6],al
+10:       argv[1][7] %= 2;
+004010DF   mov         edx,dword ptr [ebp+0Ch]
+004010E2   mov         eax,dword ptr [edx+4]
+004010E5   movsx       ecx,byte ptr [eax+7]
+004010E9   and         ecx,80000001h
+004010EF   jns         main+0E6h (004010f6)
+004010F1   dec         ecx
+004010F2   or          ecx,0FEh
+004010F5   inc         ecx
+004010F6   mov         edx,dword ptr [ebp+0Ch]
+004010F9   mov         eax,dword ptr [edx+4]
+004010FC   mov         byte ptr [eax+7],cl
+11:       argv[1][8] = ~(argc - 1);
+004010FF   mov         ecx,dword ptr [ebp+8]
+00401102   sub         ecx,1
+00401105   not         ecx
+00401107   mov         edx,dword ptr [ebp+0Ch]
+0040110A   mov         eax,dword ptr [edx+4]
+0040110D   mov         byte ptr [eax+8],cl
+12:       char *pArgv9 = & argv[1][9];
+00401110   mov         ecx,dword ptr [ebp+0Ch]
+00401113   mov         edx,dword ptr [ecx+4]
+00401116   add         edx,9
+00401119   mov         dword ptr [ebp-4],edx
+13:       *pArgv9 = *pArgv9 + argv[1][0] - argv[1][2];
+0040111C   mov         eax,dword ptr [ebp-4]
+0040111F   movsx       ecx,byte ptr [eax]
+00401122   mov         edx,dword ptr [ebp+0Ch]
+00401125   mov         eax,dword ptr [edx+4]
+00401128   movsx       edx,byte ptr [eax]
+0040112B   add         ecx,edx
+0040112D   mov         eax,dword ptr [ebp+0Ch]
+00401130   mov         edx,dword ptr [eax+4]
+00401133   movsx       eax,byte ptr [edx+2]
+00401137   sub         ecx,eax
+00401139   mov         edx,dword ptr [ebp-4]
+0040113C   mov         byte ptr [edx],cl
+14:       pArgv9 += 1;
+0040113E   mov         eax,dword ptr [ebp-4]
+00401141   add         eax,1
+00401144   mov         dword ptr [ebp-4],eax
+15:       *(pArgv9 - 1) = argv[1][6] / argv[1][7];
+00401147   mov         ecx,dword ptr [ebp+0Ch]
+0040114A   mov         edx,dword ptr [ecx+4]
+0040114D   movsx       eax,byte ptr [edx+6]
+00401151   mov         ecx,dword ptr [ebp+0Ch]
+00401154   mov         edx,dword ptr [ecx+4]
+00401157   movsx       ecx,byte ptr [edx+7]
+0040115B   cdq
+0040115C   idiv        eax,ecx
+0040115E   mov         edx,dword ptr [ebp-4]
+00401161   mov         byte ptr [edx-1],al
+16:       *pArgv9 += argv[1][3] - argv[1][1];
+00401164   mov         eax,dword ptr [ebp+0Ch]
+00401167   mov         ecx,dword ptr [eax+4]
+0040116A   movsx       edx,byte ptr [ecx+3]
+0040116E   mov         eax,dword ptr [ebp+0Ch]
+00401171   mov         ecx,dword ptr [eax+4]
+00401174   movsx       eax,byte ptr [ecx+1]
+00401178   sub         edx,eax
+0040117A   mov         ecx,dword ptr [ebp-4]
+0040117D   mov         al,byte ptr [ecx]
+0040117F   add         al,dl
+00401181   mov         ecx,dword ptr [ebp-4]
+00401184   mov         byte ptr [ecx],al
+17:       *(short*)pArgv9 = argv[1][4] * argv[1][5];
+00401186   mov         edx,dword ptr [ebp+0Ch]
+00401189   mov         eax,dword ptr [edx+4]
+0040118C   movsx       ecx,byte ptr [eax+4]
+00401190   mov         edx,dword ptr [ebp+0Ch]
+00401193   mov         eax,dword ptr [edx+4]
+00401196   movsx       edx,byte ptr [eax+5]
+0040119A   imul        ecx,edx
+0040119D   mov         eax,dword ptr [ebp-4]
+004011A0   mov         word ptr [eax],cx
+18:       return 0;
+004011A3   xor         eax,eax
+19:   }
+004011A5   pop         edi
+004011A6   pop         esi
+004011A7   pop         ebx
+004011A8   mov         esp,ebp
+004011AA   pop         ebp
+004011AB   ret

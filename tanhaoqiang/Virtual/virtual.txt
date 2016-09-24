@@ -1,0 +1,405 @@
+@ILT+0(?setNumber@CVirtual@@UAEXH@Z):
+00401005   jmp         CVirtual::setNumber (004010f0)
+@ILT+5(?GetNumber@CVirtual@@UAEHXZ):
+0040100A   jmp         CVirtual::GetNumber (004010b0)
+@ILT+10(_main):
+0040100F   jmp         main (00401030)
+@ILT+15(??0CVirtual@@QAE@XZ):
+00401014   jmp         CVirtual::CVirtual (00401070)
+
+1:    #include<stdio.h>
+2:
+3:    class CVirtual
+4:    {
+5:    public:
+6:        virtual int GetNumber()
+7:        {
+004010F0   push        ebp
+004010F1   mov         ebp,esp
+004010F3   sub         esp,44h
+004010F6   push        ebx
+004010F7   push        esi
+004010F8   push        edi
+004010F9   push        ecx
+004010FA   lea         edi,[ebp-44h]
+004010FD   mov         ecx,11h
+00401102   mov         eax,0CCCCCCCCh
+00401107   rep stos    dword ptr [edi]
+00401109   pop         ecx
+0040110A   mov         dword ptr [ebp-4],ecx
+8:            return m_nNumber;
+0040110D   mov         eax,dword ptr [ebp-4]
+00401110   mov         eax,dword ptr [eax+4]
+9:        }
+00401113   pop         edi
+00401114   pop         esi
+00401115   pop         ebx
+00401116   mov         esp,ebp
+00401118   pop         ebp
+00401119   ret
+
+10:       virtual void setNumber(int nNumber)
+11:       {
+00401070   push        ebp
+00401071   mov         ebp,esp
+00401073   sub         esp,44h
+00401076   push        ebx
+00401077   push        esi
+00401078   push        edi
+00401079   push        ecx
+0040107A   lea         edi,[ebp-44h]
+0040107D   mov         ecx,11h
+00401082   mov         eax,0CCCCCCCCh
+00401087   rep stos    dword ptr [edi]
+00401089   pop         ecx
+0040108A   mov         dword ptr [ebp-4],ecx
+12:           m_nNumber = nNumber;
+0040108D   mov         eax,dword ptr [ebp-4]
+00401090   mov         ecx,dword ptr [ebp+8]
+00401093   mov         dword ptr [eax+4],ecx
+13:       }
+00401096   pop         edi
+00401097   pop         esi
+00401098   pop         ebx
+00401099   mov         esp,ebp
+0040109B   pop         ebp
+0040109C   ret         4
+
+14:   private:
+15:       int m_nNumber;
+16:   };
+17:
+18:   void main()
+19:   {
+00401030   push        ebp
+00401031   mov         ebp,esp
+00401033   sub         esp,48h
+00401036   push        ebx
+00401037   push        esi
+00401038   push        edi
+00401039   lea         edi,[ebp-48h]
+0040103C   mov         ecx,12h
+00401041   mov         eax,0CCCCCCCCh
+00401046   rep stos    dword ptr [edi]
+20:       CVirtual Virtual;
+00401048   lea         ecx,[ebp-8]
+0040104B   call        @ILT+15(CVirtual::CVirtual) (00401014)
+21:   }
+00401050   pop         edi
+00401051   pop         esi
+00401052   pop         ebx
+00401053   add         esp,48h
+00401056   cmp         ebp,esp
+00401058   call        __chkesp (00401130)
+0040105D   mov         esp,ebp
+0040105F   pop         ebp
+00401060   ret
+
+CVirtual::CVirtual:
+00401070   push        ebp
+00401071   mov         ebp,esp
+00401073   sub         esp,44h
+00401076   push        ebx
+00401077   push        esi
+00401078   push        edi
+00401079   push        ecx
+0040107A   lea         edi,[ebp-44h]
+0040107D   mov         ecx,11h
+00401082   mov         eax,0CCCCCCCCh
+00401087   rep stos    dword ptr [edi]
+00401089   pop         ecx
+0040108A   mov         dword ptr [ebp-4],ecx   ebp - 8h
+0040108D   mov         eax,dword ptr [ebp-4]
+00401090   mov         dword ptr [eax],offset CVirtual::`vftable' (0042201c)  [eax]对eax地址处内容进行操作
+00401096   mov         eax,dword ptr [ebp-4]
+00401099   pop         edi
+0040109A   pop         esi
+0040109B   pop         ebx
+0040109C   mov         esp,ebp
+0040109E   pop         ebp
+0040109F   ret
+
+22:       Virtual.setNumber(9);
+00401050   push        9
+00401052   lea         ecx,[ebp-8]		ebp -4h是内容
+00401055   call        @ILT+0(CVirtual::setNumber) (00401005)
+23:       Virtual.GetNumber();
+0040D54A   lea         ecx,[ebp-8]
+0040D54D   call        @ILT+5(CVirtual::GetNumber) (0040100a)
+24:   }
+
+
+:
+0042201C   or          dl,byte ptr [eax]
+0042201E   inc         eax
+0042201F   add         byte ptr ds:[4010h],al
+00422025   add         byte ptr [eax],al
+00422027   add         byte ptr [ecx+33h],ch
+0042202A   cmp         byte ptr [esi],dh
+0042202C   pop         esp
+0042202D   arpl        word ptr [eax+6Bh],bp
+00422030   jae         string "The value of ESP was not properl"...+67h (004220a3)
+00422033   arpl        word ptr cs:[eax],ax
+00422036   add         byte ptr [eax],al
+??_C@_00A@?$AA@:
+00422038   add         byte ptr [eax],al
+0042203A   add         byte ptr [eax],al
+??_C@_0NM@ELEE@The?5value?5of?5ESP?5was?5not?5properl@:
+0042203C   push        esp
+0042203D   push        61762065h
+00422042   ins         byte ptr [edi],dx
+00422043   jne         string "The value of ESP was not properl"...+6Eh (004220aa)
+00422045   and         byte ptr [edi+66h],ch
+00422048   and         byte ptr [ebp+53h],al
+0042204B   push        eax
+0042204C   and         byte ptr [edi+61h],dh
+0042204F   jae         string "The value of ESP was not properl"...+35h (00422071)
+00422051   outs        dx,byte ptr [esi]
+00422052   outs        dx,dword ptr [esi]
+00422053   je          string "The value of ESP was not properl"...+39h (00422075)
+00422055   jo          string "The value of ESP was not properl"...+8Dh (004220c9)
+00422057   outs        dx,dword ptr [esi]
+00422058   jo          string "The value of ESP was not properl"...+83h (004220bf)
+0042205A   jb          string "The value of ESP was not properl"...+8Ch (004220c8)
+0042205C   jns         string "The value of ESP was not properl"...+42h (0042207e)
+0042205E   jae         string "The value of ESP was not properl"...+85h (004220c1)
+00422060   jbe         string "The value of ESP was not properl"...+8Bh (004220c7)
+00422062   and         byte ptr fs:[ecx+63h],ah
+00422066   jb          string "The value of ESP was not properl"...+9Bh (004220d7)
+00422068   jae         string "The value of ESP was not properl"...+0A1h (004220dd)
+0042206A   and         byte ptr [ecx+20h],ah
+0042206D   jne         000020DE
+00422070   arpl        word ptr [ecx+ebp*2+6Fh],si
+00422074   outs        dx,byte ptr [esi]
+00422075   and         byte ptr [ebx+61h],ah
+00422078   ins         byte ptr [edi],dx
+00422079   ins         byte ptr [edi],dx
+0042207A   and         byte ptr cs:[eax],ah
+0042207D   push        esp
+0042207E   push        69207369h
+00422083   jae         string "The value of ESP was not properl"...+69h (004220a5)
+00422085   jne         string "The value of ESP was not properl"...+0BEh (004220fa)
+00422087   jne         string "The value of ESP was not properl"...+0AEh (004220ea)
+00422089   ins         byte ptr [edi],dx
+0042208A   ins         byte ptr [edi],dx
+0042208B   jns         string "The value of ESP was not properl"...+71h (004220ad)
+0042208D   popad
+0042208E   and         byte ptr [edx+65h],dh
+00422091   jae         string "The value of ESP was not properl"...+0CCh (00422108)
+00422093   ins         byte ptr [edi],dx
+00422094   je          string "The value of ESP was not properl"...+7Ah (004220b6)
+00422096   outs        dx,dword ptr [esi]
+00422097   and         byte ptr [ebx+61h],ah
+0042209B   ins         byte ptr [edi],dx
+0042209C   ins         byte ptr [edi],dx
+0042209D   imul        ebp,dword ptr [esi+67h],66206120h
+004220A4   jne         string "The value of ESP was not properl"...+0D8h (00422114)
+004220A6   arpl        word ptr [ecx+ebp*2+6Fh],si
+004220AA   outs        dx,byte ptr [esi]
+004220AB   and         byte ptr [ebp+63h],ah
+004220AF   ins         byte ptr [edi],dx
+004220B0   popad
+004220B1   jb          string "The value of ESP was not properl"...+0DCh (00422118)
+004220B3   and         byte ptr fs:[edi+69h],dh
+004220B7   je          string "The value of ESP was not properl"...+0E5h (00422121)
+004220B9   and         byte ptr [edi+6Eh],ch
+004220BC   and         byte ptr gs:[ebx+61h],ah
+004220C0   ins         byte ptr [edi],dx
+004220C1   ins         byte ptr [edi],dx
+004220C2   imul        ebp,dword ptr [esi+67h],6E6F6320h
+004220C9   jbe         string "Assertion Failed"+0Ch (00422130)
+004220CB   outs        dx,byte ptr [esi]
+004220CC   je          string "Assertion Failed"+13h (00422137)
+004220CE   outs        dx,dword ptr [esi]
+004220CF   outs        dx,byte ptr [esi]
+004220D0   and         byte ptr [edi+69h],dh
+004220D3   je          string "Error"+5 (0042213d)
+004220D5   and         byte ptr [ecx+20h],ah
+004220D8   jne         00002149
+004220DB   arpl        word ptr [ecx+ebp*2+6Fh],si
+004220DF   outs        dx,byte ptr [esi]
+004220E0   and         byte ptr [eax+6Fh],dh
+004220E3   imul        ebp,dword ptr [esi+74h],64207265h
+004220EA   arpl        word ptr gs:[ecx+72h],bp
+004220EF   ???
+004220F0   and         byte ptr fs:[edi+69h],dh
+004220F4   je          string "Assertion failed!"+2 (0042215e)
+004220F6   and         byte ptr [ecx+20h],ah
+004220F9   imul        esp,dword ptr fs:[esi+66h],6E657265h
+00422101   je          string "The value of ESP was not properl"...+0E7h (00422123)
+00422103   arpl        word ptr [ecx+6Ch],sp
+00422106   ins         byte ptr [edi],dx
+00422107   imul        ebp,dword ptr [esi+67h],6E6F6320h
+0042210E   jbe         string "Assertion failed: "+5 (00422175)
+00422110   outs        dx,byte ptr [esi]
+00422111   je          string "Assertion failed: "+0Ch (0042217c)
+00422113   outs        dx,dword ptr [esi]
+00422114   outs        dx,byte ptr [esi]
+00422115   and         byte ptr cs:[eax],al
+00422118   ???
+00422119   ???
+0042211A   ???
+0042211B   jmp         fword ptr [eax+12h]
+0042211E   inc         eax
+0042211F   add         byte ptr [ebx+41004012h],al
+00422125   jae         string "_CrtDbgReport: String too long o"...+16h (0042219a)
+00422127   jb          string "_CrtDbgReport: String too long o"...+1Ah (0042219e)
+0042212A   imul        ebp,dword ptr [edi+6Eh],69614620h
+00422131   ins         byte ptr [edi],dx
+00422132   ???
+00422133   add         byte ptr fs:[eax],al
+00422136   add         byte ptr [eax],al
+??_C@_05CKBG@Error?$AA@:
+00422138   inc         ebp
+00422139   jb          string "_CrtDbgReport: String too long o"...+29h (004221ad)
+0042213B   outs        dx,dword ptr [esi]
+0042213C   jb          string "Error"+6 (0042213e)
+0042213E   add         byte ptr [eax],al
+
+14:       ~CVirtual()
+15:       {
+00401160   push        ebp
+00401161   mov         ebp,esp
+00401163   sub         esp,44h
+00401166   push        ebx
+00401167   push        esi
+00401168   push        edi
+00401169   push        ecx
+0040116A   lea         edi,[ebp-44h]
+0040116D   mov         ecx,11h
+00401172   mov         eax,0CCCCCCCCh
+00401177   rep stos    dword ptr [edi]
+00401179   pop         ecx
+0040117A   mov         dword ptr [ebp-4],ecx	//
+0040117D   mov         eax,dword ptr [ebp-4]
+00401180   mov         dword ptr [eax],offset CVirtual::`vftable' (0042502c)  还原虚函数表
+16:           printf("~CVirtual\r\n");
+00401186   push        offset string "~CVirtual\r\n" (0042501c)
+0040118B   call        printf (00401710)
+00401190   add         esp,4
+17:       }
+00401193   pop         edi
+00401194   pop         esi
+00401195   pop         ebx
+00401196   add         esp,44h
+00401199   cmp         ebp,esp
+0040119B   call        __chkesp (004015e0)
+004011A0   mov         esp,ebp
+004011A2   pop         ebp
+004011A3   ret
+
+22:   void main()
+23:   {
+00401040   push        ebp
+00401041   mov         ebp,esp
+00401043   push        0FFh
+00401045   push        offset __ehhandler$_main (004132d9)
+0040104A   mov         eax,fs:[00000000]
+00401050   push        eax
+00401051   mov         dword ptr fs:[0],esp
+00401058   sub         esp,48h
+0040105B   push        ebx
+0040105C   push        esi
+0040105D   push        edi
+0040105E   lea         edi,[ebp-54h]
+00401061   mov         ecx,12h
+00401066   mov         eax,0CCCCCCCCh
+0040106B   rep stos    dword ptr [edi]
+24:
+25:       CVirtual Virtual;
+0040106D   lea         ecx,[ebp-14h]
+00401070   call        @ILT+20(CVirtual::CVirtual) (00401019)
+00401075   mov         dword ptr [ebp-4],0
+26:       Virtual.setNumber(9);
+0040107C   push        9
+0040107E   lea         ecx,[ebp-14h]
+00401081   call        @ILT+0(CVirtual::setNumber) (00401005)
+27:       Virtual.GetNumber();
+00401086   lea         ecx,[ebp-14h]
+00401089   call        @ILT+5(CVirtual::GetNumber) (0040100a)
+28:   }
+0040108E   mov         dword ptr [ebp-4],0FFFFFFFFh
+00401095   lea         ecx,[ebp-14h]
+00401098   call        @ILT+15(CVirtual::~CVirtual) (00401014)
+0040109D   mov         ecx,dword ptr [ebp-0Ch]
+004010A0   mov         dword ptr fs:[0],ecx
+004010A7   pop         edi
+004010A8   pop         esi
+004010A9   pop         ebx
+004010AA   add         esp,54h
+004010AD   cmp         ebp,esp
+004010AF   call        __chkesp (004015e0)
+004010B4   mov         esp,ebp
+004010B6   pop         ebp
+004010B7   ret
+
+@ILT+0(?setNumber@CVirtual@@UAEXH@Z):
+00401005   jmp         CVirtual::setNumber (00401120)
+@ILT+5(?GetNumber@CVirtual@@UAEHXZ):
+0040100A   jmp         CVirtual::GetNumber (004010e0)
+@ILT+10(_main):
+0040100F   jmp         main (00401040)
+@ILT+15(??1CVirtual@@QAE@XZ):
+00401014   jmp         CVirtual::~CVirtual (00401160)
+@ILT+20(??0CVirtual@@QAE@XZ):
+00401019   jmp         CVirtual::CVirtual (004011c0)
+
+0018FF32  CC CC 2C 50 42 00 09 00 00 00 78  烫,PB.	...x
+0018FF3D  FF 18 00 D9 32 41 00 FF FF FF FF  ....2A.....
+0018FF48  88 FF 18 00 79 18 40 00 01 00 00  ....y.@....
+0018FF53  00 B8 19 73 00 30 1A 73 00 00 00  ...s.0.s...
+0018FF5E  00 00 00 00 00 00 00 E0 FD 7E 00  .......帻~.
+ EAX = 00000009 EBX = 7EFDE000
+ ECX = 0018FF34 EDX = 00731A30
+ ESI = 00000000 EDI = 0018FF3C
+ EIP = 00401098 ESP = 0018FEE8
+ EBP = 0018FF48 EFL = 00000216
+0040108E   mov         dword ptr [ebp-4],0FFFFFFFFh
+00401095   lea         ecx,[ebp-14h]			ecx是一个指针 是对象首地址
+00401098   call        @ILT+15(CVirtual::~CVirtual) (00401014)
+
+0018FED5  CC CC CC CC CC CC CC 34 FF 18 00  烫烫烫.4...
+0018FEE0  48 FF 18 00 9D 10 40 00 00 00 00  H.....@....
+0018FEEB  00 00 00 00 00 00 E0 FD 7E CC CC  ......帻~烫
+ EAX = CCCCCCCC EBX = 7EFDE000
+ ECX = 0018FF34 EDX = 00731A30
+ ESI = 00000000 EDI = 0018FEE0
+ EIP = 0040117D ESP = 0018FE90
+ EBP = 0018FEE0 EFL = 00000216
+0040117A   mov         dword ptr [ebp-4],ecx
+0040117D   mov         eax,dword ptr [ebp-4]
+00401180   mov         dword ptr [eax],offset CVirtual::`vftable' (0042502c)
+
+ EAX = 0018FF34 EBX = 7EFDE000
+ ECX = 0018FF34 EDX = 00731A30
+ ESI = 00000000 EDI = 0018FEE0
+ EIP = 00401180 ESP = 0018FE90
+ EBP = 0018FEE0 EFL = 00000216
+
+0040117D   mov         eax,dword ptr [ebp-4]  eax也是this地址
+
+0018FF34  2C 50 42 00 09 00 00 00 78 FF 18  ,PB.	...x..
+0018FF3F  00 D9 32 41 00 FF FF FF FF 88 FF  ..2A.......
+0018FF4A  18 00 79 18 40 00 01 00 00 00 B8  ..y.@......
+0018FF55  19 73 00 30 1A 73 00 00 00 00 00  .s.0.s.....
+
+00401180   mov         dword ptr [eax],offset CVirtual::`vftable' (0042502c)
+16:           printf("~CVirtual\r\n");
+00401186   push        offset string "~CVirtual\r\n" (0042501c)
+
+??_7CVirtual@@6B@:
+0042502C   or          dl,byte ptr [eax]
+0042502E   inc         eax
+0042502F   add         byte ptr ds:[4010h],al
+00425035   add         byte ptr [eax],al
+00425037   add         byte ptr [ecx+33h],ch
+0042503A   cmp         byte ptr [esi],dh
+0042503C   pop         esp
+0042503D   arpl        word ptr [eax+6Bh],bp
+00425040   jae         string "The value of ESP was not properl"...+67h (004250b3)
+00425043   arpl        word ptr cs:[eax],ax
+00425046   add         byte ptr [eax],al
+
+
+识别虚函数只需识别构造函数与析构函数
+

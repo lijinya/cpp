@@ -1,0 +1,25 @@
+offset A::`vftable' (0043101c)
+0040108c  0040108C   jmp         A::`scalar deleting destructor' (00401370)
+0040104b  0040104B   jmp         A::show (00401330)
+
+offset B::`vftable' (00431028)
+0040100a 0040100A   jmp         B::`scalar deleting destructor' (00401520)
+00401014 00401014   jmp         B::show (00401490)
+00401087 00401087   jmp         B::showB (004014e0)
+
+offset C::`vftable' (00431038)
+00401032 00401032   jmp         C::`scalar deleting destructor' (004016d0)
+0040109b 0040109B   jmp         C::show (00401640)
+00401069 00401069   jmp         C::showC (00401690)
+
+offset D::`vftable' (00431048)
+00401050 00401050   jmp         D::`vector deleting destructor' (00401be0)
+00401028 00401028   jmp         D::show (00401bf0)
+00401082 00401082   jmp         D::showC (00401900)
+
+offset D::`vftable' (00431058)
+00401096 00401096   jmp         D::`scalar deleting destructor' (00401a60)
+00401019 00401019   jmp         D::show (00401940)
+00401091 00401091   jmp         D::showB (004018c0)
+00401005 00401005   jmp         D::showABC (004019b0)
+0040102d 0040102D   jmp         D::showD (00401a20)

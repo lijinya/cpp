@@ -1,0 +1,100 @@
+1:    #include<stdio.h>
+2:
+3:    class CReturn
+4:    {
+5:    public:
+6:        int m_nNumber;
+7:        int m_nArray[10];
+8:    };
+9:    CReturn GetReturn()
+10:   {
+004016F0   push        ebp	ebp=ebp0-2ch-8h
+004016F1   mov         ebp,esp
+004016F3   sub         esp,70h
+004016F6   push        ebx
+004016F7   push        esi
+004016F8   push        edi
+004016F9   lea         edi,[ebp-70h]
+004016FC   mov         ecx,1Ch
+00401701   mov         eax,0CCCCCCCCh
+00401706   rep stos    dword ptr [edi]
+11:       CReturn ret;
+12:       ret.m_nNumber = 0;
+00401708   mov         dword ptr [ebp-2Ch],0
+13:       for(int i = 0; i < 10; ++i)
+0040170F   mov         dword ptr [ebp-30h],0	i
+00401716   jmp         GetReturn+31h (00401721)
+00401718   mov         eax,dword ptr [ebp-30h]
+0040171B   add         eax,1
+0040171E   mov         dword ptr [ebp-30h],eax
+00401721   cmp         dword ptr [ebp-30h],0Ah	i < 10
+00401725   jge         GetReturn+46h (00401736)
+14:       {
+15:           ret.m_nArray[i] = i + 1;
+00401727   mov         ecx,dword ptr [ebp-30h]
+0040172A   add         ecx,1
+0040172D   mov         edx,dword ptr [ebp-30h]
+00401730   mov         dword ptr [ebp+edx*4-28h],ecx	//m_nArray[i] = i + 1
+16:       }
+00401734   jmp         GetReturn+28h (00401718)
+17:       return ret;
+00401736   mov         ecx,0Bh			//0B 11 44字节
+0040173B   lea         esi,[ebp-2Ch]
+0040173E   mov         edi,dword ptr [ebp+8]	//传送数据  返回值
+00401741   rep movs    dword ptr [edi],dword ptr [esi]
+00401743   mov         eax,dword ptr [ebp+8]
+18:   }
+00401746   pop         edi
+00401747   pop         esi
+00401748   pop         ebx
+00401749   mov         esp,ebp
+0040174B   pop         ebp
+0040174C   ret
+
+19:   void main()
+20:   {
+00401770   push        ebp
+00401771   mov         ebp,esp
+00401773   sub         esp,0C4h			//预留栈空间  12*16+4
+00401779   push        ebx
+0040177A   push        esi
+0040177B   push        edi
+0040177C   lea         edi,[ebp-0C4h]
+00401782   mov         ecx,31h
+00401787   mov         eax,0CCCCCCCCh
+0040178C   rep stos    dword ptr [edi]
+21:       CReturn objA;				//44  11*4 2ch  ebp-2ch
+22:       objA = GetReturn();
+0040178E   lea         eax,[ebp-84h]		//8*16+4 44+44
+00401794   push        eax			//返回地址压栈
+00401795   call        @ILT+45(GetReturn) (00401032)	
+0040179A   add         esp,4			//eax栈平衡
+0040179D   mov         esi,eax			//返回值地址
+0040179F   mov         ecx,0Bh
+004017A4   lea         edi,[ebp-58h]
+004017A7   rep movs    dword ptr [edi],dword ptr [esi]	//传送至临时对象  临时对象释放时,可能存在多次释放资源现象。
+004017A9   mov         ecx,0Bh
+004017AE   lea         esi,[ebp-58h]		
+004017B1   lea         edi,[ebp-2Ch]
+004017B4   rep movs    dword ptr [edi],dword ptr [esi]
+23:       printf("%d %d %d\n" , objA.m_nNumber , objA.m_nArray[0] , objA.m_nArray[9]);
+004017B6   mov         ecx,dword ptr [ebp-4]
+004017B9   push        ecx
+004017BA   mov         edx,dword ptr [ebp-28h]
+004017BD   push        edx
+004017BE   mov         eax,dword ptr [ebp-2Ch]
+004017C1   push        eax
+004017C2   push        offset string "%d %d %d\n" (00429090)
+004017C7   call        printf (00401800)
+004017CC   add         esp,10h
+24:
+25:   }
+004017CF   pop         edi
+004017D0   pop         esi
+004017D1   pop         ebx
+004017D2   add         esp,0C4h
+004017D8   cmp         ebp,esp
+004017DA   call        __chkesp (00401930)
+004017DF   mov         esp,ebp
+004017E1   pop         ebp
+004017E2   ret

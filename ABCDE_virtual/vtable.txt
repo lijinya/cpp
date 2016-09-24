@@ -1,0 +1,123 @@
+00425050   	B
+0042509C	C
+004250CC	D
+
+00401256   mov         dword ptr [eax],offset E::`vftable' (0042503c)
+0040125C   mov         ecx,dword ptr [ebp-10h]
+0040125F   mov         dword ptr [ecx+0Ch],offset E::`vftable' (0042502c)
+00401266   mov         edx,dword ptr [ebp-10h]
+00401269   mov         dword ptr [edx+18h],offset E::`vftable' (0042501c)
+
+0042501c
+	0040100A 	E::`vector deleting destructor'
+	004010AA	E::show (00401cc0)
+	00401064	E::showD (00401b80)
+0042502c
+	004010B9  	E::`vector deleting destructor' (00401c90)
+	00401091  	E::show (00401ca0)
+	00401096	E::showC (00401b30)
+0042503c
+	0040105A  	E::`scalar deleting destructor' (00401c20)
+	00401028  	E::show (00401a90)
+	004010A0  	E::showB (00401ae0)
+	00401014	E::showE (00401bd0)
+00425050 
+	0040101E	B::`scalar deleting destructor' (00401580)
+	0040102D	B::show (004014e0)
+	0040109B	B::showB (00401530)
+0042509C 
+	0040104B  	C::`scalar deleting destructor' (00401750)
+	004010B4  	C::show (004016b0)
+	00401073	C::showC (00401700)
+004250CC 
+	004010AF  	D::`scalar deleting destructor' (004018d0)
+	00401032  	D::show (00401830)
+	00401041	D::showD (00401880)
+00425008  00000000  00000002  00000032  00000000  0002D000  0040100A  
+00425020  004010AA  00401064  00000000  004010B9  00401091  00401096  
+00425038  00000000  0040105A  00401028  004010A0  00401014  00000000
+00425050  0040101E  0040102D  0040109B  00000000  004010A5  00401050  
+00425068  00000000  733A3A41  28776F68  00000A29  00000000  733A3A42  
+00425080  28776F68  00000A29  00000000  733A3A42  56776F68  0A292842  
+00425098  00000000  0040104B  004010B4  00401073  00000000  733A3A43  
+004250B0  28776F68  00000A29  00000000  733A3A43  43776F68  000A2928  
+004250C8  00000000  004010AF  00401032  00401041  00000000  733A3A44  
+004250E0  28776F68  00000A29  00000000  733A3A44  776F6868  0A292844
+
+
+
+
+@ILT+0(??_GE@@UAEPAXI@Z):
+00401005   jmp         E::`scalar deleting destructor' (00401c20)
+@ILT+5(??_EE@@WBI@AEPAXI@Z):
+0040100A   jmp         E::`vector deleting destructor' (00401cb0)
+@ILT+10(??0A@@QAE@H@Z):
+0040100F   jmp         A::A (00401340)
+@ILT+15(?showE@E@@UAEXXZ):
+00401014   jmp         E::showE (00401bd0)
+@ILT+20(??0D@@QAE@HH@Z):
+00401019   jmp         D::D (004017c0)
+@ILT+25(??_EB@@UAEPAXI@Z):
+0040101E   jmp         B::`scalar deleting destructor' (00401580)
+@ILT+30(??_EC@@UAEPAXI@Z):
+00401023   jmp         C::`scalar deleting destructor' (00401750)
+@ILT+35(?show@E@@UAEXXZ):
+00401028   jmp         E::show (00401a90)
+@ILT+40(?show@B@@UAEXXZ):
+0040102D   jmp         B::show (004014e0)
+@ILT+45(?show@D@@UAEXXZ):
+00401032   jmp         D::show (00401830)
+@ILT+50(??_EA@@UAEPAXI@Z):
+00401037   jmp         A::`scalar deleting destructor' (004013e0)
+@ILT+55(??_GD@@UAEPAXI@Z):
+0040103C   jmp         D::`scalar deleting destructor' (004018d0)
+@ILT+60(?showD@D@@UAEXXZ):
+00401041   jmp         D::showD (00401880)
+@ILT+65(??0C@@QAE@HH@Z):
+00401046   jmp         C::C (004015f0)
+@ILT+70(??_EC@@UAEPAXI@Z):
+0040104B   jmp         C::`scalar deleting destructor' (00401750)
+@ILT+75(?show@A@@UAEXXZ):
+00401050   jmp         A::show (00401390)
+@ILT+80(??_EB@@UAEPAXI@Z):
+00401055   jmp         B::`scalar deleting destructor' (00401580)
+@ILT+85(??_GE@@UAEPAXI@Z):
+0040105A   jmp         E::`scalar deleting destructor' (00401c20)
+@ILT+90(??0E@@QAE@HHHHH@Z):
+0040105F   jmp         E::E (004011e0)
+@ILT+95(?showD@E@@UAEXXZ):
+00401064   jmp         E::showD (00401b80)
+@ILT+100(??1A@@UAE@XZ):
+00401069   jmp         A::~A (00401450)
+@ILT+105(??0B@@QAE@HH@Z):
+0040106E   jmp         B::B (004012d0)
+@ILT+110(?showC@C@@UAEXXZ):
+00401073   jmp         C::showC (00401700)
+@ILT+115(??1C@@UAE@XZ):
+00401078   jmp         C::~C (00401660)
+@ILT+120(??1B@@UAE@XZ):
+0040107D   jmp         B::~B (00401490)
+@ILT+125(??1D@@UAE@XZ):
+00401082   jmp         D::~D (00401940)
+@ILT+130(??1E@@UAE@XZ):
+00401087   jmp         E::~E (00401990)
+@ILT+135(_main):
+0040108C   jmp         main (00401180)
+@ILT+140(?show@E@@WM@AEXXZ):
+00401091   jmp         E::show (00401ca0)
+@ILT+145(?showC@E@@UAEXXZ):
+00401096   jmp         E::showC (00401b30)
+@ILT+150(?showB@B@@UAEXXZ):
+0040109B   jmp         B::showB (00401530)
+@ILT+155(?showB@E@@UAEXXZ):
+004010A0   jmp         E::showB (00401ae0)
+@ILT+160(??_EA@@UAEPAXI@Z):
+004010A5   jmp         A::`scalar deleting destructor' (004013e0)
+@ILT+165(?show@E@@WBI@AEXXZ):
+004010AA   jmp         E::show (00401cc0)
+@ILT+170(??_GD@@UAEPAXI@Z):
+004010AF   jmp         D::`scalar deleting destructor' (004018d0)
+@ILT+175(?show@C@@UAEXXZ):
+004010B4   jmp         C::show (004016b0)
+@ILT+180(??_EE@@WM@AEPAXI@Z):
+004010B9   jmp         E::`vector deleting destructor' (00401c90)

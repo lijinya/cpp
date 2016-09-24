@@ -1,0 +1,104 @@
+--- crt0.c  ----------------------------------------------------------------------------------------------------------------------------------------------------------
+mainCRTStartup:
+00402390   push        ebp
+00402391   mov         ebp,esp
+00402393   push        0FFh
+00402395   push        offset string "_BLOCK_TYPE_IS_VALID(pHead->nBlo"...+28h (004252e0)
+0040239A   push        offset __except_handler3 (004080c0)
+0040239F   mov         eax,fs:[00000000]
+004023A5   push        eax
+004023A6   mov         dword ptr fs:[0],esp
+004023AD   add         esp,0F0h
+004023B0   push        ebx
+004023B1   push        esi
+004023B2   push        edi
+004023B3   mov         dword ptr [ebp-18h],esp
+004023B6   call        dword ptr [__imp__GetVersion@0 (0042d158)]
+004023BC   mov         [__osver (0042aec8)],eax
+004023C1   mov         eax,[__osver (0042aec8)]
+004023C6   shr         eax,8
+004023C9   and         eax,0FFh
+004023CE   mov         [__winminor (0042aed4)],eax
+004023D3   mov         ecx,dword ptr [__osver (0042aec8)]
+004023D9   and         ecx,0FFh
+004023DF   mov         dword ptr [__winmajor (0042aed0)],ecx
+004023E5   mov         edx,dword ptr [__winmajor (0042aed0)]
+004023EB   shl         edx,8
+004023EE   add         edx,dword ptr [__winminor (0042aed4)]
+004023F4   mov         dword ptr [__winver (0042aecc)],edx
+004023FA   mov         eax,[__osver (0042aec8)]
+004023FF   shr         eax,10h
+00402402   and         eax,0FFFFh
+00402407   mov         [__osver (0042aec8)],eax
+0040240C   push        0
+0040240E   call        _heap_init (00407f40)
+00402413   add         esp,4
+00402416   test        eax,eax
+00402418   jne         mainCRTStartup+94h (00402424)
+0040241A   push        1Ch
+0040241C   call        fast_error_exit (004024f0)
+00402421   add         esp,4
+00402424   mov         dword ptr [ebp-4],0
+0040242B   call        _ioinit (00407940)
+00402430   call        dword ptr [__imp__GetCommandLineA@0 (0042d154)]
+00402436   mov         [__acmdln (0042c830)],eax
+0040243B   call        __crtGetEnvironmentStringsA (00407720)
+00402440   mov         [__aenvptr (0042ae7c)],eax
+00402445   call        _setargv (00407210)
+0040244A   call        _setenvp (004070c0)
+0040244F   call        _cinit (00406ce0)
+00402454   mov         ecx,dword ptr [__environ (0042aee4)]
+0040245A   mov         dword ptr [___initenv (0042aee8)],ecx
+00402460   mov         edx,dword ptr [__environ (0042aee4)]
+00402466   push        edx
+00402467   mov         eax,[___argv (0042aedc)]
+0040246C   push        eax
+0040246D   mov         ecx,dword ptr [___argc (0042aed8)]
+00402473   push        ecx
+00402474   call        @ILT+90(_main) (0040105f)
+00402479   add         esp,0Ch
+0040247C   mov         dword ptr [mainret],eax
+0040247F   mov         edx,dword ptr [mainret]
+00402482   push        edx
+00402483   call        exit (00406d20)
+$L17805:
+00402488   mov         eax,dword ptr [ebp-14h]
+0040248B   mov         ecx,dword ptr [eax]
+0040248D   mov         edx,dword ptr [ecx]
+0040248F   mov         dword ptr [ebp-20h],edx
+00402492   mov         eax,dword ptr [ebp-14h]
+00402495   push        eax
+00402496   mov         ecx,dword ptr [ebp-20h]
+00402499   push        ecx
+0040249A   call        _XcptFilter (00406eb0)
+0040249F   add         esp,8
+$L17807:
+004024A2   ret
+$L17806:
+004024A3   mov         esp,dword ptr [ebp-18h]
+004024A6   mov         edx,dword ptr [ebp-20h]
+004024A9   push        edx
+004024AA   call        _exit (00406d40)
+004024AF   mov         ecx,dword ptr [ebp-10h]
+004024B2   mov         dword ptr fs:[0],ecx
+004024B9   pop         edi
+004024BA   pop         esi
+004024BB   pop         ebx
+004024BC   mov         esp,ebp
+004024BE   pop         ebp
+004024BF   ret
+_amsg_exit:
+004024C0   push        ebp
+004024C1   mov         ebp,esp
+004024C3   cmp         dword ptr [___error_mode (0042ae84)],2
+004024CA   je          _amsg_exit+11h (004024d1)
+004024CC   call        _FF_MSGBANNER (004081a0)
+004024D1   mov         eax,dword ptr [rterrnum]
+004024D4   push        eax
+004024D5   call        _NMSG_WRITE (004081f0)
+004024DA   add         esp,4
+004024DD   push        0FFh
+004024E2   call        dword ptr [__aexit_rtn (00427c50)]
+004024E8   add         esp,4
+004024EB   pop         ebp
+004024EC   ret

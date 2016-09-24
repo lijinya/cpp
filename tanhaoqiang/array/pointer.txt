@@ -1,0 +1,604 @@
+1:    #include<stdio.h>
+2:
+3:    int main()
+4:    {
+00401330   push        ebp
+00401331   mov         ebp,esp
+00401333   sub         esp,6Ch
+00401336   push        ebx
+00401337   push        esi
+00401338   push        edi
+00401339   lea         edi,[ebp-6Ch]
+0040133C   mov         ecx,1Bh
+00401341   mov         eax,0CCCCCCCCh
+00401346   rep stos    dword ptr [edi]
+5:        int nIndex = 1;
+00401348   mov         dword ptr [ebp-4],1
+6:        int nArray[9] = {1 , 2 , 3 , 0};
+0040134F   mov         dword ptr [ebp-28h],1
+00401356   mov         dword ptr [ebp-24h],2
+0040135D   mov         dword ptr [ebp-20h],3
+00401364   mov         dword ptr [ebp-1Ch],0
+0040136B   xor         eax,eax
+0040136D   mov         dword ptr [ebp-18h],eax
+00401370   mov         dword ptr [ebp-14h],eax
+00401373   mov         dword ptr [ebp-10h],eax
+00401376   mov         dword ptr [ebp-0Ch],eax
+00401379   mov         dword ptr [ebp-8],eax
+7:        int *pInt = nArray;
+0040137C   lea         ecx,[ebp-28h]
+0040137F   mov         dword ptr [ebp-2Ch],ecx
+8:        printf("%d\n" , nArray[-1]);
+00401382   lea         edx,[ebp-28h]
+00401385   mov         eax,dword ptr [edx-4]
+00401388   push        eax
+00401389   push        offset string "%d\n" (0042904c)
+0040138E   call        printf (004015d0)
+00401393   add         esp,8
+9:        printf("%d\n" , nArray[nIndex]);
+00401396   mov         ecx,dword ptr [ebp-4]
+00401399   mov         edx,dword ptr [ebp+ecx*4-28h]
+0040139D   push        edx
+0040139E   push        offset string "%d\n" (0042904c)
+004013A3   call        printf (004015d0)
+004013A8   add         esp,8
+10:       printf("%d\n" , pInt[nIndex - 2]);
+004013AB   mov         eax,dword ptr [ebp-4]
+004013AE   mov         ecx,dword ptr [ebp-2Ch]
+004013B1   mov         edx,dword ptr [ecx+eax*4-8]
+004013B5   push        edx
+004013B6   push        offset string "%d\n" (0042904c)
+004013BB   call        printf (004015d0)
+004013C0   add         esp,8
+11:   }
+004013C3   pop         edi
+004013C4   pop         esi
+004013C5   pop         ebx
+004013C6   add         esp,6Ch
+004013C9   cmp         ebp,esp
+004013CB   call        __chkesp (004014e0)
+004013D0   mov         esp,ebp
+004013D2   pop         ebp
+004013D3   ret
+
+
+1:    #include<stdio.h>
+2:
+3:    int main()
+4:    {
+00401400   push        ebp
+00401401   mov         ebp,esp
+00401403   sub         esp,74h
+00401406   push        ebx
+00401407   push        esi
+00401408   push        edi
+00401409   lea         edi,[ebp-74h]
+0040140C   mov         ecx,1Dh
+00401411   mov         eax,0CCCCCCCCh
+00401416   rep stos    dword ptr [edi]
+5:        int arr[3][4] = { {1 , 2 , 3} , {0}};
+00401418   mov         dword ptr [ebp-30h],1
+0040141F   mov         dword ptr [ebp-2Ch],2
+00401426   mov         dword ptr [ebp-28h],3
+0040142D   xor         eax,eax
+0040142F   mov         dword ptr [ebp-24h],eax
+00401432   mov         dword ptr [ebp-20h],0
+00401439   xor         ecx,ecx
+0040143B   mov         dword ptr [ebp-1Ch],ecx
+0040143E   mov         dword ptr [ebp-18h],ecx
+00401441   mov         dword ptr [ebp-14h],ecx
+00401444   xor         edx,edx
+00401446   mov         dword ptr [ebp-10h],edx
+00401449   mov         dword ptr [ebp-0Ch],edx
+0040144C   mov         dword ptr [ebp-8],edx
+0040144F   mov         dword ptr [ebp-4],edx
+6:        int nIndex = 0;
+00401452   mov         dword ptr [ebp-34h],0
+7:        printf("%d\n" , arr[nIndex][nIndex + 1]);
+00401459   mov         eax,dword ptr [ebp-34h]
+0040145C   shl         eax,4
+0040145F   lea         ecx,[ebp+eax-30h]
+00401463   mov         edx,dword ptr [ebp-34h]
+00401466   mov         eax,dword ptr [ecx+edx*4+4]
+0040146A   push        eax
+0040146B   push        offset string "%d\n" (0042904c)
+00401470   call        printf (00401680)
+00401475   add         esp,8
+8:        return 0;
+00401478   xor         eax,eax
+9:    }
+0040147A   pop         edi
+0040147B   pop         esi
+0040147C   pop         ebx
+0040147D   add         esp,74h
+00401480   cmp         ebp,esp
+00401482   call        __chkesp (00401590)
+00401487   mov         esp,ebp
+00401489   pop         ebp
+0040148A   ret
+
+
+1:    #include<stdio.h>
+2:
+3:    int main()
+4:    {
+00401400   push        ebp
+00401401   mov         ebp,esp
+00401403   sub         esp,80h
+00401409   push        ebx
+0040140A   push        esi
+0040140B   push        edi
+0040140C   lea         edi,[ebp-80h]
+0040140F   mov         ecx,20h
+00401414   mov         eax,0CCCCCCCCh
+00401419   rep stos    dword ptr [edi]
+5:        int arr[3][5] = { {1 , 2 , 3} , {0}};
+0040141B   mov         dword ptr [ebp-3Ch],1
+00401422   mov         dword ptr [ebp-38h],2
+00401429   mov         dword ptr [ebp-34h],3
+00401430   xor         eax,eax
+00401432   mov         dword ptr [ebp-30h],eax
+00401435   mov         dword ptr [ebp-2Ch],eax
+00401438   mov         dword ptr [ebp-28h],0
+0040143F   xor         ecx,ecx
+00401441   mov         dword ptr [ebp-24h],ecx
+00401444   mov         dword ptr [ebp-20h],ecx
+00401447   mov         dword ptr [ebp-1Ch],ecx
+0040144A   mov         dword ptr [ebp-18h],ecx
+0040144D   xor         edx,edx
+0040144F   mov         dword ptr [ebp-14h],edx
+00401452   mov         dword ptr [ebp-10h],edx
+00401455   mov         dword ptr [ebp-0Ch],edx
+00401458   mov         dword ptr [ebp-8],edx
+0040145B   mov         dword ptr [ebp-4],edx
+6:        int nIndex = 0;
+0040145E   mov         dword ptr [ebp-40h],0
+7:        printf("%d\n" , arr[nIndex][nIndex + 1]);
+00401465   mov         eax,dword ptr [ebp-40h]
+00401468   imul        eax,eax,14h
+0040146B   lea         ecx,[ebp+eax-3Ch]
+0040146F   mov         edx,dword ptr [ebp-40h]
+00401472   mov         eax,dword ptr [ecx+edx*4+4]
+00401476   push        eax
+00401477   push        offset string "%d\n" (0042904c)
+0040147C   call        printf (00401680)
+00401481   add         esp,8
+8:        return 0;
+00401484   xor         eax,eax
+9:    }
+00401486   pop         edi
+00401487   pop         esi
+00401488   pop         ebx
+00401489   add         esp,80h
+0040148F   cmp         ebp,esp
+00401491   call        __chkesp (00401590)
+00401496   mov         esp,ebp
+00401498   pop         ebp
+00401499   ret
+
+
+1:    #include<stdio.h>
+2:    #include<string.h>
+3:
+4:    int main()
+5:    {
+004014F0   push        ebp
+004014F1   mov         ebp,esp
+004014F3   sub         esp,50h
+004014F6   push        ebx
+004014F7   push        esi
+004014F8   push        edi
+004014F9   lea         edi,[ebp-50h]
+004014FC   mov         ecx,14h
+00401501   mov         eax,0CCCCCCCCh
+00401506   rep stos    dword ptr [edi]
+6:        char *pBuff[3] = {
+7:            "Hello" ,
+00401508   mov         dword ptr [ebp-0Ch],offset string "Hello" (0042905c)
+8:            "World" ,
+0040150F   mov         dword ptr [ebp-8],offset string "World" (00429054)
+9:            "!\r\n"
+10:       };
+00401516   mov         dword ptr [ebp-4],offset string "!\r\n" (00429050)
+11:       for(int i = 0; i < 3; ++i)
+0040151D   mov         dword ptr [ebp-10h],0
+00401524   jmp         main+3Fh (0040152f)
+00401526   mov         eax,dword ptr [ebp-10h]
+00401529   add         eax,1
+0040152C   mov         dword ptr [ebp-10h],eax
+0040152F   cmp         dword ptr [ebp-10h],3
+00401533   jge         main+57h (00401547)
+12:       {
+13:           printf(pBuff[i]);
+00401535   mov         ecx,dword ptr [ebp-10h]
+00401538   mov         edx,dword ptr [ebp+ecx*4-0Ch]
+0040153C   push        edx
+0040153D   call        printf (00401760)
+00401542   add         esp,4
+14:       }
+00401545   jmp         main+36h (00401526)
+15:       return 0;
+00401547   xor         eax,eax
+16:   }
+00401549   pop         edi
+0040154A   pop         esi
+0040154B   pop         ebx
+0040154C   add         esp,50h
+0040154F   cmp         ebp,esp
+00401551   call        __chkesp (00401670)
+00401556   mov         esp,ebp
+00401558   pop         ebp
+00401559   ret
+
+
+1:    #include<stdio.h>
+2:
+3:    int main()
+4:    {
+00401580   push        ebp
+00401581   mov         ebp,esp
+00401583   sub         esp,60h
+00401586   push        ebx
+00401587   push        esi
+00401588   push        edi
+00401589   lea         edi,[ebp-60h]
+0040158C   mov         ecx,18h
+00401591   mov         eax,0CCCCCCCCh
+00401596   rep stos    dword ptr [edi]
+5:        char cArray[3][10] = {
+6:            "Hello" ,
+00401598   mov         eax,[string "Hello" (0042905c)]
+0040159D   mov         dword ptr [ebp-20h],eax
+004015A0   mov         cx,word ptr [string "Hello"+4 (00429060)]
+004015A7   mov         word ptr [ebp-1Ch],cx
+004015AB   xor         edx,edx
+004015AD   mov         dword ptr [ebp-1Ah],edx
+7:            "World" ,
+004015B0   mov         eax,[string "World" (00429054)]
+004015B5   mov         dword ptr [ebp-16h],eax
+004015B8   mov         cx,word ptr [string "World"+4 (00429058)]
+004015BF   mov         word ptr [ebp-12h],cx
+004015C3   xor         edx,edx
+004015C5   mov         dword ptr [ebp-10h],edx
+8:            "!\r\n"
+9:        };
+004015C8   mov         eax,[string "!\r\n" (00429050)]
+004015CD   mov         dword ptr [ebp-0Ch],eax
+004015D0   xor         ecx,ecx
+004015D2   mov         dword ptr [ebp-8],ecx
+004015D5   mov         word ptr [ebp-4],cx
+10:       printf(cArray[1]);
+004015D9   lea         edx,[ebp-16h]
+004015DC   push        edx
+004015DD   call        printf (00401800)
+004015E2   add         esp,4
+11:       return 0;
+004015E5   xor         eax,eax
+12:   }
+004015E7   pop         edi
+004015E8   pop         esi
+004015E9   pop         ebx
+004015EA   add         esp,60h
+004015ED   cmp         ebp,esp
+004015EF   call        __chkesp (00401710)
+004015F4   mov         esp,ebp
+004015F6   pop         ebp
+004015F7   ret
+
+
+1:    #include<stdio.h>
+2:
+3:    int main()
+4:    {
+00413140   push        ebp
+00413141   mov         ebp,esp
+00413143   sub         esp,340h
+00413149   push        ebx
+0041314A   push        esi
+0041314B   push        edi
+0041314C   lea         edi,[ebp-340h]
+00413152   mov         ecx,0D0h
+00413157   mov         eax,0CCCCCCCCh
+0041315C   rep stos    dword ptr [edi]
+5:        char cArray[3][256] = {
+6:            "Hello World\r\n" ,
+0041315E   mov         eax,[string "Hello World\r\n" (0042a0cc)]
+00413163   mov         dword ptr [ebp-300h],eax
+00413169   mov         ecx,dword ptr [string "Hello World\r\n"+4 (0042a0d0)]
+0041316F   mov         dword ptr [ebp-2FCh],ecx
+00413175   mov         edx,dword ptr [string "Hello World\r\n"+8 (0042a0d4)]
+0041317B   mov         dword ptr [ebp-2F8h],edx
+00413181   mov         ax,[string "Hello World\r\n"+0Ch (0042a0d8)]
+00413187   mov         word ptr [ebp-2F4h],ax
+0041318E   mov         ecx,3Ch
+00413193   xor         eax,eax
+00413195   lea         edi,[ebp-2F2h]
+0041319B   rep stos    dword ptr [edi]
+0041319D   stos        word ptr [edi]
+7:            "This is a test\r\n" ,
+0041319F   mov         ecx,dword ptr [string "This is a test\r\n" (0042a0b8)]
+004131A5   mov         dword ptr [ebp-200h],ecx
+004131AB   mov         edx,dword ptr [string "This is a test"+4 (0042a0bc)]
+004131B1   mov         dword ptr [ebp-1FCh],edx
+004131B7   mov         eax,[string "This is a test"+8 (0042a0c0)]
+004131BC   mov         dword ptr [ebp-1F8h],eax
+004131C2   mov         ecx,dword ptr [string "This is a test"+0Ch (0042a0c4)]
+004131C8   mov         dword ptr [ebp-1F4h],ecx
+004131CE   mov         dl,byte ptr [string "This is a test"+10h (0042a0c8)]
+004131D4   mov         byte ptr [ebp-1F0h],dl
+004131DA   mov         ecx,3Bh
+004131DF   xor         eax,eax
+004131E1   lea         edi,[ebp-1EFh]
+004131E7   rep stos    dword ptr [edi]
+004131E9   stos        word ptr [edi]
+004131EB   stos        byte ptr [edi]
+8:            "This is the end line!\r\n"
+9:        };
+004131EC   mov         ecx,6
+004131F1   mov         esi,offset string "This is the end line!\r\n" (0042a0a0)
+004131F6   lea         edi,[ebp-100h]
+004131FC   rep movs    dword ptr [edi],dword ptr [esi]
+004131FE   mov         ecx,3Ah
+00413203   xor         eax,eax
+00413205   lea         edi,[ebp-0E8h]
+0041320B   rep stos    dword ptr [edi]
+10:       printf(cArray[1]);
+0041320D   lea         eax,[ebp-200h]
+00413213   push        eax
+00413214   call        printf (00401800)
+00413219   add         esp,4
+11:       return 0;
+0041321C   xor         eax,eax
+12:   }
+0041321E   pop         edi
+0041321F   pop         esi
+00413220   pop         ebx
+00413221   add         esp,340h
+00413227   cmp         ebp,esp
+00413229   call        __chkesp (00401710)
+0041322E   mov         esp,ebp
+00413230   pop         ebp
+00413231   ret
+
+
+Hello World !
+ EAX = 005619B8
+ ECX = 002F19CC
+ ECX = 005619F5
+ ECX = 002F19FB
+ ECX = 002F1A01
+
+ebp+0ch
+005619B8  CC 19 56 00 F5 19 56 00 FB 19 56  ..V...V...V
+005619C3  00 01 1A 56 00 00 00 00 00 47 3A  ...V.....G:
+005619CE  5C 76 63 36 5C 74 61 6E 68 61 6F  \vc6\tanhao
+005619D9  71 69 61 6E 67 5C 61 72 72 61 79  qiang\array
+005619E4  5C 44 65 62 75 67 5C 61 72 72 61  \Debug\arra
+005619EF  79 2E 65 78 65 00 48 65 6C 6C 6F  y.exe.Hello
+005619FA  00 57 6F 72 6C 64 00 21 00 FD FD  .World.!.ýý
+00561A05  FD FD BA AB AB AB AB AB AB AB AB  ýýº«««««««.
+00561A10  00 00 00 00 00 00 00 00 22 1C F0  ........"..
+00561A1B  2C F7 BF 00 18 98 19 56 00 28 1B  ,÷¿....V.(.
+00561A26  56 00 18 95 42 00 6D 00 00 00 C4  V..•B.m....
+00561A31  00 00 00 02 00 00 00 04 00 00 00  ...........
+00561A3C  FD FD FD FD 48 1B 56 00 B0 1B 56  ýýýýH.V...V
+00561A47  00 18 1C 56 00 90 1C 56 00 08 1D  ...V...V...
+00561A52  56 00 80 1D 56 00 D8 1D 56 00 40  V...V...V.@
+00561A5D  1E 56 00 98 1E 56 00 F0 1E 56 00  .V...V...V.
+00561A68  48 1F 56 00 60 20 56 00 A8 20 56  H.V.` V.. V
+00561A73  00 10 21 56 00 C8 21 56 00 30 22  ..!V..!V.0"
+00561A7E  56 00 88 22 56 00 00 23 56 00 A8  V.."V..#V..
+00561A89  23 56 00 00 24 56 00 58 24 56 00  #V..$V.X$V.
+00561A94  A0 24 56 00 58 2A 56 00 E0 2A 56  .$V.X*V..*V
+00561A9F  00 38 2B 56 00 A0 2B 56 00 28 2C  .8+V..+V.(,
+00561AAA  56 00 80 2C 56 00 D8 2C 56 00 30  V..,V..,V.0
+00561AB5  2D 56 00 98 2D 56 00 00 2E 56 00  -V..-V...V.
+00561AC0  68 2E 56 00 F0 2E 56 00 48 2F 56  h.V...V.H/V
+00561ACB  00 A0 2F 56 00 F8 2F 56 00 50 30  ../V../V.P0
+00561AD6  56 00 B8 30 56 00 20 31 56 00 78  V..0V. 1V.x
+00561AE1  31 56 00 D0 31 56 00 28 32 56 00  1V..1V.(2V.
+00561AEC  A0 32 56 00 18 33 56 00 A0 33 56  .2V..3V..3V
+00561AF7  00 F8 33 56 00 B0 34 56 00 00 00  ..3V..4V...
+00561B02  00 00 FD FD FD FD 0D F0 AD BA 0D  ..ýýýý.ð­..
+00561B0D  F0 AD BA AB AB AB AB AB AB AB AB  ð­º«««««««.
+00561B18  00 00 00 00 00 00 00 00 0E 1C F0  ...........
+00561B23  00 C7 BF 00 18 20 1A 56 00 90 1B  .Ç¿.. .V...
+
+1:    #include<stdio.h>
+2:
+3:    int main(int argc , char *argv[] , char **envp)
+4:    {
+004016C0   push        ebp
+004016C1   mov         ebp,esp
+004016C3   sub         esp,44h
+004016C6   push        ebx
+004016C7   push        esi
+004016C8   push        edi
+004016C9   lea         edi,[ebp-44h]
+004016CC   mov         ecx,11h
+004016D1   mov         eax,0CCCCCCCCh
+004016D6   rep stos    dword ptr [edi]
+5:        for(int i = 0; i < argc; ++i)
+004016D8   mov         dword ptr [ebp-4],0
+004016DF   jmp         main+2Ah (004016ea)
+004016E1   mov         eax,dword ptr [ebp-4]
+004016E4   add         eax,1
+004016E7   mov         dword ptr [ebp-4],eax
+004016EA   mov         ecx,dword ptr [ebp-4]
+004016ED   cmp         ecx,dword ptr [ebp+8]
+004016F0   jge         main+46h (00401706)
+6:        {
+7:            printf(argv[i]);
+004016F2   mov         edx,dword ptr [ebp-4]
+004016F5   mov         eax,dword ptr [ebp+0Ch]	005619B8
+004016F8   mov         ecx,dword ptr [eax+edx*4]
+004016FB   push        ecx
+004016FC   call        printf (00401910)
+00401701   add         esp,4
+8:        }
+00401704   jmp         main+21h (004016e1)
+9:        return 0;
+00401706   xor         eax,eax
+10:   }
+00401708   pop         edi
+00401709   pop         esi
+0040170A   pop         ebx
+0040170B   add         esp,44h
+0040170E   cmp         ebp,esp
+00401710   call        __chkesp (00401820)
+00401715   mov         esp,ebp
+00401717   pop         ebp
+00401718   ret
+
+eax 005d19b8
+ECX = 005D19CC
+ECX = 005D19F5
+ECX = 005D19FB
+ECX = 005D1A01
+
+005D19B8  CC 19 5D 00 F5 19 5D 00 FB 19 5D  ..]...]...]
+005D19C3  00 01 1A 5D 00 00 00 00 00 47 3A  ...].....G:
+005D19CE  5C 76 63 36 5C 74 61 6E 68 61 6F  \vc6\tanhao
+005D19D9  71 69 61 6E 67 5C 61 72 72 61 79  qiang\array
+005D19E4  5C 44 65 62 75 67 5C 61 72 72 61  \Debug\arra
+005D19EF  79 2E 65 78 65 00 48 65 6C 6C 6F  y.exe.Hello
+005D19FA  00 57 6F 72 6C 64 00 21 00 FD FD  .World.!.ýý
+
+1:    #include<stdio.h>
+2:
+3:    void __cdecl Show()
+4:    {
+00401740   push        ebp
+00401741   mov         ebp,esp
+00401743   sub         esp,40h
+00401746   push        ebx
+00401747   push        esi
+00401748   push        edi
+00401749   lea         edi,[ebp-40h]
+0040174C   mov         ecx,10h
+00401751   mov         eax,0CCCCCCCCh
+00401756   rep stos    dword ptr [edi]
+5:        printf("Show\r\n");
+00401758   push        offset string "Show\r\n" (004290a4)
+0040175D   call        printf (004019d0)
+00401762   add         esp,4
+6:    }
+00401765   pop         edi
+00401766   pop         esi
+00401767   pop         ebx
+00401768   add         esp,40h
+0040176B   cmp         ebp,esp
+0040176D   call        __chkesp (004018e0)
+00401772   mov         esp,ebp
+00401774   pop         ebp
+00401775   ret
+
+
+7:    void main()
+8:    {
+00401790   push        ebp
+00401791   mov         ebp,esp
+00401793   sub         esp,44h
+00401796   push        ebx
+00401797   push        esi
+00401798   push        edi
+00401799   lea         edi,[ebp-44h]
+0040179C   mov         ecx,11h
+004017A1   mov         eax,0CCCCCCCCh
+004017A6   rep stos    dword ptr [edi]
+9:        void (__cdecl *pShow) (void) = Show;
+004017A8   mov         dword ptr [ebp-4],offset @ILT+55(Show) (0040103c)
+004017AF   mov         eax,dword ptr [ebp-4]
+004017B2   mov         dword ptr [ebp-4],eax
+10:       pShow();
+004017B5   mov         esi,esp
+004017B7   call        dword ptr [ebp-4]
+004017BA   cmp         esi,esp
+004017BC   call        __chkesp (004018e0)
+11:       Show();
+004017C1   call        @ILT+55(Show) (0040103c)
+12:   }
+004017C6   pop         edi
+004017C7   pop         esi
+004017C8   pop         ebx
+004017C9   add         esp,44h
+004017CC   cmp         ebp,esp
+004017CE   call        __chkesp (004018e0)
+004017D3   mov         esp,ebp
+004017D5   pop         ebp
+004017D6   ret
+
+1:    #include<stdio.h>
+2:
+3:    int __cdecl Show(int nShow)
+4:    {
+00401810   push        ebp
+00401811   mov         ebp,esp
+00401813   sub         esp,40h
+00401816   push        ebx
+00401817   push        esi
+00401818   push        edi
+00401819   lea         edi,[ebp-40h]
+0040181C   mov         ecx,10h
+00401821   mov         eax,0CCCCCCCCh
+00401826   rep stos    dword ptr [edi]
+5:        printf("Show : %d\r\n" , nShow);
+00401828   mov         eax,dword ptr [ebp+8]
+0040182B   push        eax
+0040182C   push        offset string "Show : %d\r\n" (0042a0e8)
+00401831   call        printf (00401ab0)
+00401836   add         esp,8
+6:        return nShow;
+00401839   mov         eax,dword ptr [ebp+8]
+7:    }
+0040183C   pop         edi
+0040183D   pop         esi
+0040183E   pop         ebx
+0040183F   add         esp,40h
+00401842   cmp         ebp,esp
+00401844   call        __chkesp (004019c0)
+00401849   mov         esp,ebp
+0040184B   pop         ebp
+0040184C   ret
+
+8:    void main()
+9:    {
+00401860   push        ebp
+00401861   mov         ebp,esp
+00401863   sub         esp,48h
+00401866   push        ebx
+00401867   push        esi
+00401868   push        edi
+00401869   lea         edi,[ebp-48h]
+0040186C   mov         ecx,12h
+00401871   mov         eax,0CCCCCCCCh
+00401876   rep stos    dword ptr [edi]
+10:       int (__cdecl *pShow) (int) = Show;
+00401878   mov         dword ptr [ebp-4],offset @ILT+10(Show) (0040100f)
+0040187F   mov         eax,dword ptr [ebp-4]
+00401882   mov         dword ptr [ebp-4],eax
+11:       int ret = pShow(7);
+00401885   mov         esi,esp
+00401887   push        7
+00401889   call        dword ptr [ebp-4]
+0040188C   add         esp,4
+0040188F   cmp         esi,esp
+00401891   call        __chkesp (004019c0)
+00401896   mov         dword ptr [ebp-8],eax
+12:       printf("ret = %d\n" , ret);
+00401899   mov         ecx,dword ptr [ebp-8]
+0040189C   push        ecx
+0040189D   push        offset string "ret = %d\n" (0042a0f4)
+004018A2   call        printf (00401ab0)
+004018A7   add         esp,8
+13:   }
+004018AA   pop         edi
+004018AB   pop         esi
+004018AC   pop         ebx
+004018AD   add         esp,48h
+004018B0   cmp         ebp,esp
+004018B2   call        __chkesp (004019c0)
+004018B7   mov         esp,ebp
+004018B9   pop         ebp
+004018BA   ret
+

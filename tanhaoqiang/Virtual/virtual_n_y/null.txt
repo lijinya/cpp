@@ -1,0 +1,132 @@
+1:    #include<stdio.h>
+2:
+3:    class A
+4:    {
+5:    public:
+6:        void function()
+7:        {
+00401090   push        ebp
+00401091   mov         ebp,esp
+00401093   sub         esp,44h
+00401096   push        ebx
+00401097   push        esi
+00401098   push        edi
+00401099   push        ecx
+0040109A   lea         edi,[ebp-44h]
+0040109D   mov         ecx,11h
+004010A2   mov         eax,0CCCCCCCCh
+004010A7   rep stos    dword ptr [edi]
+004010A9   pop         ecx
+004010AA   mov         dword ptr [ebp-4],ecx
+8:            printf("hello world!\n");
+004010AD   push        offset string "hello world!\n" (0042201c)
+004010B2   call        printf (00401120)
+004010B7   add         esp,4
+9:        }
+004010BA   pop         edi
+004010BB   pop         esi
+004010BC   pop         ebx
+004010BD   add         esp,44h
+004010C0   cmp         ebp,esp
+004010C2   call        __chkesp (004010e0)
+004010C7   mov         esp,ebp
+004010C9   pop         ebp
+004010CA   ret
+
+10:   };
+11:   class B
+12:   {
+13:   public:
+14:       virtual void function()
+15:       {
+0040D770   push        ebp
+0040D771   mov         ebp,esp
+0040D773   sub         esp,44h
+0040D776   push        ebx
+0040D777   push        esi
+0040D778   push        edi
+0040D779   push        ecx
+0040D77A   lea         edi,[ebp-44h]
+0040D77D   mov         ecx,11h
+0040D782   mov         eax,0CCCCCCCCh
+0040D787   rep stos    dword ptr [edi]
+0040D789   pop         ecx
+0040D78A   mov         dword ptr [ebp-4],ecx
+16:           printf("hello world!\n");
+0040D78D   push        offset string "hello world!\n" (0042201c)
+0040D792   call        printf (00401120)
+0040D797   add         esp,4
+17:       }
+0040D79A   pop         edi
+0040D79B   pop         esi
+0040D79C   pop         ebx
+0040D79D   add         esp,44h
+0040D7A0   cmp         ebp,esp
+0040D7A2   call        __chkesp (004010e0)
+0040D7A7   mov         esp,ebp
+0040D7A9   pop         ebp
+0040D7AA   ret
+
+20:   {
+00401020   push        ebp
+00401021   mov         ebp,esp
+00401023   sub         esp,48h
+00401026   push        ebx
+00401027   push        esi
+00401028   push        edi
+00401029   lea         edi,[ebp-48h]
+0040102C   mov         ecx,12h
+00401031   mov         eax,0CCCCCCCCh
+00401036   rep stos    dword ptr [edi]
+21:       A *pA = NULL;
+00401038   mov         dword ptr [ebp-4],0
+22:       pA->function();
+0040103F   mov         ecx,dword ptr [ebp-4]
+00401042   call        @ILT+0(A::function) (00401005)
+23:       B *pB = NULL;
+00401047   mov         dword ptr [ebp-8],0
+24:       pB->function();
+0040104E   mov         eax,dword ptr [ebp-8]
+00401051   mov         edx,dword ptr [eax]
+00401053   mov         esi,esp
+00401055   mov         ecx,dword ptr [ebp-8]
+00401058   call        dword ptr [edx]
+0040105A   cmp         esi,esp
+0040105C   call        __chkesp (004010e0)
+25:       return 0;
+00401061   xor         eax,eax
+26:   }
+00401063   pop         edi
+00401064   pop         esi
+00401065   pop         ebx
+00401066   add         esp,48h
+00401069   cmp         ebp,esp
+0040106B   call        __chkesp (004010e0)
+00401070   mov         esp,ebp
+00401072   pop         ebp
+00401073   ret
+
+
+B::B:
+0040D7B0   push        ebp
+0040D7B1   mov         ebp,esp
+0040D7B3   sub         esp,44h
+0040D7B6   push        ebx
+0040D7B7   push        esi
+0040D7B8   push        edi
+0040D7B9   push        ecx
+0040D7BA   lea         edi,[ebp-44h]
+0040D7BD   mov         ecx,11h
+0040D7C2   mov         eax,0CCCCCCCCh
+0040D7C7   rep stos    dword ptr [edi]
+0040D7C9   pop         ecx
+0040D7CA   mov         dword ptr [ebp-4],ecx
+0040D7CD   mov         eax,dword ptr [ebp-4]
+0040D7D0   mov         dword ptr [eax],offset B::`vftable' (00422f5c)
+0040D7D6   mov         eax,dword ptr [ebp-4]
+0040D7D9   pop         edi
+0040D7DA   pop         esi
+0040D7DB   pop         ebx
+0040D7DC   mov         esp,ebp
+0040D7DE   pop         ebp
+0040D7DF   ret
